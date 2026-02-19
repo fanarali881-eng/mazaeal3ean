@@ -29,7 +29,7 @@ export default function SummaryPayment() {
 
   const total = getCartTotal();
   const count = getCartCount();
-  const deliveryFee = total >= 20 ? 0 : 2;
+  const deliveryFee = total >= 20 ? 0 : 1;
   const grandTotal = total + deliveryFee;
 
   const isAr = lang === 'ar';
