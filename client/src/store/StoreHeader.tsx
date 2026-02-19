@@ -32,7 +32,7 @@ export default function StoreHeader() {
   return (
     <header className="store-header" dir="rtl" style={{ position: 'sticky', top: 0, zIndex: 100 }}>
       {/* Top announcement bar */}
-      <div style={{ background: '#8B0000', color: 'white', padding: '8px 20px', fontSize: '13px', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
+      <div style={{ background: '#000000', color: 'white', padding: '8px 20px', fontSize: '13px', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
         <a onClick={() => navigate('/store')} style={{ color: 'white', textDecoration: 'none', cursor: 'pointer' }}>
           توصيل مجاني للطلبات بقيمة 20 د.ك أو أكثر - شروط التوصيل ←
         </a>
