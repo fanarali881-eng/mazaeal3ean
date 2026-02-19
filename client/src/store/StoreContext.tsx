@@ -149,7 +149,8 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
 
   const getProductsByCollection = useCallback((handle: string) => {
     const ids = collectionProducts[handle] || [];
-    return products.filter(p => ids.includes(p.id));
+    const idMap = new Map(products.map(p => [p.id, p]));
+    return ids.map(id => idMap.get(id)).filter(Boolean) as Product[];
   }, [products, collectionProducts]);
 
   const getProductByHandle = useCallback((handle: string) => {

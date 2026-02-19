@@ -16,6 +16,7 @@ export default function ProductCard({ product, compact }: ProductCardProps) {
   const variant = product.variants[selectedVariant];
   const hasDiscount = variant?.compareAtPrice && parseFloat(variant.compareAtPrice) > parseFloat(variant.price);
   const discountPercent = hasDiscount ? Math.round((1 - parseFloat(variant.price) / parseFloat(variant.compareAtPrice!)) * 100) : 0;
+  const isCatchWeight = product.tags?.includes('catch_weight_item');
 
   const handleAdd = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -54,6 +55,18 @@ export default function ProductCard({ product, compact }: ProductCardProps) {
             <span style={{ background: '#333', color: 'white', padding: '4px 10px', fontSize: '11px', fontWeight: 600 }}>جديد</span>
           )}
         </div>
+        {/* Weight icon for catch_weight items - top left area */}
+        {isCatchWeight && (
+          <div style={{
+            position: 'absolute', top: '8px', left: '8px',
+            width: '32px', height: '32px',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+          }}>
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="#333">
+              <path d="M12 3c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-1 5v1H8.5L4 20h16l-4.5-11H13V8h-2z"/>
+            </svg>
+          </div>
+        )}
         {/* Discount badge - bottom left */}
         {hasDiscount && (
           <span style={{
@@ -101,16 +114,16 @@ export default function ProductCard({ product, compact }: ProductCardProps) {
         <div style={{ marginTop: 'auto' }}>
           {/* Price */}
           <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: '4px', flexWrap: 'wrap' }}>
-            {product.variants.length > 1 && <span style={{ fontSize: '12px', color: '#999' }}>من</span>}
+            {!isCatchWeight && product.variants.length > 1 && <span style={{ fontSize: '12px', color: '#999' }}>من</span>}
             <span style={{ fontSize: '15px', fontWeight: 700, color: '#333' }}>
-              KD {variant?.price}
+              {isCatchWeight ? `KG/KD${variant?.price}` : `KD ${variant?.price}`}
             </span>
           </div>
           {/* Old price */}
           {hasDiscount && (
             <div style={{ textAlign: 'center', marginTop: '2px' }}>
               <span style={{ fontSize: '13px', color: '#C41230', textDecoration: 'line-through', fontWeight: 500 }}>
-                KD {variant.compareAtPrice}
+                {isCatchWeight ? `KG/KD${variant.compareAtPrice}` : `KD ${variant.compareAtPrice}`}
               </span>
             </div>
           )}

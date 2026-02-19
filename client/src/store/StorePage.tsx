@@ -51,7 +51,7 @@ function HeroSlider() {
 }
 
 /* ── Product Carousel ── */
-function ProductCarousel({ title, products, viewAllLink }: { title: string; products: any[]; viewAllLink?: string }) {
+function ProductCarousel({ title, products, viewAllLink, titleUnderline }: { title: string; products: any[]; viewAllLink?: string; titleUnderline?: boolean }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [, navigate] = useLocation();
 
@@ -67,7 +67,7 @@ function ProductCarousel({ title, products, viewAllLink }: { title: string; prod
   return (
     <section style={{ padding: '40px 0' }}>
       <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 20px' }}>
-        <h2 style={{ fontSize: '28px', fontWeight: 700, color: '#333', textAlign: 'center', marginBottom: '25px' }}>{title}</h2>
+        <h2 style={{ fontSize: '28px', fontWeight: 700, color: '#333', textAlign: 'center', marginBottom: '25px', textDecoration: titleUnderline ? 'underline' : 'none', textUnderlineOffset: '8px' }}>{title}</h2>
         <div style={{ position: 'relative' }}>
           {/* Right arrow */}
           <button onClick={() => scroll('right')} style={{
@@ -243,7 +243,7 @@ export default function StorePage() {
 
       {/* Ocean's Pride */}
       {oceansPride.length > 0 && (
-        <ProductCarousel title="أوشنز برايد" products={oceansPride.slice(0, 15)} viewAllLink="/store/collection/oceans-pride" />
+        <ProductCarousel title="أوشنز برايد" products={oceansPride.slice(0, 15)} viewAllLink="/store/collection/oceans-pride" titleUnderline />
       )}
 
       {/* Brand Logos */}
