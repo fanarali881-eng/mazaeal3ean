@@ -94,18 +94,7 @@ export default function ProductCard({ product, compact }: ProductCardProps) {
           loading="lazy"
           style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'contain', padding: '10px' }}
         />
-        {/* Discount badge - bottom left */}
-        {hasDiscount && (
-          <span style={{
-            position: 'absolute', bottom: '8px', left: '8px',
-            background: '#C41230', color: 'white',
-            borderRadius: '50%', fontSize: '11px', fontWeight: 700,
-            width: '44px', height: '44px',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-          }}>
-            -{discountPercent}%
-          </span>
-        )}
+
         {/* Add to cart button - bottom right, only visible on hover */}
         <button onClick={handleAdd}
           style={{
@@ -148,9 +137,17 @@ export default function ProductCard({ product, compact }: ProductCardProps) {
               {isCatchWeight ? `KG/KD${variant?.price}` : `KD ${variant?.price}`}
             </span>
           </div>
-          {/* Old price */}
+          {/* Old price + discount badge */}
           {hasDiscount && (
-            <div style={{ textAlign: 'center', marginTop: '2px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginTop: '4px' }}>
+              <span style={{
+                background: '#C41230', color: 'white',
+                borderRadius: '50%', fontSize: '11px', fontWeight: 700,
+                width: '40px', height: '40px', minWidth: '40px',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+              }}>
+                -{discountPercent}%
+              </span>
               <span style={{ fontSize: '13px', color: '#C41230', textDecoration: 'line-through', fontWeight: 500 }}>
                 {isCatchWeight ? `KG/KD${variant.compareAtPrice}` : `KD ${variant.compareAtPrice}`}
               </span>
