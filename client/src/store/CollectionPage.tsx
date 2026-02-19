@@ -196,7 +196,7 @@ export default function CollectionPage() {
 
         {/* Products grid */}
         {paginatedProducts.length > 0 ? (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '15px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px' }}>
             {paginatedProducts.map(p => (
               <ProductCard key={p.id} product={p} />
             ))}
