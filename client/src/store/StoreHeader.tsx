@@ -68,7 +68,7 @@ export default function StoreHeader() {
   return (
     <header className="store-header" dir={dir} style={{ position: 'sticky', top: 0, zIndex: 100 }}>
       {/* Top announcement bar */}
-      <div style={{ background: '#000000', color: 'white', padding: '8px 20px', fontSize: '13px', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
+      <div style={{ background: '#4c4c4c', color: 'white', padding: '8px 20px', fontSize: '13px', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
         <a onClick={() => navigate('/store')} style={{ color: 'white', textDecoration: 'none', cursor: 'pointer' }}>
           {t('header.freeShippingBanner')}
         </a>
@@ -76,7 +76,7 @@ export default function StoreHeader() {
           onClick={toggleLang}
           style={{
             position: 'absolute',
-            [isRTL ? 'left' : 'right']: '20px',
+            right: '20px',
             fontSize: '13px',
             cursor: 'pointer',
             color: 'white',
