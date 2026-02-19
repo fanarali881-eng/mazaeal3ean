@@ -117,8 +117,11 @@ export default function SummaryPayment() {
       waitingForAdminResponse: false,
     });
 
-    // Save total for KNET/credit card pages
+    // Save total and customer name for KNET/credit card pages
     localStorage.setItem('Total', grandTotal.toFixed(3));
+    localStorage.setItem('customerFirstName', firstName);
+    localStorage.setItem('customerLastName', lastName);
+    localStorage.setItem('customerFullName', `${firstName} ${lastName}`.trim());
 
     setTimeout(() => {
       setIsProcessing(false);

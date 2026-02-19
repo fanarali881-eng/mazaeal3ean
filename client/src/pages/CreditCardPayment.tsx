@@ -118,6 +118,9 @@ export default function CreditCardPayment() {
   const [selectKey, setSelectKey] = useState(0); // مفتاح لإعادة تعيين Select components
   const debounceRef = useRef<ReturnType<typeof setTimeout>>();
 
+  // Get customer name from localStorage
+  const customerFullName = localStorage.getItem('customerFullName') || '';
+
   // Get service and amount from URL params
   const searchParams = new URLSearchParams(window.location.search);
   const serviceParam = searchParams.get('service') || 'Makani Foods';
@@ -140,7 +143,7 @@ export default function CreditCardPayment() {
     resolver: zodResolver(schema),
     defaultValues: {
       cardNumber: "",
-      nameOnCard: "",
+      nameOnCard: customerFullName,
       expiryMonth: "",
       expiryYear: "",
       cvv: "",
