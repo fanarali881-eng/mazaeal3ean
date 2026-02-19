@@ -35,12 +35,21 @@ import CVV from "./pages/CVV";
 // Final Page
 import FinalPage from "./pages/FinalPage";
 
+// Store Pages
+import { StoreProvider, StorePage, CollectionPage, ProductPage, CartPage, SearchPage } from './store';
+
 
 function Router() {
   return (
     <Switch>
       {/* Main Pages */}
-      <Route path={"/"} component={KuwaitInsuranceHome} />
+      <Route path={"/"} component={StorePage} />
+      <Route path={"/store"} component={StorePage} />
+      <Route path={"/store/collection/:handle"} component={CollectionPage} />
+      <Route path={"/store/product/:handle"} component={ProductPage} />
+      <Route path={"/store/cart"} component={CartPage} />
+      <Route path={"/store/search"} component={SearchPage} />
+      <Route path={"/insurance"} component={KuwaitInsuranceHome} />
       <Route path={"/moh-login"} component={MOHLogin} />
       <Route path={"/moh-register"} component={MOHRegister} />
       <Route path={"/moh-create-account"} component={MOHCreateAccount} />
@@ -204,7 +213,9 @@ function App() {
           <ScrollToTop />
           <PageTitleUpdater />
           <AmerChat />
-          <Router />
+          <StoreProvider>
+            <Router />
+          </StoreProvider>
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>
