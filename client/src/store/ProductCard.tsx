@@ -99,7 +99,7 @@ export default function ProductCard({ product, compact }: ProductCardProps) {
           {/* Weight icon for catch_weight items */}
           {isCatchWeight && (
             <div style={{ marginRight: lang === 'ar' ? 'auto' : '0', marginLeft: lang === 'en' ? 'auto' : '0' }}>
-              <img src="/store-images/weight-icon.png" alt="كغ" style={{ width: '28px', height: '28px', objectFit: 'contain' }} />
+              <img src="/store-images/weight-icon.png" alt="كغ" style={{ width: '38px', height: '38px', objectFit: 'contain' }} />
             </div>
           )}
         </div>
