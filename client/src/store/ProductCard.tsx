@@ -139,7 +139,7 @@ export default function ProductCard({ product, compact }: ProductCardProps) {
           </div>
           {/* Old price + discount badge */}
           {hasDiscount && (
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginTop: '4px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: '8px', marginTop: '4px', direction: 'ltr' }}>
               <span style={{
                 background: '#C41230', color: 'white',
                 borderRadius: '20px', fontSize: '12px', fontWeight: 700,
