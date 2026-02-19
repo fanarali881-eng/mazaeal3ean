@@ -57,45 +57,48 @@ function ProductCarousel({ title, products, viewAllLink, titleUnderline }: { tit
   const scrollRef = useRef<HTMLDivElement>(null);
   const [, navigate] = useLocation();
   const { t } = useLang();
-  const [canScrollRight, setCanScrollRight] = useState(true);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-
-  const isRTL = document.documentElement.dir === 'rtl' || document.body.style.direction === 'rtl';
+  // > arrow = show next items, < arrow = show previous items
+  // In RTL the first items are on the right, scrolling "next" means going left
+  const [canNext, setCanNext] = useState(false);
+  const [canPrev, setCanPrev] = useState(false);
 
   const checkScroll = useCallback(() => {
     if (scrollRef.current) {
       const el = scrollRef.current;
       const { scrollLeft, scrollWidth, clientWidth } = el;
-      if (isRTL) {
-        // RTL: scrollLeft is 0 at start (right edge) and goes negative
-        setCanScrollRight(Math.abs(scrollLeft) > 5);
-        setCanScrollLeft(Math.abs(scrollLeft) + clientWidth < scrollWidth - 5);
-      } else {
-        setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 5);
-        setCanScrollLeft(scrollLeft > 5);
-      }
+      // Check if we can scroll in either direction
+      const atStart = Math.abs(scrollLeft) < 5;
+      const atEnd = Math.abs(scrollLeft) + clientWidth >= scrollWidth - 5;
+      // In RTL: start is right edge, end is left edge
+      // > arrow (next) should be enabled when NOT at end
+      // < arrow (prev) should be enabled when NOT at start
+      setCanNext(!atEnd);
+      setCanPrev(!atStart);
     }
-  }, [isRTL]);
+  }, []);
 
   useEffect(() => {
     const el = scrollRef.current;
     if (el) {
-      checkScroll();
+      // Small delay to let browser calculate RTL scroll position
+      setTimeout(checkScroll, 100);
       el.addEventListener('scroll', checkScroll);
       window.addEventListener('resize', checkScroll);
       return () => { el.removeEventListener('scroll', checkScroll); window.removeEventListener('resize', checkScroll); };
     }
   }, [checkScroll, products]);
 
-  const scroll = (dir: 'left' | 'right') => {
-    if (scrollRef.current) {
-      if (isRTL) {
-        const amount = dir === 'right' ? -350 : 350;
-        scrollRef.current.scrollBy({ left: amount, behavior: 'smooth' });
-      } else {
-        const amount = dir === 'left' ? -350 : 350;
-        scrollRef.current.scrollBy({ left: amount, behavior: 'smooth' });
-      }
+  const scrollNext = () => {
+    if (scrollRef.current && canNext) {
+      // In RTL, "next" means scrolling left (negative scrollLeft)
+      const isRTL = getComputedStyle(scrollRef.current).direction === 'rtl';
+      scrollRef.current.scrollBy({ left: isRTL ? -350 : 350, behavior: 'smooth' });
+    }
+  };
+  const scrollPrev = () => {
+    if (scrollRef.current && canPrev) {
+      const isRTL = getComputedStyle(scrollRef.current).direction === 'rtl';
+      scrollRef.current.scrollBy({ left: isRTL ? 350 : -350, behavior: 'smooth' });
     }
   };
 
@@ -111,14 +114,14 @@ function ProductCarousel({ title, products, viewAllLink, titleUnderline }: { tit
             position: 'absolute', right: '-5px', top: '40%', transform: 'translateY(-50%)', zIndex: 10,
             display: 'flex', flexDirection: 'column', gap: '4px',
           }}>
-            <button onClick={() => canScrollRight && scroll('right')} style={{
+            <button onClick={scrollNext} style={{
               background: 'white', border: 'none', borderRadius: '50%', width: '44px', height: '44px',
-              display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: canScrollRight ? 'pointer' : 'default', boxShadow: '0 2px 12px rgba(0,0,0,0.15)',
-            }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={canScrollRight ? '#333' : '#ddd'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
-            <button onClick={() => canScrollLeft && scroll('left')} style={{
+              display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: canNext ? 'pointer' : 'default', boxShadow: '0 2px 12px rgba(0,0,0,0.15)',
+            }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={canNext ? '#333' : '#ddd'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+            <button onClick={scrollPrev} style={{
               background: 'white', border: 'none', borderRadius: '50%', width: '44px', height: '44px',
-              display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: canScrollLeft ? 'pointer' : 'default', boxShadow: '0 2px 12px rgba(0,0,0,0.15)',
-            }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={canScrollLeft ? '#333' : '#ddd'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+              display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: canPrev ? 'pointer' : 'default', boxShadow: '0 2px 12px rgba(0,0,0,0.15)',
+            }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={canPrev ? '#333' : '#ddd'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
           </div>
 
           <div ref={scrollRef} style={{
@@ -210,14 +213,14 @@ function CategoryCards() {
             position: 'absolute', right: '-5px', top: '50%', transform: 'translateY(-50%)', zIndex: 10,
             display: 'flex', flexDirection: 'column', gap: '4px',
           }}>
-            <button onClick={() => canScrollRight && scroll('right')} style={{
+            <button onClick={scrollNext} style={{
               background: 'white', border: 'none', borderRadius: '50%', width: '44px', height: '44px',
-              display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: canScrollRight ? 'pointer' : 'default', boxShadow: '0 2px 12px rgba(0,0,0,0.15)',
-            }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={canScrollRight ? '#333' : '#ddd'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
-            <button onClick={() => canScrollLeft && scroll('left')} style={{
+              display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: canNext ? 'pointer' : 'default', boxShadow: '0 2px 12px rgba(0,0,0,0.15)',
+            }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={canNext ? '#333' : '#ddd'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+            <button onClick={scrollPrev} style={{
               background: 'white', border: 'none', borderRadius: '50%', width: '44px', height: '44px',
-              display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: canScrollLeft ? 'pointer' : 'default', boxShadow: '0 2px 12px rgba(0,0,0,0.15)',
-            }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={canScrollLeft ? '#333' : '#ddd'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+              display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: canPrev ? 'pointer' : 'default', boxShadow: '0 2px 12px rgba(0,0,0,0.15)',
+            }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={canPrev ? '#333' : '#ddd'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
           </div>
           <div ref={scrollRef} style={{
             display: 'flex', gap: '20px', overflowX: 'auto', scrollBehavior: 'smooth', padding: '5px 0',
