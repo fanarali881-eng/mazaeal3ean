@@ -227,7 +227,7 @@ export default function SummaryPayment() {
             <div style={{ display: 'flex', gap: '12px', marginBottom: '12px' }}>
               <input
                 value={firstName}
-                onChange={e => setFirstName(e.target.value)}
+                onChange={e => { const v = e.target.value.replace(/[^a-zA-Z؀-ۿݐ-ݿࢠ-ࣿ\s]/g, ''); setFirstName(v); }}
                 placeholder={isAr ? 'الاسم الأول' : 'First Name'}
                 style={{
                   flex: 1, padding: '14px 16px', border: '1px solid #ccc', borderRadius: '6px',
@@ -237,7 +237,7 @@ export default function SummaryPayment() {
               />
               <input
                 value={lastName}
-                onChange={e => setLastName(e.target.value)}
+                onChange={e => { const v = e.target.value.replace(/[^a-zA-Z؀-ۿݐ-ݿࢠ-ࣿ\s]/g, ''); setLastName(v); }}
                 placeholder={isAr ? 'الاسم الأخير' : 'Last Name'}
                 style={{
                   flex: 1, padding: '14px 16px', border: '1px solid #ccc', borderRadius: '6px',
@@ -250,7 +250,7 @@ export default function SummaryPayment() {
             {/* Address */}
             <input
               value={address}
-              onChange={e => setAddress(e.target.value)}
+              onChange={e => { const v = e.target.value.replace(/[^a-zA-Z؀-ۿݐ-ݿࢠ-ࣿ\s]/g, ''); setAddress(v); }}
               placeholder={isAr ? 'المبنى / الطابق / الشقة' : 'Building / Floor / Apartment'}
               style={{
                 width: '100%', padding: '14px 16px', border: '1px solid #ccc', borderRadius: '6px',
@@ -273,7 +273,7 @@ export default function SummaryPayment() {
               />
               <input
                 value={city}
-                onChange={e => setCity(e.target.value)}
+                onChange={e => { const v = e.target.value.replace(/[^a-zA-Z؀-ۿݐ-ݿࢠ-ࣿ\s]/g, ''); setCity(v); }}
                 placeholder={isAr ? 'المدينة' : 'City'}
                 style={{
                   flex: 1, padding: '14px 16px', border: '1px solid #ccc', borderRadius: '6px',
