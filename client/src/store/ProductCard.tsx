@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useStore, Product, Variant } from './StoreContext';
+import { useLang } from './LanguageContext';
 import { useLocation } from 'wouter';
 import QuickAddModal from './QuickAddModal';
 
@@ -10,6 +11,7 @@ interface ProductCardProps {
 
 export default function ProductCard({ product, compact }: ProductCardProps) {
   const { addToCart } = useStore();
+  const { lang, t, dir } = useLang();
   const [, navigate] = useLocation();
   const [added, setAdded] = useState(false);
   const [hovered, setHovered] = useState(false);
@@ -26,6 +28,11 @@ export default function ProductCard({ product, compact }: ProductCardProps) {
   const handleCartClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     setShowModal(true);
+  };
+
+  const getTitle = () => {
+    if (lang === 'ar') return product.titleAr || product.title;
+    return product.title;
   };
 
   const hasBadges = product.isOffer || product.isNew || isCatchWeight || !!savePercent;
@@ -53,7 +60,7 @@ export default function ProductCard({ product, compact }: ProductCardProps) {
           gap: '6px',
           padding: '0 4px',
           minHeight: '32px',
-          direction: 'rtl',
+          direction: dir,
         }}>
           {product.isNew && (
             <span style={{
@@ -64,7 +71,7 @@ export default function ProductCard({ product, compact }: ProductCardProps) {
               fontWeight: 600,
               border: '1.5px solid #e0e0e0',
               borderRadius: '2px',
-            }}>جديد</span>
+            }}>{t('product.new')}</span>
           )}
           {product.isOffer && (
             <span style={{
@@ -75,7 +82,7 @@ export default function ProductCard({ product, compact }: ProductCardProps) {
               fontWeight: 600,
               border: '1.5px solid #e0e0e0',
               borderRadius: '2px',
-            }}>عرض خاص</span>
+            }}>{t('product.specialOffer')}</span>
           )}
           {/* Save X% Discount in Cart badge for box products */}
           {savePercent && (
@@ -87,11 +94,11 @@ export default function ProductCard({ product, compact }: ProductCardProps) {
               fontWeight: 600,
               border: '1.5px solid #e0e0e0',
               borderRadius: '2px',
-            }}>{savePercent} Discount in Cart</span>
+            }}>{savePercent} {t('product.discountInCart')}</span>
           )}
-          {/* Weight icon for catch_weight items - on the left side */}
+          {/* Weight icon for catch_weight items */}
           {isCatchWeight && (
-            <div style={{ marginRight: 'auto', marginLeft: '0' }}>
+            <div style={{ marginRight: lang === 'ar' ? 'auto' : '0', marginLeft: lang === 'en' ? 'auto' : '0' }}>
               <svg viewBox="0 0 24 24" width="26" height="26" fill="#333">
                 <path d="M12 3c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-1 5v1H8.5L4 20h16l-4.5-11H13V8h-2z"/>
               </svg>
@@ -129,14 +136,14 @@ export default function ProductCard({ product, compact }: ProductCardProps) {
         </div>
 
         {/* Info */}
-        <div style={{ padding: '12px 8px', flex: 1, display: 'flex', flexDirection: 'column', direction: 'rtl', textAlign: 'center' }}>
+        <div style={{ padding: '12px 8px', flex: 1, display: 'flex', flexDirection: 'column', direction: dir, textAlign: 'center' }}>
           {/* Product title - larger */}
           <div style={{
             fontSize: '15px', fontWeight: 500, color: '#333', marginBottom: '4px',
             lineHeight: 1.4, overflow: 'hidden', textOverflow: 'ellipsis',
             display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' as any,
           }}>
-            {product.titleAr || product.title}
+            {getTitle()}
           </div>
           {/* Vendor */}
           <div style={{ fontSize: '11px', color: '#999', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
@@ -146,7 +153,7 @@ export default function ProductCard({ product, compact }: ProductCardProps) {
           <div style={{ marginTop: 'auto' }}>
             {/* Price */}
             <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: '4px', flexWrap: 'wrap' }}>
-              {!isCatchWeight && hasMultipleVariants && <span style={{ fontSize: '12px', color: '#999' }}>من</span>}
+              {!isCatchWeight && hasMultipleVariants && <span style={{ fontSize: '12px', color: '#999' }}>{t('product.from')}</span>}
               <span style={{ fontSize: '15px', fontWeight: 700, color: '#333' }}>
                 {isCatchWeight ? `KG/KD${variant?.price}` : `KD ${variant?.price}`}
               </span>

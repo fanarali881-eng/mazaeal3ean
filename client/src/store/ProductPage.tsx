@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import { useStore, Product } from './StoreContext';
+import { useLang } from './LanguageContext';
 import { useRoute, useLocation } from 'wouter';
 import ProductCard from './ProductCard';
 import StoreHeader from './StoreHeader';
@@ -8,6 +9,7 @@ import CartDrawer from './CartDrawer';
 
 export default function ProductPage() {
   const { getProductByHandle, addToCart, products, isLoading, setCartDrawerOpen } = useStore();
+  const { lang, t, dir, isRTL } = useLang();
   const [, params] = useRoute('/store/product/:handle');
   const [, navigate] = useLocation();
   const handle = params?.handle || '';
@@ -24,9 +26,19 @@ export default function ProductPage() {
       .slice(0, 8);
   }, [product, products]);
 
+  const getTitle = (p: any) => {
+    if (lang === 'ar') return p.titleAr || p.title;
+    return p.title;
+  };
+
+  const getDescription = (p: any) => {
+    if (lang === 'ar' && p.descriptionAr) return p.descriptionAr;
+    return p.bodyHtml || '';
+  };
+
   if (isLoading) {
     return (
-      <div dir="rtl">
+      <div dir={dir}>
         <StoreHeader />
         <div style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ width: '50px', height: '50px', border: '4px solid #eee', borderTop: '4px solid #C41230', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
@@ -38,11 +50,11 @@ export default function ProductPage() {
 
   if (!product) {
     return (
-      <div dir="rtl">
+      <div dir={dir}>
         <StoreHeader />
         <div style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '15px' }}>
-          <p style={{ fontSize: '18px', color: '#666' }}>المنتج غير موجود</p>
-          <a onClick={() => navigate('/store')} style={{ color: '#C41230', cursor: 'pointer' }}>العودة للرئيسية</a>
+          <p style={{ fontSize: '18px', color: '#666' }}>{t('productPage.notFound')}</p>
+          <a onClick={() => navigate('/store')} style={{ color: '#C41230', cursor: 'pointer' }}>{t('productPage.backToHome')}</a>
         </div>
         <StoreFooter />
       </div>
@@ -60,12 +72,14 @@ export default function ProductPage() {
   const isOnSale = hasDiscount || product.tags?.includes('on_sale');
 
   const getVariantLabel = (title: string) => {
-    const t = title.toLowerCase();
-    if (t === 'piece' || t === 'default title' || t === '1') return 'قطعة واحدة';
-    if (t.includes('carton') || t.includes('box')) {
-      const match = t.match(/(\d+)/);
-      if (match) return `كرتونة ( ${match[1]} قطع )`;
-      return 'كرتونة';
+    const tl = title.toLowerCase();
+    if (tl === 'piece' || tl === 'default title' || tl === '1') {
+      return lang === 'ar' ? 'قطعة واحدة' : 'Piece';
+    }
+    if (tl.includes('carton') || tl.includes('box')) {
+      const match = tl.match(/(\d+)/);
+      if (match) return lang === 'ar' ? `كرتونة ( ${match[1]} قطع )` : `Carton (${match[1]} pcs)`;
+      return lang === 'ar' ? 'كرتونة' : 'Carton';
     }
     return title;
   };
@@ -77,15 +91,17 @@ export default function ProductPage() {
     }
   };
 
+  const descHtml = getDescription(product);
+
   return (
-    <div dir="rtl" style={{ background: '#fff', minHeight: '100vh' }}>
+    <div dir={dir} style={{ background: '#fff', minHeight: '100vh' }}>
       <StoreHeader />
       <CartDrawer />
 
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '20px 30px' }}>
         {/* Breadcrumb */}
         <div style={{ fontSize: '13px', color: '#999', marginBottom: '10px', display: 'flex', gap: '5px' }}>
-          <a onClick={() => navigate('/store')} style={{ color: '#999', cursor: 'pointer', textDecoration: 'none' }}>الصفحة الرئيسية</a>
+          <a onClick={() => navigate('/store')} style={{ color: '#999', cursor: 'pointer', textDecoration: 'none' }}>{t('productPage.home')}</a>
         </div>
 
         {/* Badges above product */}
@@ -94,13 +110,13 @@ export default function ProductPage() {
             <span style={{
               padding: '4px 14px', border: '1px solid #333', borderRadius: '0',
               fontSize: '13px', fontWeight: 600, color: '#333', background: 'white',
-            }}>جديد</span>
+            }}>{t('product.new')}</span>
           )}
           {isOnSale && (
             <span style={{
               padding: '4px 14px', border: '1px solid #333', borderRadius: '0',
               fontSize: '13px', fontWeight: 600, color: '#333', background: 'white',
-            }}>عرض خاص</span>
+            }}>{t('product.specialOffer')}</span>
           )}
         </div>
 
@@ -109,7 +125,7 @@ export default function ProductPage() {
           {/* Left: Images */}
           <div>
             <div style={{ borderRadius: '0', overflow: 'hidden', marginBottom: '10px', background: '#fff' }}>
-              <img src={images[selectedImage]} alt={product.titleAr || product.title} style={{ width: '100%', aspectRatio: '1', objectFit: 'contain' }} />
+              <img src={images[selectedImage]} alt={getTitle(product)} style={{ width: '100%', aspectRatio: '1', objectFit: 'contain' }} />
             </div>
             {images.length > 1 && (
               <div style={{ display: 'flex', gap: '8px', overflowX: 'auto' }}>
@@ -134,7 +150,7 @@ export default function ProductPage() {
 
             {/* Title */}
             <h1 style={{ fontSize: '28px', fontWeight: 700, color: '#333', marginBottom: '15px', lineHeight: 1.4 }}>
-              {product.titleAr || product.title}
+              {getTitle(product)}
             </h1>
 
             {/* Price */}
@@ -154,7 +170,7 @@ export default function ProductPage() {
             {/* Variant selector */}
             {product.variants.length > 1 && (
               <div style={{ marginBottom: '24px' }}>
-                <div style={{ fontSize: '14px', fontWeight: 700, marginBottom: '10px', color: '#333' }}>نوع العبوة</div>
+                <div style={{ fontSize: '14px', fontWeight: 700, marginBottom: '10px', color: '#333' }}>{t('productPage.packageType')}</div>
                 <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
                   {product.variants.map((v, i) => (
                     <button key={v.id} onClick={() => { setSelectedVariant(i); setQuantity(1); }}
@@ -175,7 +191,7 @@ export default function ProductPage() {
 
             {/* Quantity + Add to cart on same row */}
             <div style={{ marginBottom: '20px' }}>
-              <div style={{ fontSize: '14px', fontWeight: 700, marginBottom: '10px', color: '#333' }}>الكمية</div>
+              <div style={{ fontSize: '14px', fontWeight: 700, marginBottom: '10px', color: '#333' }}>{t('productPage.quantity')}</div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                 {/* Quantity selector */}
                 <div style={{
@@ -207,27 +223,27 @@ export default function ProductPage() {
                     background: '#C41230', color: 'white',
                     transition: 'all 0.2s',
                   }}>
-                  أضف للسلة
+                  {t('productPage.addToCart')}
                 </button>
               </div>
             </div>
 
             {/* Description */}
-            {product.bodyHtml && (
+            {descHtml && (
               <div style={{ marginTop: '20px', paddingTop: '20px', borderTop: '1px solid #eee' }}>
-                <h3 style={{ fontSize: '16px', fontWeight: 700, marginBottom: '12px', color: '#333' }}>الوصف</h3>
-                <div style={{ fontSize: '14px', color: '#555', lineHeight: 1.9 }} dangerouslySetInnerHTML={{ __html: product.bodyHtml }} />
+                <h3 style={{ fontSize: '16px', fontWeight: 700, marginBottom: '12px', color: '#333' }}>{t('productPage.description')}</h3>
+                <div style={{ fontSize: '14px', color: '#555', lineHeight: 1.9 }} dangerouslySetInnerHTML={{ __html: descHtml }} />
               </div>
             )}
 
             {/* Origin */}
-            {product.tags?.some(t => t.includes('uae') || t.includes('kuwait') || t.includes('australia')) && (
+            {product.tags?.some(tag => tag.includes('uae') || tag.includes('kuwait') || tag.includes('australia')) && (
               <div style={{ marginTop: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <span style={{ fontSize: '20px' }}>📍</span>
                 <span style={{ fontSize: '14px', color: '#333' }}>
-                  {product.tags.includes('uae') ? 'الإمارات العربية المتحدة' :
-                   product.tags.includes('australia') ? 'أستراليا' :
-                   product.tags.includes('kuwait') ? 'الكويت' : ''}
+                  {product.tags!.includes('uae') ? t('origin.uae') :
+                   product.tags!.includes('australia') ? t('origin.australia') :
+                   product.tags!.includes('kuwait') ? t('origin.kuwait') : ''}
                 </span>
               </div>
             )}
@@ -237,7 +253,7 @@ export default function ProductPage() {
         {/* Related products */}
         {relatedProducts.length > 0 && (
           <div style={{ marginTop: '50px', paddingTop: '30px', borderTop: '1px solid #eee' }}>
-            <h2 style={{ fontSize: '22px', fontWeight: 700, color: '#333', textAlign: 'center', marginBottom: '20px' }}>منتجات مشابهة</h2>
+            <h2 style={{ fontSize: '22px', fontWeight: 700, color: '#333', textAlign: 'center', marginBottom: '20px' }}>{t('productPage.relatedProducts')}</h2>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '15px' }}>
               {relatedProducts.map(p => (
                 <ProductCard key={p.id} product={p} />

@@ -20,6 +20,7 @@ export interface Product {
   image: string;
   images?: string[];
   bodyHtml?: string;
+  descriptionAr?: string;
   tags?: string[];
 }
 

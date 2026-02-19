@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useStore, Product, Variant } from './StoreContext';
+import { useLang } from './LanguageContext';
 import { useLocation } from 'wouter';
 
 interface QuickAddModalProps {
@@ -9,6 +10,7 @@ interface QuickAddModalProps {
 
 export default function QuickAddModal({ product, onClose }: QuickAddModalProps) {
   const { addToCart, setCartDrawerOpen } = useStore();
+  const { lang, t, dir } = useLang();
   const [, navigate] = useLocation();
   const [selectedVariant, setSelectedVariant] = useState<Variant>(product.variants[0]);
   const [added, setAdded] = useState(false);
@@ -27,15 +29,21 @@ export default function QuickAddModal({ product, onClose }: QuickAddModalProps) 
     navigate(`/store/product/${product.handle}`);
   };
 
-  // Get variant display name in Arabic
+  const getTitle = () => {
+    if (lang === 'ar') return product.titleAr || product.title;
+    return product.title;
+  };
+
+  // Get variant display name based on language
   const getVariantLabel = (v: Variant) => {
     const title = v.title.toLowerCase();
-    if (title === 'piece' || title === 'default title' || title === '1') return 'قطعة واحدة';
+    if (title === 'piece' || title === 'default title' || title === '1') {
+      return lang === 'ar' ? 'قطعة واحدة' : 'Piece';
+    }
     if (title.includes('carton') || title.includes('box')) {
-      // Try to extract quantity
       const match = title.match(/(\d+)/);
-      if (match) return `كرتونة ( ${match[1]} قطع )`;
-      return 'كرتونة';
+      if (match) return lang === 'ar' ? `كرتونة ( ${match[1]} قطع )` : `Carton (${match[1]} pcs)`;
+      return lang === 'ar' ? 'كرتونة' : 'Carton';
     }
     return v.title;
   };
@@ -65,7 +73,7 @@ export default function QuickAddModal({ product, onClose }: QuickAddModalProps) 
         width: '90%',
         maxWidth: '380px',
         boxShadow: '0 10px 40px rgba(0,0,0,0.2)',
-        direction: 'rtl',
+        direction: dir,
         textAlign: 'center',
       }}>
         {/* Close button */}
@@ -92,7 +100,7 @@ export default function QuickAddModal({ product, onClose }: QuickAddModalProps) 
           marginTop: '10px',
           lineHeight: 1.5,
         }}>
-          {product.titleAr || product.title}
+          {getTitle()}
         </h3>
 
         {/* Variant selector - only show if multiple variants */}
@@ -104,7 +112,7 @@ export default function QuickAddModal({ product, onClose }: QuickAddModalProps) 
               color: '#333',
               marginBottom: '12px',
             }}>
-              نوع العبوة
+              {t('quickAdd.packageType')}
             </div>
             <div style={{
               display: 'flex',
@@ -157,7 +165,7 @@ export default function QuickAddModal({ product, onClose }: QuickAddModalProps) 
             direction: 'ltr',
           }}
         >
-          {added ? '✓ تمت الإضافة' : `KD ${selectedVariant?.price} أضف للسلة`}
+          {added ? t('quickAdd.added') : `KD ${selectedVariant?.price} ${t('quickAdd.addToCart')}`}
         </button>
 
         {/* View details link */}
@@ -171,7 +179,7 @@ export default function QuickAddModal({ product, onClose }: QuickAddModalProps) 
             cursor: 'pointer',
           }}
         >
-          عرض التفاصيل الكاملة
+          {t('quickAdd.viewDetails')}
         </a>
       </div>
     </>

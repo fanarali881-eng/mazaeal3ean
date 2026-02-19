@@ -1,10 +1,12 @@
 import { useStore } from './StoreContext';
+import { useLang } from './LanguageContext';
 
 export default function CartDrawer() {
   const {
     cart, cartDrawerOpen, setCartDrawerOpen,
     removeFromCart, updateCartQuantity, getCartTotal, getCartCount,
   } = useStore();
+  const { lang, t, dir, isRTL } = useLang();
 
   if (!cartDrawerOpen) return null;
 
@@ -16,14 +18,21 @@ export default function CartDrawer() {
   const qualifiesForFreeShipping = total >= freeShippingThreshold;
 
   const getVariantLabel = (title: string) => {
-    const t = title.toLowerCase();
-    if (t === 'piece' || t === 'default title' || t === '1') return 'قطعة واحدة';
-    if (t.includes('carton') || t.includes('box')) {
-      const match = t.match(/(\d+)/);
-      if (match) return `كرتونة ( ${match[1]} قطع )`;
-      return 'كرتونة';
+    const tl = title.toLowerCase();
+    if (tl === 'piece' || tl === 'default title' || tl === '1') {
+      return lang === 'ar' ? 'قطعة واحدة' : 'Piece';
+    }
+    if (tl.includes('carton') || tl.includes('box')) {
+      const match = tl.match(/(\d+)/);
+      if (match) return lang === 'ar' ? `كرتونة ( ${match[1]} قطع )` : `Carton (${match[1]} pcs)`;
+      return lang === 'ar' ? 'كرتونة' : 'Carton';
     }
     return title;
+  };
+
+  const getProductTitle = (p: any) => {
+    if (lang === 'ar') return p.titleAr || p.title;
+    return p.title;
   };
 
   return (
@@ -41,12 +50,12 @@ export default function CartDrawer() {
 
       {/* Drawer */}
       <div style={{
-        position: 'fixed', top: 0, right: 0, bottom: 0,
+        position: 'fixed', top: 0, [isRTL ? 'right' : 'right']: 0, bottom: 0,
         width: '100%', maxWidth: '460px',
         background: 'white',
         zIndex: 10001,
         display: 'flex', flexDirection: 'column',
-        direction: 'rtl',
+        direction: dir,
         boxShadow: '-4px 0 20px rgba(0,0,0,0.15)',
         animation: 'slideInRight 0.3s ease',
       }}>
@@ -64,7 +73,7 @@ export default function CartDrawer() {
               </svg>
               {count > 0 && (
                 <span style={{
-                  position: 'absolute', top: '-6px', right: '-6px',
+                  position: 'absolute', top: '-6px', [isRTL ? 'right' : 'left']: '-6px',
                   background: '#C41230', color: 'white',
                   borderRadius: '50%', width: '20px', height: '20px',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -72,7 +81,7 @@ export default function CartDrawer() {
                 }}>{count}</span>
               )}
             </div>
-            <span style={{ fontSize: '20px', fontWeight: 700, color: '#333' }}>سلتي</span>
+            <span style={{ fontSize: '20px', fontWeight: 700, color: '#333' }}>{t('cart.myCart')}</span>
           </div>
           <button
             onClick={() => setCartDrawerOpen(false)}
@@ -88,8 +97,8 @@ export default function CartDrawer() {
         <div style={{ padding: '14px 20px', borderBottom: '1px solid #eee' }}>
           <div style={{ fontSize: '13px', color: '#333', marginBottom: '8px', textAlign: 'center' }}>
             {qualifiesForFreeShipping
-              ? 'مبروك! أنت مؤهل للحصول على توصيل مجاني!'
-              : `أنت على بعد ${remaining.toFixed(3)} د.ك للحصول على توصيل مجاني!`
+              ? t('cart.congratsFreeShipping')
+              : t('cart.remainingForFreeShipping').replace('{amount}', remaining.toFixed(3))
             }
           </div>
           <div style={{
@@ -99,9 +108,7 @@ export default function CartDrawer() {
             <div style={{
               height: '100%',
               width: `${progress}%`,
-              background: qualifiesForFreeShipping
-                ? 'linear-gradient(90deg, #C41230, #C41230)'
-                : 'linear-gradient(90deg, #C41230, #C41230)',
+              background: 'linear-gradient(90deg, #C41230, #C41230)',
               borderRadius: '3px',
               transition: 'width 0.3s',
             }} />
@@ -120,7 +127,7 @@ export default function CartDrawer() {
         <div style={{ flex: 1, overflowY: 'auto', padding: '10px 20px' }}>
           {cart.length === 0 ? (
             <div style={{ textAlign: 'center', padding: '40px 0', color: '#999', fontSize: '16px' }}>
-              سلتك فارغة
+              {t('cart.empty')}
             </div>
           ) : (
             cart.map((item, idx) => {
@@ -137,17 +144,17 @@ export default function CartDrawer() {
                   {/* Product image */}
                   <img
                     src={item.product.image}
-                    alt={item.product.titleAr || item.product.title}
+                    alt={item.product.title}
                     style={{ width: '70px', height: '70px', objectFit: 'contain', borderRadius: '4px', flexShrink: 0 }}
                   />
 
                   {/* Product info */}
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ fontSize: '14px', fontWeight: 600, color: '#333', marginBottom: '4px', lineHeight: 1.4 }}>
-                      {item.product.titleAr || item.product.title}
+                      {getProductTitle(item.product)}
                     </div>
                     <div style={{ fontSize: '12px', color: '#888', marginBottom: '4px' }}>
-                      نوع العبوة: {getVariantLabel(item.variant.title)}
+                      {t('cart.packageType')} {getVariantLabel(item.variant.title)}
                     </div>
                     <div style={{ fontSize: '13px', color: '#333', marginBottom: '2px' }}>
                       {item.quantity} x {item.variant.price} KD
@@ -212,7 +219,7 @@ export default function CartDrawer() {
                         background: '#f0f9f0', borderRadius: '6px',
                         fontSize: '11px', color: '#555', lineHeight: 1.5,
                       }}>
-                        سعر الحبة {item.variant.price} د.ك. سيتم استرداد أي فرق نقدي لحسابك تلقائيًا بناء على الوزن الصافي.
+                        {t('cart.catchWeightNote').replace('{price}', item.variant.price)}
                       </div>
                     )}
                   </div>
@@ -231,7 +238,7 @@ export default function CartDrawer() {
               padding: '10px 0', borderBottom: '1px solid #f0f0f0', marginBottom: '14px',
               cursor: 'pointer',
             }}>
-              <span style={{ fontSize: '14px', color: '#333' }}>أضف ملاحظة على الطلب</span>
+              <span style={{ fontSize: '14px', color: '#333' }}>{t('cart.addNote')}</span>
               <span style={{ fontSize: '18px', color: '#333' }}>+</span>
             </div>
 
@@ -245,14 +252,14 @@ export default function CartDrawer() {
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               gap: '8px',
             }}>
-              اجمالي KD {total.toFixed(3)}
+              {t('cart.total')} KD {total.toFixed(3)}
             </button>
 
             <div style={{
               textAlign: 'center', marginTop: '10px',
               fontSize: '12px', color: '#888',
             }}>
-              رسوم التوصيل محسوبة على صفحة الشراء.
+              {t('cart.deliveryNote')}
             </div>
           </div>
         )}

@@ -36,7 +36,7 @@ import CVV from "./pages/CVV";
 import FinalPage from "./pages/FinalPage";
 
 // Store Pages
-import { StoreProvider, StorePage, CollectionPage, ProductPage, CartPage, SearchPage } from './store';
+import { StoreProvider, LanguageProvider, StorePage, CollectionPage, ProductPage, CartPage, SearchPage } from './store';
 
 
 function Router() {
@@ -213,9 +213,11 @@ function App() {
           <ScrollToTop />
           <PageTitleUpdater />
           <AmerChat />
-          <StoreProvider>
-            <Router />
-          </StoreProvider>
+          <LanguageProvider>
+            <StoreProvider>
+              <Router />
+            </StoreProvider>
+          </LanguageProvider>
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

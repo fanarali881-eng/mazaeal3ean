@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useStore } from './StoreContext';
+import { useLang } from './LanguageContext';
 import { useRoute, useLocation } from 'wouter';
 import ProductCard from './ProductCard';
 import StoreHeader from './StoreHeader';
@@ -8,6 +9,7 @@ import CartDrawer from './CartDrawer';
 
 export default function CollectionPage() {
   const { products, getProductsByCollection, categories, isLoading } = useStore();
+  const { lang, t, dir } = useLang();
   const [, params] = useRoute('/store/collection/:handle');
   const [, navigate] = useLocation();
   const handle = params?.handle || '';
@@ -18,6 +20,12 @@ export default function CollectionPage() {
   // Reset page when handle changes
   useEffect(() => { setCurrentPage(1); setSortBy('default'); }, [handle]);
 
+  // Helper to get title based on language
+  const getCatTitle = (item: any) => {
+    if (lang === 'en' && item.titleEn) return item.titleEn;
+    return item.title;
+  };
+
   // Find collection title and parent info
   let title = handle;
   let parentCategory: string | null = null;
@@ -26,12 +34,12 @@ export default function CollectionPage() {
 
   // Special collection names
   const specialNames: Record<string, string> = {
-    'all-products': 'جميع المنتجات',
-    'new-arrivals': 'وصل حديثاً',
-    'promotion': 'عروض',
-    'boxes': 'بوكسات',
-    'frontpage': 'الأكثر مبيعاً',
-    'oceans-pride': 'أوشنز برايد',
+    'all-products': t('collection.allProducts'),
+    'new-arrivals': t('collection.newArrivals'),
+    'promotion': t('collection.offers'),
+    'boxes': t('collection.boxes'),
+    'frontpage': t('collection.bestSellers'),
+    'oceans-pride': t('collection.oceansPride'),
   };
 
   if (specialNames[handle]) {
@@ -40,7 +48,7 @@ export default function CollectionPage() {
     // Check main categories and their nested subcategories
     for (const [, cat] of Object.entries(categories)) {
       if (cat.handle === handle) {
-        title = cat.title;
+        title = getCatTitle(cat);
         subcategories = cat.subcategories || [];
         break;
       }
@@ -48,9 +56,9 @@ export default function CollectionPage() {
       if (cat.subcategories) {
         for (const sub of cat.subcategories) {
           if (sub.handle === handle) {
-            title = sub.title;
+            title = getCatTitle(sub);
             parentCategory = cat.handle;
-            parentTitle = cat.title;
+            parentTitle = getCatTitle(cat);
             subcategories = (sub as any).subcategories || [];
             break;
           }
@@ -58,9 +66,9 @@ export default function CollectionPage() {
           if ((sub as any).subcategories) {
             for (const nested of (sub as any).subcategories) {
               if (nested.handle === handle) {
-                title = nested.title;
+                title = getCatTitle(nested);
                 parentCategory = cat.handle;
-                parentTitle = cat.title;
+                parentTitle = getCatTitle(cat);
                 break;
               }
             }
@@ -74,7 +82,6 @@ export default function CollectionPage() {
   const collectionProducts = useMemo(() => {
     if (handle === 'all-products') return products;
     
-    // For parent categories with subcategories, also include products from all sub-collections
     const directProducts = getProductsByCollection(handle);
     if (directProducts.length > 0) return directProducts;
     
@@ -90,7 +97,6 @@ export default function CollectionPage() {
             allProducts.push(p);
           }
         }
-        // Also check nested
         if (sub.subcategories) {
           for (const nested of sub.subcategories) {
             const nestedProds = getProductsByCollection(nested.handle);
@@ -118,20 +124,28 @@ export default function CollectionPage() {
       case 'price-desc':
         return sorted.sort((a, b) => parseFloat(b.variants[0]?.price || '0') - parseFloat(a.variants[0]?.price || '0'));
       case 'name-asc':
-        return sorted.sort((a, b) => (a.titleAr || a.title).localeCompare(b.titleAr || b.title, 'ar'));
+        return sorted.sort((a, b) => {
+          const aTitle = lang === 'ar' ? (a.titleAr || a.title) : a.title;
+          const bTitle = lang === 'ar' ? (b.titleAr || b.title) : b.title;
+          return aTitle.localeCompare(bTitle, lang === 'ar' ? 'ar' : 'en');
+        });
       case 'name-desc':
-        return sorted.sort((a, b) => (b.titleAr || b.title).localeCompare(a.titleAr || a.title, 'ar'));
+        return sorted.sort((a, b) => {
+          const aTitle = lang === 'ar' ? (a.titleAr || a.title) : a.title;
+          const bTitle = lang === 'ar' ? (b.titleAr || b.title) : b.title;
+          return bTitle.localeCompare(aTitle, lang === 'ar' ? 'ar' : 'en');
+        });
       default:
         return sorted;
     }
-  }, [collectionProducts, sortBy]);
+  }, [collectionProducts, sortBy, lang]);
 
   const totalPages = Math.ceil(sortedProducts.length / perPage);
   const paginatedProducts = sortedProducts.slice((currentPage - 1) * perPage, currentPage * perPage);
 
   if (isLoading) {
     return (
-      <div dir="rtl">
+      <div dir={dir}>
         <StoreHeader />
         <div style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ width: '50px', height: '50px', border: '4px solid #eee', borderTop: '4px solid #C41230', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
@@ -142,14 +156,14 @@ export default function CollectionPage() {
   }
 
   return (
-    <div dir="rtl" style={{ background: '#fafafa', minHeight: '100vh' }}>
+    <div dir={dir} style={{ background: '#fafafa', minHeight: '100vh' }}>
       <StoreHeader />
       <CartDrawer />
 
       <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '20px' }}>
         {/* Breadcrumb */}
         <div style={{ fontSize: '13px', color: '#999', marginBottom: '15px', display: 'flex', gap: '5px', flexWrap: 'wrap' }}>
-          <a onClick={() => navigate('/store')} style={{ color: '#C41230', cursor: 'pointer', textDecoration: 'none' }}>الرئيسية</a>
+          <a onClick={() => navigate('/store')} style={{ color: '#C41230', cursor: 'pointer', textDecoration: 'none' }}>{t('collection.home')}</a>
           <span>/</span>
           {parentCategory && (
             <>
@@ -177,7 +191,7 @@ export default function CollectionPage() {
                 }}
                 onMouseEnter={e => { e.currentTarget.style.background = '#C41230'; e.currentTarget.style.color = 'white'; e.currentTarget.style.borderColor = '#C41230'; }}
                 onMouseLeave={e => { e.currentTarget.style.background = 'white'; e.currentTarget.style.color = '#333'; e.currentTarget.style.borderColor = '#ddd'; }}>
-                {sub.title}
+                {getCatTitle(sub)}
               </a>
             ))}
           </div>
@@ -185,14 +199,14 @@ export default function CollectionPage() {
 
         {/* Sort & count */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', flexWrap: 'wrap', gap: '10px' }}>
-          <span style={{ fontSize: '14px', color: '#666' }}>{sortedProducts.length} منتج</span>
+          <span style={{ fontSize: '14px', color: '#666' }}>{sortedProducts.length} {t('collection.products')}</span>
           <select value={sortBy} onChange={e => { setSortBy(e.target.value); setCurrentPage(1); }}
-            style={{ padding: '8px 12px', border: '1px solid #ddd', borderRadius: '6px', fontSize: '13px', background: 'white', direction: 'rtl' }}>
-            <option value="default">الترتيب الافتراضي</option>
-            <option value="price-asc">السعر: من الأقل للأعلى</option>
-            <option value="price-desc">السعر: من الأعلى للأقل</option>
-            <option value="name-asc">الاسم: أ - ي</option>
-            <option value="name-desc">الاسم: ي - أ</option>
+            style={{ padding: '8px 12px', border: '1px solid #ddd', borderRadius: '6px', fontSize: '13px', background: 'white', direction: dir }}>
+            <option value="default">{t('collection.defaultSort')}</option>
+            <option value="price-asc">{t('collection.priceAsc')}</option>
+            <option value="price-desc">{t('collection.priceDesc')}</option>
+            <option value="name-asc">{t('collection.nameAsc')}</option>
+            <option value="name-desc">{t('collection.nameDesc')}</option>
           </select>
         </div>
 
@@ -205,8 +219,8 @@ export default function CollectionPage() {
           </div>
         ) : (
           <div style={{ textAlign: 'center', padding: '60px 20px', color: '#999' }}>
-            <p style={{ fontSize: '18px', marginBottom: '10px' }}>لا توجد منتجات في هذا التصنيف</p>
-            <a onClick={() => navigate('/store')} style={{ color: '#C41230', cursor: 'pointer', textDecoration: 'none' }}>العودة للرئيسية</a>
+            <p style={{ fontSize: '18px', marginBottom: '10px' }}>{t('collection.noProducts')}</p>
+            <a onClick={() => navigate('/store')} style={{ color: '#C41230', cursor: 'pointer', textDecoration: 'none' }}>{t('collection.backToHome')}</a>
           </div>
         )}
 
@@ -216,11 +230,10 @@ export default function CollectionPage() {
             {currentPage > 1 && (
               <button onClick={() => setCurrentPage(p => p - 1)}
                 style={{ padding: '8px 14px', border: '1px solid #ddd', borderRadius: '6px', background: 'white', cursor: 'pointer' }}>
-                السابق
+                {t('collection.previous')}
               </button>
             )}
             {Array.from({ length: Math.min(totalPages, 10) }, (_, i) => {
-              // Show pages around current page
               let page: number;
               if (totalPages <= 10) {
                 page = i + 1;
@@ -246,7 +259,7 @@ export default function CollectionPage() {
             {currentPage < totalPages && (
               <button onClick={() => setCurrentPage(p => p + 1)}
                 style={{ padding: '8px 14px', border: '1px solid #ddd', borderRadius: '6px', background: 'white', cursor: 'pointer' }}>
-                التالي
+                {t('collection.next')}
               </button>
             )}
           </div>

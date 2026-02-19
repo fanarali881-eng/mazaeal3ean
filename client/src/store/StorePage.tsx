@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { useStore } from './StoreContext';
+import { useLang } from './LanguageContext';
 import { useLocation } from 'wouter';
 import ProductCard from './ProductCard';
 import StoreHeader from './StoreHeader';
@@ -55,6 +56,7 @@ function HeroSlider() {
 function ProductCarousel({ title, products, viewAllLink, titleUnderline }: { title: string; products: any[]; viewAllLink?: string; titleUnderline?: boolean }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [, navigate] = useLocation();
+  const { t } = useLang();
 
   const scroll = (dir: 'left' | 'right') => {
     if (scrollRef.current) {
@@ -99,7 +101,7 @@ function ProductCarousel({ title, products, viewAllLink, titleUnderline }: { tit
             <a onClick={() => navigate(viewAllLink)} style={{
               display: 'inline-block', background: '#C41230', color: 'white', padding: '10px 30px', borderRadius: '25px',
               fontWeight: 600, fontSize: '14px', cursor: 'pointer', textDecoration: 'none',
-            }}>عرض الكل</a>
+            }}>{t('store.viewAll')}</a>
           </div>
         )}
       </div>
@@ -111,14 +113,15 @@ function ProductCarousel({ title, products, viewAllLink, titleUnderline }: { tit
 function CategoryCards() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [, navigate] = useLocation();
+  const { t } = useLang();
 
   const cats = [
-    { handle: 'frozen_fries-appetizers', title: 'بطاطا مقلية ومقبلات', image: '/store-images/cat-fries.webp' },
-    { handle: 'frozen_beef', title: 'لحم بقر و عجل', image: '/store-images/cat-beef.jpg' },
-    { handle: 'frozen_poultry', title: 'دواجن', image: '/store-images/cat-poultry.jpg' },
-    { handle: 'frozen_seafood', title: 'مأكولات بحرية', image: '/store-images/cat-seafood.jpg' },
-    { handle: 'frozen_vegetables-fruits', title: 'خضار وفواكه', image: '/store-images/cat-vegs.jpg' },
-    { handle: 'chilled-dry_cheese', title: 'ألبان ، أجبان ، وبيض', image: '/store-images/cat-dairy.jpg' },
+    { handle: 'frozen_fries-appetizers', titleKey: 'cat.fries', image: '/store-images/cat-fries.webp' },
+    { handle: 'frozen_beef', titleKey: 'cat.beef', image: '/store-images/cat-beef.jpg' },
+    { handle: 'frozen_poultry', titleKey: 'cat.poultry', image: '/store-images/cat-poultry.jpg' },
+    { handle: 'frozen_seafood', titleKey: 'cat.seafood', image: '/store-images/cat-seafood.jpg' },
+    { handle: 'frozen_vegetables-fruits', titleKey: 'cat.vegetables', image: '/store-images/cat-vegs.jpg' },
+    { handle: 'chilled-dry_cheese', titleKey: 'cat.dairy', image: '/store-images/cat-dairy.jpg' },
   ];
 
   const scroll = (dir: 'left' | 'right') => {
@@ -131,7 +134,7 @@ function CategoryCards() {
   return (
     <section style={{ padding: '40px 0' }}>
       <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 20px' }}>
-        <h2 style={{ fontSize: '28px', fontWeight: 700, color: '#333', textAlign: 'center', marginBottom: '25px' }}>الأكثر زيارة</h2>
+        <h2 style={{ fontSize: '28px', fontWeight: 700, color: '#333', textAlign: 'center', marginBottom: '25px' }}>{t('store.mostVisited')}</h2>
         <div style={{ position: 'relative' }}>
           <button onClick={() => scroll('right')} style={{
             position: 'absolute', right: '-10px', top: '50%', transform: 'translateY(-50%)', zIndex: 10,
@@ -157,8 +160,8 @@ function CategoryCards() {
                 }}
                 onMouseEnter={e => (e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.12)')}
                 onMouseLeave={e => (e.currentTarget.style.boxShadow = 'none')}>
-                <img src={cat.image} alt={cat.title} style={{ width: '200px', height: '160px', objectFit: 'cover' }} />
-                <div style={{ padding: '20px', fontSize: '18px', fontWeight: 700, color: '#333', direction: 'rtl', flex: 1, textAlign: 'center' }}>{cat.title}</div>
+                <img src={cat.image} alt={t(cat.titleKey)} style={{ width: '200px', height: '160px', objectFit: 'cover' }} />
+                <div style={{ padding: '20px', fontSize: '18px', fontWeight: 700, color: '#333', flex: 1, textAlign: 'center' }}>{t(cat.titleKey)}</div>
               </div>
             ))}
           </div>
@@ -198,15 +201,16 @@ function BrandLogos() {
 /* ── Main Store Page ── */
 export default function StorePage() {
   const { products, getProductsByCollection, isLoading } = useStore();
+  const { t, dir } = useLang();
 
   if (isLoading) {
     return (
-      <div dir="rtl">
+      <div dir={dir}>
         <StoreHeader />
         <div style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ textAlign: 'center' }}>
             <div style={{ width: '50px', height: '50px', border: '4px solid #eee', borderTop: '4px solid #C41230', borderRadius: '50%', animation: 'spin 1s linear infinite', margin: '0 auto 15px' }} />
-            <p style={{ color: '#666' }}>جاري تحميل المتجر...</p>
+            <p style={{ color: '#666' }}>{t('store.loading')}</p>
           </div>
         </div>
         <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
@@ -220,7 +224,7 @@ export default function StorePage() {
   const oceansPride = getProductsByCollection('oceans-pride').slice(0, 10);
 
   return (
-    <div dir="rtl" style={{ background: '#fff', minHeight: '100vh' }}>
+    <div dir={dir} style={{ background: '#fff', minHeight: '100vh' }}>
       <StoreHeader />
       <CartDrawer />
 
@@ -229,23 +233,23 @@ export default function StorePage() {
 
       {/* New Arrivals */}
       {newArrivals.length > 0 && (
-        <ProductCarousel title="وصل حديثاً" products={newArrivals} viewAllLink="/store/collection/new-arrivals" />
+        <ProductCarousel title={t('store.newArrivals')} products={newArrivals} viewAllLink="/store/collection/new-arrivals" />
       )}
 
       {/* Best Sellers */}
-      <ProductCarousel title="الأكثر مبيعا" products={bestSellers} viewAllLink="/store/collection/all-products" />
+      <ProductCarousel title={t('store.bestSellers')} products={bestSellers} viewAllLink="/store/collection/all-products" />
 
       {/* Most Visited Categories */}
       <CategoryCards />
 
       {/* Special Offers */}
       {offers.length > 0 && (
-        <ProductCarousel title="عروض خاصة" products={offers} viewAllLink="/store/collection/promotion" />
+        <ProductCarousel title={t('store.specialOffers')} products={offers} viewAllLink="/store/collection/promotion" />
       )}
 
       {/* Ocean's Pride */}
       {oceansPride.length > 0 && (
-        <ProductCarousel title="أوشنز برايد" products={oceansPride} viewAllLink="/store/collection/oceans-pride" titleUnderline />
+        <ProductCarousel title={t('store.oceansPride')} products={oceansPride} viewAllLink="/store/collection/oceans-pride" titleUnderline />
       )}
 
       {/* Brand Logos */}

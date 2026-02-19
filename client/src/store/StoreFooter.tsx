@@ -1,43 +1,45 @@
 import { useLocation } from 'wouter';
+import { useLang } from './LanguageContext';
 
 export default function StoreFooter() {
   const [, navigate] = useLocation();
+  const { t, dir } = useLang();
 
   return (
-    <footer dir="rtl" style={{ background: '#1a1a1a', color: '#aaa', padding: '50px 0 20px' }}>
+    <footer dir={dir} style={{ background: '#1a1a1a', color: '#aaa', padding: '50px 0 20px' }}>
       <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 30px' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '40px', marginBottom: '40px' }}>
           {/* About */}
           <div>
-            <span style={{ color: 'white', fontSize: '24px', fontWeight: 800, display: 'block', marginBottom: '15px' }}>مكاني فودز</span>
-            <p style={{ fontSize: '13px', lineHeight: 1.7, color: '#999' }}>مختصوا الأغذية المجمدة في الكويت. نوفر لك أجود المنتجات المجمدة والمبردة بأسعار منافسة مع توصيل لباب بيتك.</p>
+            <span style={{ color: 'white', fontSize: '24px', fontWeight: 800, display: 'block', marginBottom: '15px' }}>{t('footer.brandName')}</span>
+            <p style={{ fontSize: '13px', lineHeight: 1.7, color: '#999' }}>{t('footer.about')}</p>
           </div>
 
           {/* Customer support */}
           <div>
-            <h3 style={{ color: 'white', fontSize: '16px', fontWeight: 600, marginBottom: '15px' }}>دعم العملاء</h3>
+            <h3 style={{ color: 'white', fontSize: '16px', fontWeight: 600, marginBottom: '15px' }}>{t('footer.customerSupport')}</h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              <a onClick={() => navigate('/store')} style={{ color: '#999', fontSize: '13px', cursor: 'pointer', textDecoration: 'none' }}>تواصل معنا</a>
-              <a onClick={() => navigate('/store')} style={{ color: '#999', fontSize: '13px', cursor: 'pointer', textDecoration: 'none' }}>الأسئلة الشائعة</a>
-              <a onClick={() => navigate('/store')} style={{ color: '#999', fontSize: '13px', cursor: 'pointer', textDecoration: 'none' }}>معلومات عن المحلات</a>
-              <a onClick={() => navigate('/store')} style={{ color: '#999', fontSize: '13px', cursor: 'pointer', textDecoration: 'none' }}>نبذة عنا</a>
+              <a onClick={() => navigate('/store')} style={{ color: '#999', fontSize: '13px', cursor: 'pointer', textDecoration: 'none' }}>{t('footer.contactUs')}</a>
+              <a onClick={() => navigate('/store')} style={{ color: '#999', fontSize: '13px', cursor: 'pointer', textDecoration: 'none' }}>{t('footer.faq')}</a>
+              <a onClick={() => navigate('/store')} style={{ color: '#999', fontSize: '13px', cursor: 'pointer', textDecoration: 'none' }}>{t('footer.storeInfo')}</a>
+              <a onClick={() => navigate('/store')} style={{ color: '#999', fontSize: '13px', cursor: 'pointer', textDecoration: 'none' }}>{t('footer.aboutUs')}</a>
             </div>
           </div>
 
           {/* Policies */}
           <div>
-            <h3 style={{ color: 'white', fontSize: '16px', fontWeight: 600, marginBottom: '15px' }}>السياسات</h3>
+            <h3 style={{ color: 'white', fontSize: '16px', fontWeight: 600, marginBottom: '15px' }}>{t('footer.policies')}</h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              <a style={{ color: '#999', fontSize: '13px', cursor: 'pointer', textDecoration: 'none' }}>سياسة الاستبدال والاسترجاع</a>
-              <a style={{ color: '#999', fontSize: '13px', cursor: 'pointer', textDecoration: 'none' }}>شروط التوصيل</a>
-              <a style={{ color: '#999', fontSize: '13px', cursor: 'pointer', textDecoration: 'none' }}>سياسة الخصوصية</a>
-              <a style={{ color: '#999', fontSize: '13px', cursor: 'pointer', textDecoration: 'none' }}>الشروط والأحكام</a>
+              <a style={{ color: '#999', fontSize: '13px', cursor: 'pointer', textDecoration: 'none' }}>{t('footer.returnPolicy')}</a>
+              <a style={{ color: '#999', fontSize: '13px', cursor: 'pointer', textDecoration: 'none' }}>{t('footer.deliveryTerms')}</a>
+              <a style={{ color: '#999', fontSize: '13px', cursor: 'pointer', textDecoration: 'none' }}>{t('footer.privacyPolicy')}</a>
+              <a style={{ color: '#999', fontSize: '13px', cursor: 'pointer', textDecoration: 'none' }}>{t('footer.termsConditions')}</a>
             </div>
           </div>
 
           {/* Contact */}
           <div>
-            <h3 style={{ color: 'white', fontSize: '16px', fontWeight: 600, marginBottom: '15px' }}>تواصل معنا</h3>
+            <h3 style={{ color: 'white', fontSize: '16px', fontWeight: 600, marginBottom: '15px' }}>{t('footer.contactTitle')}</h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               <a href="tel:1809090" style={{ color: '#999', fontSize: '14px', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -60,9 +62,9 @@ export default function StoreFooter() {
 
         {/* Payment methods */}
         <div style={{ borderTop: '1px solid #333', paddingTop: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '15px' }}>
-          <p style={{ fontSize: '12px', color: '#666' }}>© {new Date().getFullYear()} مكاني فودز. جميع الحقوق محفوظة.</p>
+          <p style={{ fontSize: '12px', color: '#666' }}>{t('footer.copyright').replace('{year}', new Date().getFullYear().toString())}</p>
           <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-            <span style={{ fontSize: '12px', color: '#666' }}>طرق الدفع:</span>
+            <span style={{ fontSize: '12px', color: '#666' }}>{t('footer.paymentMethods')}</span>
             <span style={{ background: '#333', color: '#999', padding: '4px 10px', borderRadius: '4px', fontSize: '11px' }}>KNET</span>
             <span style={{ background: '#333', color: '#999', padding: '4px 10px', borderRadius: '4px', fontSize: '11px' }}>VISA</span>
             <span style={{ background: '#333', color: '#999', padding: '4px 10px', borderRadius: '4px', fontSize: '11px' }}>Mastercard</span>
