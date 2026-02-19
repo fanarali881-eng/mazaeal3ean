@@ -10,7 +10,7 @@ export default function CartPage() {
 
   const handleCheckout = () => {
     const cartData = cart.map(item => ({
-      name: item.product.title,
+      name: item.product.titleAr || item.product.title,
       variant: item.variant.title,
       price: parseFloat(item.variant.price),
       quantity: item.quantity,
@@ -59,7 +59,7 @@ export default function CartPage() {
                     style={{ width: '80px', height: '80px', objectFit: 'cover', borderRadius: '8px', cursor: 'pointer', flexShrink: 0 }} />
 
                   <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ fontSize: '14px', fontWeight: 600, color: '#333', marginBottom: '4px' }}>{item.product.title}</div>
+                    <div style={{ fontSize: '14px', fontWeight: 600, color: '#333', marginBottom: '4px' }}>{item.product.titleAr || item.product.title}</div>
                     {item.variant.title !== 'Default Title' && (
                       <div style={{ fontSize: '12px', color: '#999', marginBottom: '4px' }}>{item.variant.title}</div>
                     )}

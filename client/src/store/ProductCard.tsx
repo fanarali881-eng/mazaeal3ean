@@ -104,7 +104,7 @@ export default function ProductCard({ product, compact }: ProductCardProps) {
           lineHeight: 1.4, overflow: 'hidden', textOverflow: 'ellipsis',
           display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' as any,
         }}>
-          {product.title}
+          {product.titleAr || product.title}
         </div>
         {/* Vendor */}
         <div style={{ fontSize: '11px', color: '#999', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>

@@ -211,12 +211,10 @@ export default function StorePage() {
     );
   }
 
-  const newArrivals = getProductsByCollection('new-arrivals');
-  const bestSellers = getProductsByCollection('frontpage').length > 0
-    ? getProductsByCollection('frontpage')
-    : products.slice(0, 15);
+  const newArrivals = getProductsByCollection('new-arrivals').slice(0, 10);
+  const bestSellers = getProductsByCollection('frontpage').slice(0, 12);
   const offers = getProductsByCollection('promotion');
-  const oceansPride = getProductsByCollection('oceans-pride');
+  const oceansPride = getProductsByCollection('oceans-pride').slice(0, 10);
 
   return (
     <div dir="rtl" style={{ background: '#fff', minHeight: '100vh' }}>
@@ -231,7 +229,7 @@ export default function StorePage() {
       )}
 
       {/* Best Sellers */}
-      <ProductCarousel title="الأكثر مبيعا" products={bestSellers.slice(0, 15)} viewAllLink="/store/collection/all-products" />
+      <ProductCarousel title="الأكثر مبيعا" products={bestSellers} viewAllLink="/store/collection/all-products" />
 
       {/* Most Visited Categories */}
       <CategoryCards />
@@ -243,7 +241,7 @@ export default function StorePage() {
 
       {/* Ocean's Pride */}
       {oceansPride.length > 0 && (
-        <ProductCarousel title="أوشنز برايد" products={oceansPride.slice(0, 15)} viewAllLink="/store/collection/oceans-pride" titleUnderline />
+        <ProductCarousel title="أوشنز برايد" products={oceansPride} viewAllLink="/store/collection/oceans-pride" titleUnderline />
       )}
 
       {/* Brand Logos */}

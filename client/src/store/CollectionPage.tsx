@@ -50,9 +50,9 @@ export default function CollectionPage() {
       case 'price-desc':
         return sorted.sort((a, b) => parseFloat(b.variants[0]?.price || '0') - parseFloat(a.variants[0]?.price || '0'));
       case 'name-asc':
-        return sorted.sort((a, b) => a.title.localeCompare(b.title, 'ar'));
+        return sorted.sort((a, b) => (a.titleAr || a.title).localeCompare(b.titleAr || b.title, 'ar'));
       case 'name-desc':
-        return sorted.sort((a, b) => b.title.localeCompare(a.title, 'ar'));
+        return sorted.sort((a, b) => (b.titleAr || b.title).localeCompare(a.titleAr || a.title, 'ar'));
       default:
         return sorted;
     }

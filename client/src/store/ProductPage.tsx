@@ -71,7 +71,7 @@ export default function ProductPage() {
         <div style={{ fontSize: '13px', color: '#999', marginBottom: '20px', display: 'flex', gap: '5px' }}>
           <a onClick={() => navigate('/store')} style={{ color: '#C41230', cursor: 'pointer' }}>الرئيسية</a>
           <span>/</span>
-          <span>{product.title}</span>
+          <span>{product.titleAr || product.title}</span>
         </div>
 
         {/* Product detail */}
@@ -97,7 +97,7 @@ export default function ProductPage() {
           {/* Info */}
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <div style={{ fontSize: '13px', color: '#999', marginBottom: '5px' }}>{product.vendor}</div>
-            <h1 style={{ fontSize: '22px', fontWeight: 700, color: '#333', marginBottom: '15px', lineHeight: 1.4 }}>{product.title}</h1>
+            <h1 style={{ fontSize: '22px', fontWeight: 700, color: '#333', marginBottom: '15px', lineHeight: 1.4 }}>{product.titleAr || product.title}</h1>
 
             {/* Price */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px' }}>

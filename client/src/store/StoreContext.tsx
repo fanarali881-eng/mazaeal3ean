@@ -10,6 +10,7 @@ export interface Variant {
 export interface Product {
   id: number;
   title: string;
+  titleAr?: string;
   handle: string;
   vendor: string;
   productType: string;
@@ -162,6 +163,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     const q = query.toLowerCase();
     return products.filter(p =>
       p.title.toLowerCase().includes(q) ||
+      (p.titleAr && p.titleAr.includes(q)) ||
       p.vendor.toLowerCase().includes(q) ||
       (p.tags && p.tags.some(t => t.toLowerCase().includes(q)))
     );
