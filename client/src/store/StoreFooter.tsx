@@ -62,15 +62,29 @@ export default function StoreFooter() {
 
         {/* Payment methods */}
         <div style={{ borderTop: '1px solid #333', paddingTop: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '15px' }}>
-          <div style={{ display: 'flex', gap: '12px', alignItems: 'center', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <span style={{ fontSize: '13px', color: '#999', fontWeight: 600 }}>{t('footer.paymentMethods')}</span>
-            <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-              <span style={{ background: '#fff', color: '#333', padding: '6px 14px', borderRadius: '6px', fontSize: '12px', fontWeight: 700, letterSpacing: '0.5px' }}>KNET</span>
-              <span style={{ background: '#fff', color: '#1a1f71', padding: '6px 14px', borderRadius: '6px', fontSize: '12px', fontWeight: 700, letterSpacing: '0.5px' }}>VISA</span>
-              <span style={{ background: '#fff', color: '#eb001b', padding: '6px 14px', borderRadius: '6px', fontSize: '12px', fontWeight: 700, letterSpacing: '0.5px' }}>Mastercard</span>
+          <p style={{ fontSize: '13px', color: '#999' }}>{t('footer.copyright').replace('{year}', new Date().getFullYear().toString())}</p>
+          <div style={{ display: 'flex', gap: '8px', alignItems: 'center', justifyContent: 'center', flexWrap: 'wrap' }}>
+            {/* VISA */}
+            <div style={{ background: '#fff', borderRadius: '4px', padding: '4px 8px', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '32px', width: '50px' }}>
+              <svg viewBox="0 0 38 24" width="38" height="24"><path d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z" fill="#fff" opacity="0"/><path d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32" fill="#fff"/><path d="M28.3 10.1H28c-.4 1-.7 1.5-1 3h1.9c-.3-1.5-.3-2.2-.6-3zm2.9 5.9h-1.7c-.1 0-.1 0-.2-.1l-.2-.9-.1-.2h-2.4c-.1 0-.2 0-.2.2l-.3.9c0 .1-.1.1-.1.1h-2.1l.2-.5L27 8.7c0-.5.3-.7.8-.7h1.5c.1 0 .2 0 .2.2l1.4 6.5c.1.4.2.7.2 1.1.1.1.1.1.1.2zm-13.4-.3l.4-1.8c.1 0 .2.1.2.1.7.3 1.4.5 2.1.4.2 0 .5-.1.7-.2.5-.2.5-.7.1-1.1-.2-.2-.5-.3-.8-.5-.4-.2-.8-.4-1.1-.7-1.2-1-.8-2.4-.1-3.1.6-.4.9-.8 1.7-.8 1.2 0 2.5 0 3.1.2h.1c-.1.6-.2 1.1-.4 1.7-.5-.2-1-.4-1.5-.4-.3 0-.6 0-.9.1-.2 0-.3.1-.4.2-.2.2-.2.5 0 .7l.5.4c.4.2.8.4 1.1.6.5.3 1 .8 1.1 1.4.2.9-.1 1.7-.9 2.3-.5.4-.7.6-1.4.6-1.4 0-2.5.1-3.4-.2-.1.2-.1.2-.2.1zm-3.5.3c.1-.7.1-.7.2-1 .5-2.2 1-4.5 1.4-6.7.1-.2.1-.3.3-.3H18c-.2 1.2-.4 2.1-.7 3.2-.3 1.5-.6 3-1 4.5 0 .2-.1.2-.3.2M5 8.2c0-.1.2-.2.3-.2h3.4c.5 0 .9.3 1 .8l.9 4.4c0 .1 0 .1.1.2 0-.1.1-.1.1-.1l2.1-5.1c-.1-.1 0-.2.1-.2h2.1c0 .1 0 .1-.1.2l-3.1 7.3c-.1.2-.1.3-.2.4-.1.1-.3 0-.5 0H9.7c-.1 0-.2 0-.2-.2L7.9 9.5c-.2-.2-.5-.5-.9-.6-.6-.3-1.7-.5-1.9-.5L5 8.2z" fill="#142688"/></svg>
+            </div>
+            {/* Mastercard */}
+            <div style={{ background: '#fff', borderRadius: '4px', padding: '4px 8px', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '32px', width: '50px' }}>
+              <svg viewBox="0 0 38 24" width="38" height="24"><path d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z" fill="#fff" opacity="0"/><circle cx="15" cy="12" r="7" fill="#EB001B"/><circle cx="23" cy="12" r="7" fill="#F79E1B"/><path d="M19 7.3c1.7 1.3 2.8 3.3 2.8 5.7 0 2.4-1.1 4.4-2.8 5.7-1.7-1.3-2.8-3.3-2.8-5.7 0-2.4 1.1-4.4 2.8-5.7" fill="#FF5F00"/></svg>
+            </div>
+            {/* KNET */}
+            <div style={{ background: '#fff', borderRadius: '4px', padding: '4px 8px', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '32px', width: '50px' }}>
+              <img src="/kpay/knet.png" alt="KNET" style={{ height: '22px', objectFit: 'contain' }} />
+            </div>
+            {/* Apple Pay */}
+            <div style={{ background: '#fff', borderRadius: '4px', padding: '4px 8px', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '32px', width: '50px' }}>
+              <svg viewBox="0 0 38 24" width="38" height="24"><path d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z" fill="#fff" opacity="0"/><path d="M28.3 10.5c-.1-1.2 1-1.8 1.1-1.8-.6-1-1.5-1.1-1.9-1.1-.8-.1-1.6.5-2 .5s-1-.5-1.7-.4c-.9 0-1.7.5-2.1 1.3-.9 1.6-.2 3.9.6 5.2.4.6.9 1.3 1.6 1.3.6 0 .9-.4 1.6-.4.7 0 1 .4 1.6.4.7 0 1.1-.6 1.5-1.3.5-.7.7-1.4.7-1.4-.1 0-1.3-.5-1.3-2zm-1.2-3.5c.4-.4.6-1 .5-1.6-.5 0-1.1.3-1.5.8-.3.4-.6 1-.5 1.5.5.1 1.1-.3 1.5-.7z" fill="#000"/><path d="M14.2 16.2h-1.3l-.7-2.3h-2.5l-.7 2.3H7.7l2.4-7.6h1.5l2.6 7.6zm-2.3-3.3l-.7-2.1c-.1-.2-.2-.8-.4-1.5h0c-.1.4-.2.9-.4 1.5l-.7 2.1h2.2zm5.7 3.5c-.9 0-1.6-.3-2.1-.8l.3-1.2c.5.5 1.1.7 1.7.7.5 0 .8-.2.8-.6 0-.3-.2-.5-.8-.8-.9-.4-1.4-.9-1.4-1.7 0-1 .8-1.7 2-1.7.7 0 1.3.2 1.7.5l-.3 1.1c-.4-.3-.9-.5-1.4-.5-.5 0-.7.2-.7.5 0 .3.3.5.9.8 1 .4 1.4.9 1.4 1.7-.1 1.1-.9 1.8-2.1 1.8z" fill="#000"/></svg>
+            </div>
+            {/* COD */}
+            <div style={{ background: '#fff', borderRadius: '4px', padding: '4px 8px', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '32px', width: '50px' }}>
+              <img src="/payment-icons/cod.png" alt="COD" style={{ height: '22px', objectFit: 'contain' }} />
             </div>
           </div>
-          <p style={{ fontSize: '12px', color: '#666' }}>{t('footer.copyright').replace('{year}', new Date().getFullYear().toString())}</p>
         </div>
       </div>
     </footer>
