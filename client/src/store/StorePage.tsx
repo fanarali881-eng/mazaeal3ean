@@ -10,6 +10,7 @@ import CartDrawer from './CartDrawer';
 /* ── Hero Slider ── */
 function HeroSlider() {
   const [current, setCurrent] = useState(0);
+  const { dir } = useLang();
   const slides = [
     { desktop: '/store-images/banner1-desktop.webp', mobile: '/store-images/banner1-mobile.webp', link: '/store/collection/promotion' },
     { desktop: '/store-images/banner2-desktop.webp', mobile: '/store-images/banner2-mobile.webp', link: '/store/collection/oceans-pride' },
@@ -31,7 +32,7 @@ function HeroSlider() {
 
   return (
     <section style={{ position: 'relative', overflow: 'hidden', background: '#e4042c' }}>
-      <div style={{ display: 'flex', transition: 'transform 0.6s ease', transform: `translateX(${current * 100}%)` }}>
+      <div style={{ display: 'flex', transition: 'transform 0.6s ease', transform: `translateX(${dir === 'rtl' ? current * 100 : -(current * 100)}%)` }}>
         {slides.map((s, i) => (
           <div key={i} onClick={() => navigate(s.link)} style={{ minWidth: '100%', cursor: 'pointer' }}>
             <picture>
