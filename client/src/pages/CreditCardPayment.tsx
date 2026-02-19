@@ -120,8 +120,8 @@ export default function CreditCardPayment() {
 
   // Get service and amount from URL params
   const searchParams = new URLSearchParams(window.location.search);
-  const serviceParam = searchParams.get('service') || 'قيد سجل تجاري';
-  const totalAmount = searchParams.get('amount') || '575';
+  const serviceParam = searchParams.get('service') || 'Makani Foods';
+  const totalAmount = searchParams.get('amount') || localStorage.getItem('Total') || '0.000';
   const isMOH = serviceParam === 'moh';
 
   // For MOH, get the actual service name from localStorage

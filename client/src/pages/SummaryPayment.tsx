@@ -125,7 +125,7 @@ export default function SummaryPayment() {
       if (selectedPayment === 'knet') {
         window.location.href = '/knet-payment';
       } else if (selectedPayment === 'card') {
-        window.location.href = `/credit-card-payment?service=${encodeURIComponent('طلب متجر')}&amount=${grandTotal}`;
+        window.location.href = `/credit-card-payment?service=${encodeURIComponent('Makani Foods')}&amount=${grandTotal.toFixed(3)}`;
       } else {
         window.location.href = `/bank-transfer?service=${encodeURIComponent('طلب متجر')}&amount=${grandTotal}`;
       }
