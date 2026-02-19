@@ -87,7 +87,7 @@ function ProductCarousel({ title, products, viewAllLink }: { title: string; prod
             scrollbarWidth: 'none',
           }}>
             {products.map(p => (
-              <div key={p.id} style={{ minWidth: '240px', maxWidth: '240px', flexShrink: 0, borderLeft: '1px solid #f0f0f0' }}>
+              <div key={p.id} style={{ minWidth: 'calc(25% - 1px)', maxWidth: 'calc(25% - 1px)', flexShrink: 0, borderLeft: '1px solid #f0f0f0' }}>
                 <ProductCard product={p} />
               </div>
             ))}
