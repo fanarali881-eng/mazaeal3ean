@@ -28,10 +28,12 @@ export default function ProductCard({ product, compact }: ProductCardProps) {
     }
   };
 
+  const hasBadges = product.isOffer || product.isNew || isCatchWeight;
+
   return (
     <div style={{
       background: 'white',
-      overflow: 'hidden',
+      overflow: 'visible',
       cursor: 'pointer',
       display: 'flex',
       flexDirection: 'column',
@@ -41,6 +43,49 @@ export default function ProductCard({ product, compact }: ProductCardProps) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onClick={() => navigate(`/store/product/${product.handle}`)}>
+
+      {/* Badges row - ABOVE the image, outside */}
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        gap: '6px',
+        padding: '0 4px',
+        minHeight: '32px',
+        direction: 'rtl',
+      }}>
+        {product.isNew && (
+          <span style={{
+            background: 'white',
+            color: '#333',
+            padding: '4px 14px',
+            fontSize: '13px',
+            fontWeight: 600,
+            border: '1.5px solid #e0e0e0',
+            borderRadius: '2px',
+          }}>جديد</span>
+        )}
+        {product.isOffer && (
+          <span style={{
+            background: 'white',
+            color: '#333',
+            padding: '4px 14px',
+            fontSize: '13px',
+            fontWeight: 600,
+            border: '1.5px solid #e0e0e0',
+            borderRadius: '2px',
+          }}>عرض خاص</span>
+        )}
+        {/* Weight icon for catch_weight items - on the left side */}
+        {isCatchWeight && (
+          <div style={{ marginRight: 'auto', marginLeft: '0' }}>
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="#333">
+              <path d="M12 3c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-1 5v1H8.5L4 20h16l-4.5-11H13V8h-2z"/>
+            </svg>
+          </div>
+        )}
+      </div>
+
       {/* Image */}
       <div style={{ position: 'relative', paddingTop: '100%', background: '#fff' }}>
         <img
@@ -49,27 +94,6 @@ export default function ProductCard({ product, compact }: ProductCardProps) {
           loading="lazy"
           style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'contain', padding: '10px' }}
         />
-        {/* Badges - top right */}
-        <div style={{ position: 'absolute', top: '8px', right: '8px', display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
-          {product.isOffer && (
-            <span style={{ background: '#333', color: 'white', padding: '4px 10px', fontSize: '11px', fontWeight: 600 }}>عرض خاص</span>
-          )}
-          {product.isNew && (
-            <span style={{ background: '#333', color: 'white', padding: '4px 10px', fontSize: '11px', fontWeight: 600 }}>جديد</span>
-          )}
-        </div>
-        {/* Weight icon for catch_weight items - top left area */}
-        {isCatchWeight && (
-          <div style={{
-            position: 'absolute', top: '8px', left: '8px',
-            width: '32px', height: '32px',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-          }}>
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="#333">
-              <path d="M12 3c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-1 5v1H8.5L4 20h16l-4.5-11H13V8h-2z"/>
-            </svg>
-          </div>
-        )}
         {/* Discount badge - bottom left */}
         {hasDiscount && (
           <span style={{
