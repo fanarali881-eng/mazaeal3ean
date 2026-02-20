@@ -68,7 +68,7 @@ export default function StoreHeader() {
   return (
     <header className="store-header" dir={dir} style={{ position: 'sticky', top: 0, zIndex: 100 }}>
       {/* Top announcement bar */}
-      <div style={{ background: '#4c4c4c', color: 'white', padding: '8px 20px', fontSize: '13px', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
+      <div style={{ background: '#4c4c4c', color: 'white', padding: '8px 20px', fontSize: '13px', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative', '@media (max-width: 768px)': { padding: '6px 12px', fontSize: '11px' } }}>
         <a onClick={() => navigate('/store')} style={{ color: 'white', textDecoration: 'none', cursor: 'pointer', fontWeight: 700 }}>
           {t('header.freeShippingBanner')}
         </a>
@@ -96,15 +96,15 @@ export default function StoreHeader() {
 
       {/* Main header - Red background */}
       <div style={{ background: '#e4042c', padding: '12px 0' }}>
-        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 30px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 30px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', '@media (max-width: 768px)': { padding: '0 15px' } }}>
           {/* Logo + tagline */}
           <a onClick={() => navigate('/store')} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', flexShrink: 0 }}>
-            <span style={{ color: 'white', fontSize: '28px', fontWeight: 800, lineHeight: 1.1, fontFamily: '"Makani Bold", Arial, sans-serif', whiteSpace: 'pre-line' }}>{t('header.logoName')}</span>
-            <span style={{ color: 'rgba(255,255,255,0.85)', fontSize: '14px', fontWeight: 500 }}>{t('header.logoTagline')}</span>
+            <span style={{ color: 'white', fontSize: '28px', fontWeight: 800, lineHeight: 1.1, fontFamily: '"Makani Bold", Arial, sans-serif', whiteSpace: 'pre-line', '@media (max-width: 768px)': { fontSize: '18px' } }}>{t('header.logoName')}</span>
+            <span style={{ color: 'rgba(255,255,255,0.85)', fontSize: '14px', fontWeight: 500, '@media (max-width: 768px)': { display: 'none' } }}>{t('header.logoTagline')}</span>
           </a>
 
           {/* Navigation - desktop */}
-          <nav className="store-nav-desktop" style={{ display: 'flex', alignItems: 'center', gap: '0' }}>
+          <nav className="store-nav-desktop" style={{ display: 'flex', alignItems: 'center', gap: '0', '@media (max-width: 1024px)': { display: 'none' } }}>
             {/* Frozen mega menu */}
             <div
               onMouseEnter={() => openMega('frozen')}
@@ -147,11 +147,11 @@ export default function StoreHeader() {
           </nav>
 
           {/* Icons */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '18px', flexShrink: 0 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '18px', flexShrink: 0, '@media (max-width: 768px)': { gap: '10px' } }}>
             <button onClick={() => setSearchOpen(!searchOpen)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '4px' }}>
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
             </button>
-            <a style={{ cursor: 'pointer', padding: '4px' }}>
+            <a style={{ cursor: 'pointer', padding: '4px', '@media (max-width: 768px)': { display: 'none' } }}>
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
             </a>
             <a onClick={() => setCartDrawerOpen(true)} style={{ cursor: 'pointer', position: 'relative', padding: '4px' }}>

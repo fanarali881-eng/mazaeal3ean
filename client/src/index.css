@@ -137,3 +137,108 @@
     }
   }
 }
+
+
+/* Mobile Responsive Styles for Store */
+@media (max-width: 1024px) {
+  .store-nav-desktop {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Header adjustments */
+  .store-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  /* Reduce padding on mobile */
+  .store-header > div {
+    padding: 8px 0 !important;
+  }
+
+  /* Logo size reduction */
+  .store-header span[style*="fontSize: '28px'"] {
+    font-size: 18px !important;
+  }
+
+  /* Hide tagline on mobile */
+  .store-header span[style*="fontSize: '14px'"][style*="fontWeight: 500"] {
+    display: none !important;
+  }
+
+  /* Reduce icon gaps */
+  .store-header > div > div:last-child {
+    gap: 10px !important;
+  }
+
+  /* Product carousel adjustments */
+  .product-carousel {
+    padding: 20px 0 !important;
+  }
+
+  /* Category cards on mobile */
+  .category-cards {
+    padding: 20px 0 !important;
+  }
+
+  /* Hero slider adjustments */
+  .hero-slider {
+    height: auto !important;
+  }
+
+  .hero-slider img {
+    max-height: 300px !important;
+  }
+
+  /* Footer adjustments */
+  footer {
+    padding: 30px 0 15px !important;
+  }
+
+  footer > div > div:first-child {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  /* Product card adjustments */
+  .product-card {
+    min-width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Reduce spacing for better mobile experience */
+  section {
+    padding: 20px 0 !important;
+  }
+
+  /* Make buttons more touch-friendly */
+  button {
+    min-height: 44px !important;
+    min-width: 44px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Extra small screens */
+  .store-header {
+    padding: 0 !important;
+  }
+
+  /* Further reduce logo size */
+  .store-header span[style*="fontSize: '18px'"] {
+    font-size: 16px !important;
+  }
+
+  /* Reduce padding on very small screens */
+  section {
+    padding: 15px 0 !important;
+  }
+
+  /* Make carousel items larger for easier touch */
+  .product-carousel-item {
+    min-width: calc(50% - 5px) !important;
+  }
+}

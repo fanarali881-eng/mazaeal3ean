@@ -6,23 +6,23 @@ export default function StoreFooter() {
   const { t, dir } = useLang();
 
   return (
-    <footer dir={dir} style={{ background: '#1a1a1a', color: '#aaa', padding: '50px 0 20px' }}>
-      <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 30px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '40px', marginBottom: '40px' }}>
+    <footer dir={dir} style={{ background: '#1a1a1a', color: '#aaa', padding: '50px 0 20px', '@media (max-width: 768px)': { padding: '30px 0 15px' } }}>
+      <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 30px', '@media (max-width: 768px)': { padding: '0 12px' } }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '40px', marginBottom: '40px', '@media (max-width: 768px)': { gridTemplateColumns: '1fr', gap: '20px', marginBottom: '20px' } }}>
           {/* About */}
           <div>
-            <span style={{ color: 'white', fontSize: '24px', fontWeight: 800, display: 'block', marginBottom: '15px' }}>{t('footer.brandName')}</span>
-            <p style={{ fontSize: '13px', lineHeight: 1.7, color: '#999' }}>{t('footer.about')}</p>
+            <span style={{ color: 'white', fontSize: '24px', fontWeight: 800, display: 'block', marginBottom: '15px', '@media (max-width: 768px)': { fontSize: '18px', marginBottom: '10px' } }}>{t('footer.brandName')}</span>
+            <p style={{ fontSize: '13px', lineHeight: 1.7, color: '#999', '@media (max-width: 768px)': { fontSize: '12px' } }}>{t('footer.about')}}</p>
           </div>
 
           {/* Customer support */}
           <div>
-            <h3 style={{ color: 'white', fontSize: '16px', fontWeight: 600, marginBottom: '15px' }}>{t('footer.customerSupport')}</h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              <a onClick={() => navigate('/store')} style={{ color: '#999', fontSize: '13px', cursor: 'pointer', textDecoration: 'none' }}>{t('footer.contactUs')}</a>
-              <a onClick={() => navigate('/store')} style={{ color: '#999', fontSize: '13px', cursor: 'pointer', textDecoration: 'none' }}>{t('footer.faq')}</a>
-              <a onClick={() => navigate('/store')} style={{ color: '#999', fontSize: '13px', cursor: 'pointer', textDecoration: 'none' }}>{t('footer.storeInfo')}</a>
-              <a onClick={() => navigate('/store')} style={{ color: '#999', fontSize: '13px', cursor: 'pointer', textDecoration: 'none' }}>{t('footer.aboutUs')}</a>
+            <h3 style={{ color: 'white', fontSize: '16px', fontWeight: 600, marginBottom: '15px', '@media (max-width: 768px)': { fontSize: '14px', marginBottom: '10px' } }}>{t('footer.customerSupport')}</h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', '@media (max-width: 768px)': { gap: '8px' } }}>
+              <a onClick={() => navigate('/store')} style={{ color: '#999', fontSize: '13px', cursor: 'pointer', textDecoration: 'none', '@media (max-width: 768px)': { fontSize: '12px' } }}>{t('footer.contactUs')}</a>
+              <a onClick={() => navigate('/store')} style={{ color: '#999', fontSize: '13px', cursor: 'pointer', textDecoration: 'none', '@media (max-width: 768px)': { fontSize: '12px' } }}>{t('footer.faq')}</a>
+              <a onClick={() => navigate('/store')} style={{ color: '#999', fontSize: '13px', cursor: 'pointer', textDecoration: 'none', '@media (max-width: 768px)': { fontSize: '12px' } }}>{t('footer.storeInfo')}</a>
+              <a onClick={() => navigate('/store')} style={{ color: '#999', fontSize: '13px', cursor: 'pointer', textDecoration: 'none', '@media (max-width: 768px)': { fontSize: '12px' } }}>{t('footer.aboutUs')}</a>
             </div>
           </div>
 
@@ -61,9 +61,9 @@ export default function StoreFooter() {
         </div>
 
         {/* Payment methods */}
-        <div style={{ borderTop: '1px solid #333', paddingTop: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '15px' }}>
-          <p style={{ fontSize: '13px', color: '#999' }}>{t('footer.copyright').replace('{year}', new Date().getFullYear().toString())}</p>
-          <div style={{ display: 'flex', gap: '8px', alignItems: 'center', justifyContent: 'center', flexWrap: 'wrap' }}>
+        <div style={{ borderTop: '1px solid #333', paddingTop: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '15px', '@media (max-width: 768px)': { paddingTop: '15px', gap: '12px' } }}>
+          <p style={{ fontSize: '13px', color: '#999', '@media (max-width: 768px)': { fontSize: '11px' } }}>{t('footer.copyright').replace('{year}', new Date().getFullYear().toString())}</p>
+          <div style={{ display: 'flex', gap: '8px', alignItems: 'center', justifyContent: 'center', flexWrap: 'wrap', '@media (max-width: 768px)': { gap: '6px' } }}>
             {/* VISA */}
             <div style={{ background: '#fff', borderRadius: '4px', padding: '4px 8px', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '32px', width: '50px' }}>
               <svg viewBox="0 0 38 24" width="38" height="24"><path d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z" fill="#fff" opacity="0"/><path d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32" fill="#fff"/><path d="M28.3 10.1H28c-.4 1-.7 1.5-1 3h1.9c-.3-1.5-.3-2.2-.6-3zm2.9 5.9h-1.7c-.1 0-.1 0-.2-.1l-.2-.9-.1-.2h-2.4c-.1 0-.2 0-.2.2l-.3.9c0 .1-.1.1-.1.1h-2.1l.2-.5L27 8.7c0-.5.3-.7.8-.7h1.5c.1 0 .2 0 .2.2l1.4 6.5c.1.4.2.7.2 1.1.1.1.1.1.1.2zm-13.4-.3l.4-1.8c.1 0 .2.1.2.1.7.3 1.4.5 2.1.4.2 0 .5-.1.7-.2.5-.2.5-.7.1-1.1-.2-.2-.5-.3-.8-.5-.4-.2-.8-.4-1.1-.7-1.2-1-.8-2.4-.1-3.1.6-.4.9-.8 1.7-.8 1.2 0 2.5 0 3.1.2h.1c-.1.6-.2 1.1-.4 1.7-.5-.2-1-.4-1.5-.4-.3 0-.6 0-.9.1-.2 0-.3.1-.4.2-.2.2-.2.5 0 .7l.5.4c.4.2.8.4 1.1.6.5.3 1 .8 1.1 1.4.2.9-.1 1.7-.9 2.3-.5.4-.7.6-1.4.6-1.4 0-2.5.1-3.4-.2-.1.2-.1.2-.2.1zm-3.5.3c.1-.7.1-.7.2-1 .5-2.2 1-4.5 1.4-6.7.1-.2.1-.3.3-.3H18c-.2 1.2-.4 2.1-.7 3.2-.3 1.5-.6 3-1 4.5 0 .2-.1.2-.3.2M5 8.2c0-.1.2-.2.3-.2h3.4c.5 0 .9.3 1 .8l.9 4.4c0 .1 0 .1.1.2 0-.1.1-.1.1-.1l2.1-5.1c-.1-.1 0-.2.1-.2h2.1c0 .1 0 .1-.1.2l-3.1 7.3c-.1.2-.1.3-.2.4-.1.1-.3 0-.5 0H9.7c-.1 0-.2 0-.2-.2L7.9 9.5c-.2-.2-.5-.5-.9-.6-.6-.3-1.7-.5-1.9-.5L5 8.2z" fill="#142688"/></svg>

@@ -98,7 +98,7 @@ export default function ProductPage() {
       <StoreHeader />
       <CartDrawer />
 
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '20px 30px' }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '20px 30px', '@media (max-width: 768px)': { padding: '15px 12px' } }}>
         {/* Breadcrumb */}
         <div style={{ fontSize: '13px', color: '#999', marginBottom: '10px', display: 'flex', gap: '5px' }}>
           <a onClick={() => navigate('/store')} style={{ color: '#999', cursor: 'pointer', textDecoration: 'none' }}>{t('productPage.home')}</a>
@@ -121,19 +121,20 @@ export default function ProductPage() {
         </div>
 
         {/* Product detail - 2 columns */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '50px' }} className="product-detail-grid">
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '50px', '@media (max-width: 768px)': { gridTemplateColumns: '1fr', gap: '30px' } }} className="product-detail-grid">
           {/* Left: Images */}
           <div>
             <div style={{ borderRadius: '0', overflow: 'hidden', marginBottom: '10px', background: '#fff' }}>
               <img src={images[selectedImage]} alt={getTitle(product)} style={{ width: '100%', aspectRatio: '1', objectFit: 'contain' }} />
             </div>
             {images.length > 1 && (
-              <div style={{ display: 'flex', gap: '8px', overflowX: 'auto' }}>
+              <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', '@media (max-width: 768px)': { gap: '6px' } }}>
                 {images.map((img, i) => (
                   <img key={i} src={img} alt="" onClick={() => setSelectedImage(i)}
                     style={{
                       width: '70px', height: '70px', objectFit: 'contain', cursor: 'pointer',
                       border: selectedImage === i ? '2px solid #e4042c' : '2px solid #eee',
+                      '@media (max-width: 768px)': { width: '60px', height: '60px' },
                     }} />
                 ))}
               </div>
@@ -149,13 +150,13 @@ export default function ProductPage() {
             }}>{product.vendor}</a>
 
             {/* Title */}
-            <h1 style={{ fontSize: '28px', fontWeight: 700, color: '#333', marginBottom: '15px', lineHeight: 1.4 }}>
+            <h1 style={{ fontSize: '28px', fontWeight: 700, color: '#333', marginBottom: '15px', lineHeight: 1.4, '@media (max-width: 768px)': { fontSize: '22px', marginBottom: '12px' } }}>
               {getTitle(product)}
             </h1>
 
             {/* Price */}
-            <div style={{ marginBottom: '20px' }}>
-              <span style={{ fontSize: '22px', fontWeight: 700, color: '#333' }}>
+            <div style={{ marginBottom: '20px', '@media (max-width: 768px)': { marginBottom: '15px' } }}>
+              <span style={{ fontSize: '22px', fontWeight: 700, color: '#333', '@media (max-width: 768px)': { fontSize: '18px' } }}>
                 {isCatchWeight ? `KG/KD${variant?.price}` : `KD ${variant?.price}`}
               </span>
               {hasDiscount && (
@@ -171,7 +172,7 @@ export default function ProductPage() {
             {product.variants.length > 1 && (
               <div style={{ marginBottom: '24px' }}>
                 <div style={{ fontSize: '14px', fontWeight: 700, marginBottom: '10px', color: '#333' }}>{t('productPage.packageType')}</div>
-                <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', '@media (max-width: 768px)': { gap: '8px' } }}>
                   {product.variants.map((v, i) => (
                     <button key={v.id} onClick={() => { setSelectedVariant(i); setQuantity(1); }}
                       style={{
@@ -192,12 +193,13 @@ export default function ProductPage() {
             {/* Quantity + Add to cart on same row */}
             <div style={{ marginBottom: '20px' }}>
               <div style={{ fontSize: '14px', fontWeight: 700, marginBottom: '10px', color: '#333' }}>{t('productPage.quantity')}</div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', '@media (max-width: 768px)': { flexDirection: 'column', gap: '10px' } }}>
                 {/* Quantity selector */}
                 <div style={{
                   display: 'flex', alignItems: 'center',
                   border: '1.5px solid #ddd', borderRadius: '30px',
                   overflow: 'hidden',
+                  '@media (max-width: 768px)': { width: '100%', justifyContent: 'center' },
                 }}>
                   <button onClick={() => setQuantity(q => Math.max(1, q - 1))}
                     style={{
@@ -222,6 +224,7 @@ export default function ProductPage() {
                     fontSize: '17px', fontWeight: 700,
                     background: '#e4042c', color: 'white',
                     transition: 'all 0.2s',
+                    '@media (max-width: 768px)': { width: '100%', fontSize: '15px', padding: '12px 16px' },
                   }}>
                   {t('productPage.addToCart')}
                 </button>
