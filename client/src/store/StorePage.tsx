@@ -125,7 +125,7 @@ function ProductCarousel({ title, products, viewAllLink, titleUnderline }: { tit
             }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={canPrev ? '#333' : '#ddd'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
           </div>
 
-          <div ref={scrollRef} style={{
+          <div ref={scrollRef} className="product-carousel-items" style={{
             display: 'flex', gap: '0', overflowX: 'auto', scrollBehavior: 'smooth', padding: '5px 0',
             scrollbarWidth: 'none',
           }}>
@@ -297,7 +297,7 @@ export default function StorePage() {
   const oceansPride = getProductsByCollection('oceans-pride').slice(0, 10);
 
   return (
-    <div dir={dir} style={{ background: '#fff', minHeight: '100vh' }}>
+    <div dir={dir} style={{ background: '#fff', minHeight: '100vh', width: '100%', overflow: 'hidden' }}>
       <StoreHeader />
       <CartDrawer />
 
