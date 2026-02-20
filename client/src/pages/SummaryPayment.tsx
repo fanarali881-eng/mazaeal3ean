@@ -179,10 +179,10 @@ export default function SummaryPayment() {
       </div>
 
       {/* Main content */}
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '30px 20px', display: 'flex', gap: '40px', flexWrap: 'wrap' }}>
+      <div className="summary-main-content" style={{ maxWidth: '1200px', margin: '0 auto', padding: '30px 20px', display: 'flex', gap: '40px', flexWrap: 'wrap' }}>
 
         {/* LEFT/RIGHT SIDE: Form (takes more space) */}
-        <div style={{ flex: '1 1 580px', minWidth: '320px' }}>
+        <div className="summary-form-side" style={{ flex: '1 1 580px', minWidth: '320px' }}>
 
           {/* بيانات المستخدم */}
           <div style={{ marginBottom: '32px' }}>
@@ -497,7 +497,7 @@ export default function SummaryPayment() {
         </div>
 
         {/* RIGHT/LEFT SIDE: Order Summary Sidebar */}
-        <div style={{
+        <div className="summary-order-side" style={{
           flex: '0 0 420px', maxWidth: '420px', minWidth: '320px',
           background: '#fafafa', borderRadius: '0', padding: '24px',
           borderLeft: isRTL ? 'none' : '1px solid #e5e5e5',
@@ -593,8 +593,27 @@ export default function SummaryPayment() {
         @keyframes spin {
           to { transform: rotate(360deg); }
         }
-        @media (max-width: 900px) {
-          /* On mobile, stack the columns */
+        @media (max-width: 768px) {
+          .summary-main-content {
+            flex-direction: column !important;
+            gap: 20px !important;
+            padding: 15px 12px !important;
+          }
+          .summary-form-side {
+            min-width: 100% !important;
+            flex: 1 1 100% !important;
+          }
+          .summary-order-side {
+            min-width: 100% !important;
+            max-width: 100% !important;
+            flex: 1 1 100% !important;
+            order: -1 !important;
+            position: relative !important;
+            border-left: none !important;
+            border-right: none !important;
+            border-bottom: 1px solid #e5e5e5 !important;
+            padding: 16px !important;
+          }
         }
       `}</style>
     </div>

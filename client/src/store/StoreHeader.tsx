@@ -68,7 +68,7 @@ export default function StoreHeader() {
   return (
     <header className="store-header" dir={dir} style={{ position: 'sticky', top: 0, zIndex: 100 }}>
       {/* Top announcement bar */}
-      <div style={{ background: '#4c4c4c', color: 'white', padding: '8px 20px', fontSize: '13px', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
+      <div className="store-announcement-bar" style={{ background: '#4c4c4c', color: 'white', padding: '8px 20px', fontSize: '13px', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
         <a onClick={() => navigate('/store')} style={{ color: 'white', textDecoration: 'none', cursor: 'pointer', fontWeight: 700 }}>
           {t('header.freeShippingBanner')}
         </a>
@@ -89,18 +89,19 @@ export default function StoreHeader() {
           }}
           onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.3)'; }}
           onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.15)'; }}
+          className="store-lang-btn"
         >
           {lang === 'ar' ? 'English' : 'عربي'}
         </button>
       </div>
 
       {/* Main header - Red background */}
-      <div style={{ background: '#e4042c', padding: '12px 0' }}>
-        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 30px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <div className="store-main-header" style={{ background: '#e4042c', padding: '12px 0' }}>
+        <div className="store-main-header-inner" style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 30px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           {/* Logo + tagline */}
           <a onClick={() => navigate('/store')} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', flexShrink: 0 }}>
-            <span style={{ color: 'white', fontSize: '28px', fontWeight: 800, lineHeight: 1.1, fontFamily: '"Makani Bold", Arial, sans-serif', whiteSpace: 'pre-line' }}>{t('header.logoName')}</span>
-            <span style={{ color: 'rgba(255,255,255,0.85)', fontSize: '14px', fontWeight: 500 }}>{t('header.logoTagline')}</span>
+            <span className="store-logo-name" style={{ color: 'white', fontSize: '28px', fontWeight: 800, lineHeight: 1.1, fontFamily: '"Makani Bold", Arial, sans-serif', whiteSpace: 'pre-line' }}>{t('header.logoName')}</span>
+            <span className="store-logo-tagline" style={{ color: 'rgba(255,255,255,0.85)', fontSize: '14px', fontWeight: 500 }}>{t('header.logoTagline')}</span>
           </a>
 
           {/* Navigation - desktop */}
@@ -147,7 +148,7 @@ export default function StoreHeader() {
           </nav>
 
           {/* Icons */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '18px', flexShrink: 0 }}>
+          <div className="store-icons" style={{ display: 'flex', alignItems: 'center', gap: '18px', flexShrink: 0 }}>
             <button onClick={() => setSearchOpen(!searchOpen)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '4px' }}>
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
             </button>
@@ -314,6 +315,35 @@ export default function StoreHeader() {
         @media (max-width: 900px) {
           .store-nav-desktop { display: none !important; }
           .store-mobile-menu-btn { display: block !important; }
+        }
+        @media (max-width: 768px) {
+          .store-header .store-announcement-bar {
+            font-size: 11px !important;
+            padding: 6px 10px !important;
+          }
+          .store-header .store-announcement-bar a {
+            font-size: 11px !important;
+          }
+          .store-header .store-lang-btn {
+            font-size: 11px !important;
+            padding: 2px 8px !important;
+            right: 8px !important;
+          }
+          .store-header .store-main-header {
+            padding: 8px 0 !important;
+          }
+          .store-header .store-main-header-inner {
+            padding: 0 12px !important;
+          }
+          .store-header .store-logo-name {
+            font-size: 20px !important;
+          }
+          .store-header .store-logo-tagline {
+            font-size: 11px !important;
+          }
+          .store-header .store-icons {
+            gap: 12px !important;
+          }
         }
       `}</style>
     </header>

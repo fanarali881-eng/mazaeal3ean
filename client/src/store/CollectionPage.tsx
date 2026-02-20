@@ -212,7 +212,7 @@ export default function CollectionPage() {
 
         {/* Products grid */}
         {paginatedProducts.length > 0 ? (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px' }}>
+          <div className="store-collection-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px' }}>
             {paginatedProducts.map(p => (
               <ProductCard key={p.id} product={p} />
             ))}
@@ -267,6 +267,15 @@ export default function CollectionPage() {
       </div>
 
       <StoreFooter />
+
+      <style>{`
+        @media (max-width: 768px) {
+          .store-collection-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 8px !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }

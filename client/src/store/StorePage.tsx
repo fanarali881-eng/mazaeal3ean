@@ -108,10 +108,10 @@ function ProductCarousel({ title, products, viewAllLink, titleUnderline }: { tit
   return (
     <section style={{ padding: '40px 0' }}>
       <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 20px' }}>
-        <h2 style={{ fontSize: '28px', fontWeight: 700, color: '#333', textAlign: 'center', marginBottom: '25px', textDecoration: titleUnderline ? 'underline' : 'none', textUnderlineOffset: '8px' }}>{title}</h2>
+        <h2 className="store-section-title" style={{ fontSize: '28px', fontWeight: 700, color: '#333', textAlign: 'center', marginBottom: '25px', textDecoration: titleUnderline ? 'underline' : 'none', textUnderlineOffset: '8px' }}>{title}</h2>
         <div style={{ position: 'relative' }}>
           {/* Navigation arrows - stacked on the right like original */}
-          <div style={{
+          <div className="store-carousel-arrows" style={{
             position: 'absolute', right: '-5px', top: '40%', transform: 'translateY(-50%)', zIndex: 10,
             display: 'flex', flexDirection: 'column', gap: '4px',
           }}>
@@ -130,7 +130,7 @@ function ProductCarousel({ title, products, viewAllLink, titleUnderline }: { tit
             scrollbarWidth: 'none',
           }}>
             {products.map(p => (
-              <div key={p.id} style={{ minWidth: 'calc(25% - 1px)', maxWidth: 'calc(25% - 1px)', flexShrink: 0, borderLeft: '1px solid #f0f0f0' }}>
+              <div key={p.id} className="store-product-carousel-item" style={{ minWidth: 'calc(25% - 1px)', maxWidth: 'calc(25% - 1px)', flexShrink: 0, borderLeft: '1px solid #f0f0f0' }}>
                 <ProductCard product={p} />
               </div>
             ))}
@@ -203,10 +203,10 @@ function CategoryCards() {
   return (
     <section style={{ padding: '40px 0' }}>
       <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 20px' }}>
-        <h2 style={{ fontSize: '28px', fontWeight: 700, color: '#333', textAlign: 'center', marginBottom: '25px' }}>{t('store.mostVisited')}</h2>
+        <h2 className="store-section-title" style={{ fontSize: '28px', fontWeight: 700, color: '#333', textAlign: 'center', marginBottom: '25px' }}>{t('store.mostVisited')}</h2>
         <div style={{ position: 'relative' }}>
           {/* Navigation arrows - stacked on the right like original */}
-          <div style={{
+          <div className="store-carousel-arrows" style={{
             position: 'absolute', right: '-5px', top: '50%', transform: 'translateY(-50%)', zIndex: 10,
             display: 'flex', flexDirection: 'column', gap: '4px',
           }}>
@@ -224,7 +224,7 @@ function CategoryCards() {
             scrollbarWidth: 'none',
           }}>
             {cats.map(cat => (
-              <div key={cat.handle} onClick={() => navigate(`/store/collection/${cat.handle}`)}
+              <div key={cat.handle} className="store-category-card" onClick={() => navigate(`/store/collection/${cat.handle}`)}
                 style={{
                   minWidth: 'calc(33.333% - 14px)', maxWidth: 'calc(33.333% - 14px)', flexShrink: 0, cursor: 'pointer',
                   borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee',
@@ -259,7 +259,7 @@ function BrandLogos() {
 
   return (
     <section style={{ padding: '50px 0', background: '#fff' }}>
-      <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 40px', display: 'flex', justifyContent: 'space-between', flexWrap: 'nowrap', gap: '20px', alignItems: 'center' }}>
+      <div className="store-brand-logos" style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 40px', display: 'flex', justifyContent: 'space-between', flexWrap: 'nowrap', gap: '20px', alignItems: 'center' }}>
         {brands.map(b => (
           <div key={b.name} style={{ flex: '1 1 0', minWidth: 0, height: '90px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <img src={b.logo} alt={b.name} style={{ maxWidth: '140px', maxHeight: '90px', objectFit: 'contain' }}
@@ -332,6 +332,42 @@ export default function StorePage() {
 
       <style>{`
         div::-webkit-scrollbar { display: none; }
+        
+        @media (max-width: 768px) {
+          .store-product-carousel-item {
+            min-width: calc(50% - 1px) !important;
+            max-width: calc(50% - 1px) !important;
+          }
+          .store-category-card {
+            min-width: 100% !important;
+            max-width: 100% !important;
+            height: 120px !important;
+          }
+          .store-category-card img {
+            width: 140px !important;
+            height: 120px !important;
+          }
+          .store-brand-logos {
+            flex-wrap: wrap !important;
+            gap: 12px !important;
+            padding: 0 20px !important;
+            justify-content: center !important;
+          }
+          .store-brand-logos > div {
+            flex: 0 0 auto !important;
+            min-width: 80px !important;
+          }
+          .store-brand-logos img {
+            max-width: 100px !important;
+            max-height: 60px !important;
+          }
+          .store-section-title {
+            font-size: 22px !important;
+          }
+          .store-carousel-arrows {
+            display: none !important;
+          }
+        }
       `}</style>
     </div>
   );

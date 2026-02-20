@@ -7,7 +7,7 @@ export default function StoreFooter() {
 
   return (
     <footer dir={dir} style={{ background: '#1a1a1a', color: '#aaa', padding: '50px 0 20px' }}>
-      <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 30px' }}>
+      <div className="store-footer-inner" style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 30px' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '40px', marginBottom: '40px' }}>
           {/* About */}
           <div>
@@ -87,6 +87,13 @@ export default function StoreFooter() {
           </div>
         </div>
       </div>
+      <style>{`
+        @media (max-width: 768px) {
+          .store-footer-inner {
+            padding: 0 16px !important;
+          }
+        }
+      `}</style>
     </footer>
   );
 }

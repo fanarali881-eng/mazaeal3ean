@@ -254,7 +254,7 @@ export default function ProductPage() {
         {relatedProducts.length > 0 && (
           <div style={{ marginTop: '50px', paddingTop: '30px', borderTop: '1px solid #eee' }}>
             <h2 style={{ fontSize: '22px', fontWeight: 700, color: '#333', textAlign: 'center', marginBottom: '20px' }}>{t('productPage.relatedProducts')}</h2>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '15px' }}>
+            <div className="store-related-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '15px' }}>
               {relatedProducts.map(p => (
                 <ProductCard key={p.id} product={p} />
               ))}
@@ -267,7 +267,14 @@ export default function ProductPage() {
 
       <style>{`
         @media (max-width: 768px) {
-          .product-detail-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+          .product-detail-grid {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
+          }
+          .store-related-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 8px !important;
+          }
         }
       `}</style>
     </div>

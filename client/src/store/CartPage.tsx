@@ -128,7 +128,15 @@ export default function CartPage() {
 
       <style>{`
         @media (max-width: 768px) {
-          .cart-item { flex-wrap: wrap !important; }
+          .cart-item {
+            flex-wrap: wrap !important;
+            gap: 10px !important;
+            padding: 12px !important;
+          }
+          .cart-item img {
+            width: 65px !important;
+            height: 65px !important;
+          }
         }
       `}</style>
     </div>
