@@ -106,9 +106,9 @@ function ProductCarousel({ title, products, viewAllLink, titleUnderline }: { tit
   if (!products.length) return null;
 
   return (
-    <section style={{ padding: '40px 0', '@media (max-width: 768px)': { padding: '20px 0' } }}>
-      <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 20px', '@media (max-width: 768px)': { padding: '0 12px' } }}>
-        <h2 style={{ fontSize: '28px', fontWeight: 700, color: '#333', textAlign: 'center', marginBottom: '25px', textDecoration: titleUnderline ? 'underline' : 'none', textUnderlineOffset: '8px', '@media (max-width: 768px)': { fontSize: '20px', marginBottom: '15px' } }}>{title}</h2>
+    <section className="product-carousel-section" style={{ padding: '40px 0' }}>
+      <div className="product-carousel-container" style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 20px' }}>
+        <h2 className="product-carousel-title" style={{ fontSize: '28px', fontWeight: 700, color: '#333', textAlign: 'center', marginBottom: '25px', textDecoration: titleUnderline ? 'underline' : 'none', textUnderlineOffset: '8px' }}>{title}</h2>
         <div style={{ position: 'relative' }}>
           {/* Navigation arrows - stacked on the right like original */}
           <div style={{
@@ -125,14 +125,12 @@ function ProductCarousel({ title, products, viewAllLink, titleUnderline }: { tit
             }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={canPrev ? '#333' : '#ddd'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
           </div>
 
-          <div ref={scrollRef} style={{
+          <div ref={scrollRef} className="product-carousel-items" style={{
             display: 'flex', gap: '0', overflowX: 'auto', scrollBehavior: 'smooth', padding: '5px 0',
             scrollbarWidth: 'none',
-            '@media (max-width: 1200px)': { gap: '0' },
-            '@media (max-width: 768px)': { gap: '0' },
           }}>
             {products.map(p => (
-              <div key={p.id} style={{ minWidth: 'calc(25% - 1px)', maxWidth: 'calc(25% - 1px)', flexShrink: 0, borderLeft: '1px solid #f0f0f0', '@media (max-width: 1024px)': { minWidth: 'calc(33.333% - 1px)', maxWidth: 'calc(33.333% - 1px)' }, '@media (max-width: 768px)': { minWidth: 'calc(50% - 1px)', maxWidth: 'calc(50% - 1px)' } }}>
+              <div key={p.id} className="product-carousel-item" style={{ minWidth: 'calc(25% - 1px)', maxWidth: 'calc(25% - 1px)', flexShrink: 0, borderLeft: '1px solid #f0f0f0' }}>
                 <ProductCard product={p} />
               </div>
             ))}
@@ -203,9 +201,9 @@ function CategoryCards() {
   };
 
   return (
-    <section style={{ padding: '40px 0', '@media (max-width: 768px)': { padding: '20px 0' } }}>
-      <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 20px', '@media (max-width: 768px)': { padding: '0 12px' } }}>
-        <h2 style={{ fontSize: '28px', fontWeight: 700, color: '#333', textAlign: 'center', marginBottom: '25px', '@media (max-width: 768px)': { fontSize: '20px', marginBottom: '15px' } }}>{t('store.mostVisited')}</h2>
+    <section className="category-cards-section" style={{ padding: '40px 0' }}>
+      <div className="category-cards-container" style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 20px' }}>
+        <h2 className="category-cards-title" style={{ fontSize: '28px', fontWeight: 700, color: '#333', textAlign: 'center', marginBottom: '25px' }}>{t('store.mostVisited')}</h2>
         <div style={{ position: 'relative' }}>
           {/* Navigation arrows - stacked on the right like original */}
           <div style={{
@@ -260,8 +258,8 @@ function BrandLogos() {
   ];
 
   return (
-    <section style={{ padding: '50px 0', background: '#fff', '@media (max-width: 768px)': { padding: '30px 0' } }}>
-      <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 40px', display: 'flex', justifyContent: 'space-between', flexWrap: 'nowrap', gap: '20px', alignItems: 'center', '@media (max-width: 768px)': { padding: '0 12px', gap: '10px' } }}>
+    <section className="brand-logos-section" style={{ padding: '50px 0', background: '#fff' }}>
+      <div className="brand-logos-container" style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 40px', display: 'flex', justifyContent: 'space-between', flexWrap: 'nowrap', gap: '20px', alignItems: 'center' }}>
         {brands.map(b => (
           <div key={b.name} style={{ flex: '1 1 0', minWidth: 0, height: '90px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <img src={b.logo} alt={b.name} style={{ maxWidth: '140px', maxHeight: '90px', objectFit: 'contain' }}

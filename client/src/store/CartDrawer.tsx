@@ -51,7 +51,7 @@ export default function CartDrawer() {
       />
 
       {/* Drawer */}
-      <div style={{
+      <div className="cart-drawer" style={{
         position: 'fixed', top: 0, [isRTL ? 'right' : 'right']: 0, bottom: 0,
         width: '100%', maxWidth: '460px',
         background: 'white',
@@ -60,15 +60,13 @@ export default function CartDrawer() {
         direction: dir,
         boxShadow: '-4px 0 20px rgba(0,0,0,0.15)',
         animation: 'slideInRight 0.3s ease',
-        '@media (max-width: 768px)': { maxWidth: '100%' },
       }}>
 
         {/* Header */}
-        <div style={{
+        <div className="cart-drawer-header" style={{
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           padding: '16px 20px',
           borderBottom: '1px solid #eee',
-          '@media (max-width: 768px)': { padding: '12px 15px' },
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <div style={{ position: 'relative' }}>
@@ -85,7 +83,7 @@ export default function CartDrawer() {
                 }}>{count}</span>
               )}
             </div>
-            <span style={{ fontSize: '20px', fontWeight: 700, color: '#333', '@media (max-width: 768px)': { fontSize: '18px' } }}>{t('cart.myCart')}</span>
+            <span className="cart-drawer-title" style={{ fontSize: '20px', fontWeight: 700, color: '#333' }}>{t('cart.myCart')}</span>
           </div>
           <button
             onClick={() => setCartDrawerOpen(false)}

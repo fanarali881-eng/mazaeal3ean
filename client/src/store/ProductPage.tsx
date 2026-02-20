@@ -98,7 +98,7 @@ export default function ProductPage() {
       <StoreHeader />
       <CartDrawer />
 
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '20px 30px', '@media (max-width: 768px)': { padding: '15px 12px' } }}>
+      <div className="product-page-container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '20px 30px' }}>
         {/* Breadcrumb */}
         <div style={{ fontSize: '13px', color: '#999', marginBottom: '10px', display: 'flex', gap: '5px' }}>
           <a onClick={() => navigate('/store')} style={{ color: '#999', cursor: 'pointer', textDecoration: 'none' }}>{t('productPage.home')}</a>
@@ -121,20 +121,20 @@ export default function ProductPage() {
         </div>
 
         {/* Product detail - 2 columns */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '50px', '@media (max-width: 768px)': { gridTemplateColumns: '1fr', gap: '30px' } }} className="product-detail-grid">
+        <div className="product-detail-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '50px' }}>
           {/* Left: Images */}
           <div>
             <div style={{ borderRadius: '0', overflow: 'hidden', marginBottom: '10px', background: '#fff' }}>
               <img src={images[selectedImage]} alt={getTitle(product)} style={{ width: '100%', aspectRatio: '1', objectFit: 'contain' }} />
             </div>
             {images.length > 1 && (
-              <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', '@media (max-width: 768px)': { gap: '6px' } }}>
+              <div className="product-images-thumbs" style={{ display: 'flex', gap: '8px', overflowX: 'auto' }}>
                 {images.map((img, i) => (
                   <img key={i} src={img} alt="" onClick={() => setSelectedImage(i)}
+                    className="product-image-thumb"
                     style={{
                       width: '70px', height: '70px', objectFit: 'contain', cursor: 'pointer',
                       border: selectedImage === i ? '2px solid #e4042c' : '2px solid #eee',
-                      '@media (max-width: 768px)': { width: '60px', height: '60px' },
                     }} />
                 ))}
               </div>
@@ -150,13 +150,13 @@ export default function ProductPage() {
             }}>{product.vendor}</a>
 
             {/* Title */}
-            <h1 style={{ fontSize: '28px', fontWeight: 700, color: '#333', marginBottom: '15px', lineHeight: 1.4, '@media (max-width: 768px)': { fontSize: '22px', marginBottom: '12px' } }}>
+            <h1 className="product-title" style={{ fontSize: '28px', fontWeight: 700, color: '#333', marginBottom: '15px', lineHeight: 1.4 }}>
               {getTitle(product)}
             </h1>
 
             {/* Price */}
-            <div style={{ marginBottom: '20px', '@media (max-width: 768px)': { marginBottom: '15px' } }}>
-              <span style={{ fontSize: '22px', fontWeight: 700, color: '#333', '@media (max-width: 768px)': { fontSize: '18px' } }}>
+            <div className="product-price-section" style={{ marginBottom: '20px' }}>
+              <span className="product-price" style={{ fontSize: '22px', fontWeight: 700, color: '#333' }}>
                 {isCatchWeight ? `KG/KD${variant?.price}` : `KD ${variant?.price}`}
               </span>
               {hasDiscount && (
@@ -172,7 +172,7 @@ export default function ProductPage() {
             {product.variants.length > 1 && (
               <div style={{ marginBottom: '24px' }}>
                 <div style={{ fontSize: '14px', fontWeight: 700, marginBottom: '10px', color: '#333' }}>{t('productPage.packageType')}</div>
-                <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', '@media (max-width: 768px)': { gap: '8px' } }}>
+                <div className="product-variants" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
                   {product.variants.map((v, i) => (
                     <button key={v.id} onClick={() => { setSelectedVariant(i); setQuantity(1); }}
                       style={{
@@ -193,13 +193,12 @@ export default function ProductPage() {
             {/* Quantity + Add to cart on same row */}
             <div style={{ marginBottom: '20px' }}>
               <div style={{ fontSize: '14px', fontWeight: 700, marginBottom: '10px', color: '#333' }}>{t('productPage.quantity')}</div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', '@media (max-width: 768px)': { flexDirection: 'column', gap: '10px' } }}>
+              <div className="product-quantity-cart" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                 {/* Quantity selector */}
-                <div style={{
+                <div className="product-quantity-selector" style={{
                   display: 'flex', alignItems: 'center',
                   border: '1.5px solid #ddd', borderRadius: '30px',
                   overflow: 'hidden',
-                  '@media (max-width: 768px)': { width: '100%', justifyContent: 'center' },
                 }}>
                   <button onClick={() => setQuantity(q => Math.max(1, q - 1))}
                     style={{
@@ -219,12 +218,12 @@ export default function ProductPage() {
 
                 {/* Add to cart button */}
                 <button onClick={handleAddToCart}
+                  className="product-add-to-cart"
                   style={{
                     flex: 1, padding: '14px 20px', borderRadius: '30px', border: 'none', cursor: 'pointer',
                     fontSize: '17px', fontWeight: 700,
                     background: '#e4042c', color: 'white',
                     transition: 'all 0.2s',
-                    '@media (max-width: 768px)': { width: '100%', fontSize: '15px', padding: '12px 16px' },
                   }}>
                   {t('productPage.addToCart')}
                 </button>
@@ -233,8 +232,8 @@ export default function ProductPage() {
 
             {/* Description */}
             {descHtml && (
-              <div style={{ marginTop: '20px', paddingTop: '20px', borderTop: '1px solid #eee' }}>
-                <h3 style={{ fontSize: '16px', fontWeight: 700, marginBottom: '12px', color: '#333' }}>{t('productPage.description')}</h3>
+              <div className="product-description" style={{ marginTop: '20px', paddingTop: '20px', borderTop: '1px solid #eee' }}>
+                <h3 className="product-description-title" style={{ fontSize: '16px', fontWeight: 700, marginBottom: '12px', color: '#333' }}>{t('productPage.description')}</h3>
                 <div style={{ fontSize: '14px', color: '#555', lineHeight: 1.9 }} dangerouslySetInnerHTML={{ __html: descHtml }} />
               </div>
             )}

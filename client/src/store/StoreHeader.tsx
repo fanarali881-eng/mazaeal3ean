@@ -68,7 +68,7 @@ export default function StoreHeader() {
   return (
     <header className="store-header" dir={dir} style={{ position: 'sticky', top: 0, zIndex: 100 }}>
       {/* Top announcement bar */}
-      <div style={{ background: '#4c4c4c', color: 'white', padding: '8px 20px', fontSize: '13px', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative', '@media (max-width: 768px)': { padding: '6px 12px', fontSize: '11px' } }}>
+      <div className="store-header-top" style={{ background: '#4c4c4c', color: 'white', padding: '8px 20px', fontSize: '13px', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
         <a onClick={() => navigate('/store')} style={{ color: 'white', textDecoration: 'none', cursor: 'pointer', fontWeight: 700 }}>
           {t('header.freeShippingBanner')}
         </a>
@@ -96,15 +96,15 @@ export default function StoreHeader() {
 
       {/* Main header - Red background */}
       <div style={{ background: '#e4042c', padding: '12px 0' }}>
-        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 30px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', '@media (max-width: 768px)': { padding: '0 15px' } }}>
+        <div className="store-header-main" style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 30px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           {/* Logo + tagline */}
           <a onClick={() => navigate('/store')} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', flexShrink: 0 }}>
-            <span style={{ color: 'white', fontSize: '28px', fontWeight: 800, lineHeight: 1.1, fontFamily: '"Makani Bold", Arial, sans-serif', whiteSpace: 'pre-line', '@media (max-width: 768px)': { fontSize: '18px' } }}>{t('header.logoName')}</span>
-            <span style={{ color: 'rgba(255,255,255,0.85)', fontSize: '14px', fontWeight: 500, '@media (max-width: 768px)': { display: 'none' } }}>{t('header.logoTagline')}</span>
+            <span className="store-logo" style={{ color: 'white', fontSize: '28px', fontWeight: 800, lineHeight: 1.1, fontFamily: '"Makani Bold", Arial, sans-serif', whiteSpace: 'pre-line' }}>{t('header.logoName')}</span>
+            <span className="store-tagline" style={{ color: 'rgba(255,255,255,0.85)', fontSize: '14px', fontWeight: 500 }}>{t('header.logoTagline')}</span>
           </a>
 
           {/* Navigation - desktop */}
-          <nav className="store-nav-desktop" style={{ display: 'flex', alignItems: 'center', gap: '0', '@media (max-width: 1024px)': { display: 'none' } }}>
+          <nav className="store-nav-desktop" style={{ display: 'flex', alignItems: 'center', gap: '0' }}>
             {/* Frozen mega menu */}
             <div
               onMouseEnter={() => openMega('frozen')}
@@ -147,11 +147,11 @@ export default function StoreHeader() {
           </nav>
 
           {/* Icons */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '18px', flexShrink: 0, '@media (max-width: 768px)': { gap: '10px' } }}>
+          <div className="store-header-icons" style={{ display: 'flex', alignItems: 'center', gap: '18px', flexShrink: 0 }}>
             <button onClick={() => setSearchOpen(!searchOpen)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '4px' }}>
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
             </button>
-            <a style={{ cursor: 'pointer', padding: '4px', '@media (max-width: 768px)': { display: 'none' } }}>
+            <a className="store-header-profile" style={{ cursor: 'pointer', padding: '4px' }}>
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
             </a>
             <a onClick={() => setCartDrawerOpen(true)} style={{ cursor: 'pointer', position: 'relative', padding: '4px' }}>
@@ -231,10 +231,7 @@ export default function StoreHeader() {
                         display: 'block',
                         fontSize: '13px', color: '#555',
                         padding: '3px 0', cursor: 'pointer', textDecoration: 'none',
-                        transition: 'color 0.2s',
                       }}
-                      onMouseEnter={e => (e.currentTarget.style.color = '#e4042c')}
-                      onMouseLeave={e => (e.currentTarget.style.color = '#555')}
                     >
                       {getCatTitle(nested)}
                     </a>
@@ -246,109 +243,44 @@ export default function StoreHeader() {
         </div>
       )}
 
-      {/* Search overlay */}
+      {/* Search Results Dropdown */}
       {searchOpen && (
-        <div style={{ background: 'white', padding: '15px 20px', borderBottom: '2px solid #e4042c', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
-          <form onSubmit={handleSearchSubmit} style={{ maxWidth: '600px', margin: '0 auto', position: 'relative' }}>
-            <input type="text" placeholder={t('header.searchPlaceholder')} value={searchQuery} onChange={e => handleSearch(e.target.value)} autoFocus
-              style={{ width: '100%', padding: '12px 45px 12px 15px', border: '2px solid #e4042c', borderRadius: '8px', fontSize: '15px', outline: 'none', direction: dir }} />
-            <button type="submit" style={{ position: 'absolute', [isRTL ? 'right' : 'left']: '12px', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer' }}>
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e4042c" strokeWidth="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-            </button>
-            {searchResults.length > 0 && (
-              <div style={{ position: 'absolute', top: '100%', left: 0, right: 0, background: 'white', border: '1px solid #eee', borderRadius: '0 0 8px 8px', maxHeight: '400px', overflowY: 'auto', zIndex: 100, boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
+        <div style={{
+          position: 'absolute', top: '100%', left: 0, right: 0,
+          background: 'white',
+          boxShadow: '0 8px 30px rgba(0,0,0,0.15)',
+          zIndex: 99,
+          maxHeight: '500px', overflowY: 'auto',
+        }}>
+          <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '20px 30px' }}>
+            {searchResults.length > 0 ? (
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: '20px' }}>
                 {searchResults.map(p => (
-                  <a key={p.id} onClick={() => { navigate(`/store/product/${p.handle}`); setSearchResults([]); setSearchQuery(''); setSearchOpen(false); }}
-                    style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 15px', borderBottom: '1px solid #f0f0f0', cursor: 'pointer', textDecoration: 'none', color: '#333' }}
-                    onMouseEnter={e => (e.currentTarget.style.background = '#f9f9f9')}
-                    onMouseLeave={e => (e.currentTarget.style.background = 'white')}>
-                    <img src={p.image} alt="" style={{ width: '45px', height: '45px', objectFit: 'cover', borderRadius: '6px' }} />
-                    <div>
-                      <div style={{ fontSize: '14px', fontWeight: 500 }}>{getProductTitle(p)}</div>
-                      <div style={{ fontSize: '13px', color: '#e4042c', fontWeight: 600 }}>{p.variants[0]?.price} KD</div>
+                  <a
+                    key={p.id}
+                    onClick={() => { navigate(`/store/product/${p.handle}`); setSearchOpen(false); }}
+                    style={{
+                      cursor: 'pointer', textDecoration: 'none', color: '#333',
+                      padding: '10px', borderRadius: '4px', transition: 'background 0.2s',
+                    }}
+                    onMouseEnter={e => { e.currentTarget.style.background = '#f5f5f5'; }}
+                    onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; }}
+                  >
+                    <div style={{ fontSize: '13px', fontWeight: 500, marginBottom: '5px' }}>
+                      {getProductTitle(p)}
+                    </div>
+                    <div style={{ fontSize: '12px', color: '#999' }}>
+                      KD {p.variants[0]?.price || 'N/A'}
                     </div>
                   </a>
                 ))}
               </div>
-            )}
-          </form>
-        </div>
-      )}
-
-      {/* Mobile menu */}
-      {mobileMenuOpen && (
-        <div style={{ position: 'fixed', top: 0, right: 0, bottom: 0, left: 0, zIndex: 200 }}>
-          <div onClick={() => setMobileMenuOpen(false)} style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.5)' }} />
-          <div style={{ position: 'absolute', top: 0, [isRTL ? 'right' : 'left']: 0, bottom: 0, width: '300px', background: 'white', overflowY: 'auto', padding: '20px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', paddingBottom: '15px', borderBottom: '2px solid #e4042c' }}>
-              <span style={{ color: '#e4042c', fontSize: '22px', fontWeight: 800 }}>{t('footer.brandName')}</span>
-              <button onClick={() => setMobileMenuOpen(false)} style={{ background: 'none', border: 'none', fontSize: '24px', cursor: 'pointer', color: '#333' }}>✕</button>
-            </div>
-            {/* Language toggle in mobile */}
-            <button
-              onClick={() => { toggleLang(); }}
-              style={{
-                width: '100%', padding: '10px', marginBottom: '15px',
-                background: '#f5f5f5', border: '1px solid #ddd', borderRadius: '8px',
-                fontSize: '15px', fontWeight: 600, cursor: 'pointer', color: '#333',
-              }}
-            >
-              {lang === 'ar' ? 'Switch to English' : 'التبديل إلى العربية'}
-            </button>
-            {Object.entries(categories).map(([key, cat]) => (
-              <MobileCategory key={key} cat={cat} navigate={navigate} close={() => setMobileMenuOpen(false)} getCatTitle={getCatTitle} />
-            ))}
-            <a onClick={() => { navigate('/store/collection/promotion'); setMobileMenuOpen(false); }}
-              style={{ display: 'block', padding: '12px 0', fontWeight: 600, fontSize: '15px', color: '#e4042c', cursor: 'pointer', textDecoration: 'none', borderBottom: '1px solid #eee' }}>
-              {t('header.offers')}
-            </a>
-            <a onClick={() => { navigate('/store/collection/boxes'); setMobileMenuOpen(false); }}
-              style={{ display: 'block', padding: '12px 0', fontWeight: 600, fontSize: '15px', color: '#333', cursor: 'pointer', textDecoration: 'none', borderBottom: '1px solid #eee' }}>
-              {t('header.boxes')}
-            </a>
+            ) : searchQuery ? (
+              <p style={{ textAlign: 'center', color: '#999' }}>{t('header.noResults')}</p>
+            ) : null}
           </div>
         </div>
       )}
-
-      <style>{`
-        @media (max-width: 900px) {
-          .store-nav-desktop { display: none !important; }
-          .store-mobile-menu-btn { display: block !important; }
-        }
-      `}</style>
     </header>
-  );
-}
-
-function MobileCategory({ cat, navigate, close, getCatTitle }: { cat: any; navigate: (path: string) => void; close: () => void; getCatTitle: (item: any) => string }) {
-  const [expanded, setExpanded] = useState(false);
-  return (
-    <div style={{ borderBottom: '1px solid #eee' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <a onClick={() => { navigate(`/store/collection/${cat.handle}`); close(); }}
-          style={{ display: 'block', padding: '12px 0', fontWeight: 600, fontSize: '15px', color: '#333', cursor: 'pointer', textDecoration: 'none', flex: 1 }}>
-          {getCatTitle(cat)}
-        </a>
-        {cat.subcategories && cat.subcategories.length > 0 && (
-          <button onClick={() => setExpanded(!expanded)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '8px', fontSize: '16px', color: '#666' }}>
-            {expanded ? '−' : '+'}
-          </button>
-        )}
-      </div>
-      {expanded && cat.subcategories && cat.subcategories.map((sub: any) => (
-        <div key={sub.handle}>
-          <a onClick={() => { navigate(`/store/collection/${sub.handle}`); close(); }}
-            style={{ display: 'block', padding: '8px 15px', fontSize: '14px', color: '#333', fontWeight: 600, cursor: 'pointer', textDecoration: 'none' }}>
-            {getCatTitle(sub)}
-          </a>
-          {sub.subcategories && sub.subcategories.map((nested: any) => (
-            <a key={nested.handle} onClick={() => { navigate(`/store/collection/${nested.handle}`); close(); }}
-              style={{ display: 'block', padding: '6px 30px', fontSize: '13px', color: '#666', cursor: 'pointer', textDecoration: 'none' }}>
-              {getCatTitle(nested)}
-            </a>
-          ))}
-        </div>
-      ))}
-    </div>
   );
 }

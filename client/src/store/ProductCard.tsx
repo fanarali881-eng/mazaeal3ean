@@ -134,33 +134,32 @@ export default function ProductCard({ product, compact }: ProductCardProps) {
         </div>
 
         {/* Info */}
-        <div style={{ padding: '12px 8px', flex: 1, display: 'flex', flexDirection: 'column', direction: dir, textAlign: 'center', '@media (max-width: 768px)': { padding: '10px 6px' } }}>
+        <div className="product-card-info" style={{ padding: '12px 8px', flex: 1, display: 'flex', flexDirection: 'column', direction: dir, textAlign: 'center' }}>
           {/* Product title - larger */}
-          <div style={{
+          <div className="product-card-title" style={{
             fontSize: '15px', fontWeight: 500, color: '#333', marginBottom: '4px',
             lineHeight: 1.4, overflow: 'hidden', textOverflow: 'ellipsis',
             display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' as any,
-            '@media (max-width: 768px)': { fontSize: '13px', marginBottom: '3px' },
           }}>
             {getTitle()}
           </div>
           {/* Vendor */}
-          <div style={{ fontSize: '11px', color: '#999', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.5px', '@media (max-width: 768px)': { fontSize: '10px', marginBottom: '6px' } }}>
+          <div className="product-card-vendor" style={{ fontSize: '11px', color: '#999', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
             {product.vendor}
           </div>
 
           <div style={{ marginTop: 'auto' }}>
             {/* Price */}
-            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: '4px', flexWrap: 'wrap', '@media (max-width: 768px)': { gap: '2px' } }}>
-              {!isCatchWeight && hasMultipleVariants && <span style={{ fontSize: '12px', color: '#999', '@media (max-width: 768px)': { fontSize: '10px' } }}>{t('product.from')}</span>}
-              <span style={{ fontSize: '15px', fontWeight: 700, color: '#333', '@media (max-width: 768px)': { fontSize: '13px' } }}>
+            <div className="product-card-price" style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: '4px', flexWrap: 'wrap' }}>
+              {!isCatchWeight && hasMultipleVariants && <span className="product-card-from" style={{ fontSize: '12px', color: '#999' }}>{t('product.from')}</span>}
+              <span className="product-card-price-value" style={{ fontSize: '15px', fontWeight: 700, color: '#333' }}>
                 {isCatchWeight ? `KG/KD${variant?.price}` : `KD ${variant?.price}`}
               </span>
             </div>
             {/* Old price centered below current price */}
             {hasDiscount && (
-              <div style={{ textAlign: 'center', marginTop: '4px', '@media (max-width: 768px)': { marginTop: '2px' } }}>
-                <span style={{ fontSize: '13px', color: '#e4042c', textDecoration: 'line-through', fontWeight: 500, '@media (max-width: 768px)': { fontSize: '11px' } }}>
+              <div className="product-card-old-price" style={{ textAlign: 'center', marginTop: '4px' }}>
+                <span style={{ fontSize: '13px', color: '#e4042c', textDecoration: 'line-through', fontWeight: 500 }}>
                   {isCatchWeight ? `KG/KD${variant.compareAtPrice}` : `KD ${variant.compareAtPrice}`}
                 </span>
               </div>
