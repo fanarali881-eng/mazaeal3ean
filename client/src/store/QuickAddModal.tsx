@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useStore, Product, Variant } from './StoreContext';
 import { useLang } from './LanguageContext';
 import { useLocation } from 'wouter';
@@ -48,7 +49,7 @@ export default function QuickAddModal({ product, onClose }: QuickAddModalProps) 
     return v.title;
   };
 
-  return (
+  return createPortal(
     <>
       {/* Backdrop */}
       <div
@@ -182,6 +183,7 @@ export default function QuickAddModal({ product, onClose }: QuickAddModalProps) 
           {t('quickAdd.viewDetails')}
         </a>
       </div>
-    </>
+    </>,
+    document.body
   );
 }
