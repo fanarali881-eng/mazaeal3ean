@@ -275,6 +275,28 @@ export default function StoreHeader() {
           maxHeight: '500px', overflowY: 'auto',
         }}>
           <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '20px 30px' }}>
+            {/* Search Form */}
+            <form onSubmit={handleSearchSubmit} style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
+              <input
+                type="text"
+                placeholder={t('header.search') || 'Search products...'}
+                value={searchQuery}
+                onChange={(e) => handleSearch(e.target.value)}
+                style={{
+                  flex: 1,
+                  padding: '10px 15px',
+                  borderRadius: '4px',
+                  border: '1px solid #ddd',
+                  fontSize: '14px',
+                  outline: 'none',
+                }}
+                autoFocus
+              />
+              <button type="submit" style={{ background: '#e4042c', color: 'white', border: 'none', padding: '10px 20px', borderRadius: '4px', cursor: 'pointer', fontWeight: 600, fontSize: '14px' }}>
+                {t('header.search') || 'Search'}
+              </button>
+            </form>
+            {/* Search Results */}
             {searchResults.length > 0 ? (
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: '20px' }}>
                 {searchResults.map(p => (
