@@ -326,6 +326,47 @@ export default function StoreHeader() {
         </div>
       )}
 
+      {/* Mobile Sidebar Drawer */}
+      {mobileMenuOpen && (
+        <>
+          <div onClick={() => setMobileMenuOpen(false)} style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.5)', zIndex: 200 }} />
+          <div style={{ position: 'fixed', top: 0, [isRTL ? 'right' : 'left']: 0, width: '280px', height: '100%', background: 'white', zIndex: 201, overflowY: 'auto', boxShadow: '2px 0 15px rgba(0,0,0,0.2)', direction: dir }}>
+            <div style={{ background: '#e4042c', padding: '20px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <span style={{ color: 'white', fontSize: '20px', fontWeight: 800 }}>{t('header.logoName')}</span>
+              <button onClick={() => setMobileMenuOpen(false)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '4px' }}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+              </button>
+            </div>
+            <div style={{ padding: '8px 0' }}>
+              {Object.keys(categories).map((catKey) => {
+                const cat = categories[catKey];
+                return (
+                  <div key={catKey}>
+                    <a onClick={() => { navigate(`/store/collection/${catKey}`); setMobileMenuOpen(false); }} style={{ display: 'block', padding: '14px 20px', fontSize: '15px', fontWeight: 700, color: '#222', cursor: 'pointer', textDecoration: 'none', borderBottom: '1px solid #f0f0f0' }}>
+                      {getCatTitle(cat)}
+                    </a>
+                    {cat.subcategories && cat.subcategories.map((sub: any) => (
+                      <a key={sub.handle} onClick={() => { navigate(`/store/collection/${sub.handle}`); setMobileMenuOpen(false); }} style={{ display: 'block', padding: '10px 20px 10px 36px', fontSize: '13px', color: '#555', cursor: 'pointer', textDecoration: 'none', borderBottom: '1px solid #f8f8f8' }}>
+                        {getCatTitle(sub)}
+                      </a>
+                    ))}
+                  </div>
+                );
+              })}
+              <a onClick={() => { navigate('/store/collection/new-arrivals'); setMobileMenuOpen(false); }} style={{ display: 'block', padding: '14px 20px', fontSize: '15px', fontWeight: 700, color: '#222', cursor: 'pointer', textDecoration: 'none', borderBottom: '1px solid #f0f0f0' }}>
+                {t('header.newArrivals')}
+              </a>
+              <a onClick={() => { navigate('/store/collection/promotion'); setMobileMenuOpen(false); }} style={{ display: 'block', padding: '14px 20px', fontSize: '15px', fontWeight: 700, color: '#e4042c', cursor: 'pointer', textDecoration: 'none', borderBottom: '1px solid #f0f0f0' }}>
+                {t('header.offers')}
+              </a>
+              <a onClick={() => { navigate('/store/collection/boxes'); setMobileMenuOpen(false); }} style={{ display: 'block', padding: '14px 20px', fontSize: '15px', fontWeight: 700, color: '#222', cursor: 'pointer', textDecoration: 'none', borderBottom: '1px solid #f0f0f0' }}>
+                {t('header.boxes')}
+              </a>
+            </div>
+          </div>
+        </>
+      )}
+
       <style>{`
         @media (max-width: 900px) {
           .store-nav-desktop { display: none !important; }
