@@ -90,7 +90,6 @@ export default function StoreHeader() {
           }}
           onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.3)'; }}
           onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.15)'; }}
-          className="store-lang-btn"
         >
           {lang === 'ar' ? 'English' : 'عربي'}
         </button>
