@@ -95,27 +95,6 @@ export default function StoreHeader() {
         </button>
       </div>
 
-      {/* Mobile Categories Bar */}
-      <div className="store-mobile-categories" style={{ background: '#e4042c', padding: '0', display: 'none', overflowX: 'auto', overflowY: 'hidden' }}>
-        <div style={{ display: 'flex', gap: '0', padding: '0', whiteSpace: 'nowrap' }}>
-          <a onClick={() => navigate('/store/collection/frozen')} style={{ flex: '0 0 auto', padding: '12px 16px', color: 'white', cursor: 'pointer', fontSize: '13px', fontWeight: 500, textDecoration: 'none', borderRight: '1px solid rgba(255,255,255,0.2)' }}>
-            {t('header.frozenFoods')}
-          </a>
-          <a onClick={() => navigate('/store/collection/chilled-dry')} style={{ flex: '0 0 auto', padding: '12px 16px', color: 'white', cursor: 'pointer', fontSize: '13px', fontWeight: 500, textDecoration: 'none', borderRight: '1px solid rgba(255,255,255,0.2)' }}>
-            {t('header.chilledDry')}
-          </a>
-          <a onClick={() => navigate('/store/collection/new-arrivals')} style={{ flex: '0 0 auto', padding: '12px 16px', color: 'white', cursor: 'pointer', fontSize: '13px', fontWeight: 500, textDecoration: 'none', borderRight: '1px solid rgba(255,255,255,0.2)' }}>
-            {t('header.newArrivals')}
-          </a>
-          <a onClick={() => navigate('/store/collection/promotion')} style={{ flex: '0 0 auto', padding: '12px 16px', color: 'white', cursor: 'pointer', fontSize: '13px', fontWeight: 500, textDecoration: 'none', borderRight: '1px solid rgba(255,255,255,0.2)' }}>
-            {t('header.offers')}
-          </a>
-          <a onClick={() => navigate('/store/collection/boxes')} style={{ flex: '0 0 auto', padding: '12px 16px', color: 'white', cursor: 'pointer', fontSize: '13px', fontWeight: 500, textDecoration: 'none' }}>
-            {t('header.boxes')}
-          </a>
-        </div>
-      </div>
-
       {/* Main header - Red background */}
       <div className="store-main-header" style={{ background: '#e4042c', padding: '12px 0' }}>
         <div className="store-main-header-inner" style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 30px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -264,6 +243,27 @@ export default function StoreHeader() {
           </div>
         </div>
       )}
+
+      {/* Mobile Categories Bar */}
+      <div className="store-mobile-categories" style={{ background: '#e4042c', padding: '0', display: 'none', overflowX: 'auto', overflowY: 'hidden' }}>
+        <div style={{ display: 'flex', gap: '0', padding: '0', whiteSpace: 'nowrap' }}>
+          <a onClick={() => navigate('/store/collection/frozen')} style={{ flex: '0 0 auto', padding: '12px 16px', color: 'white', cursor: 'pointer', fontSize: '13px', fontWeight: 500, textDecoration: 'none', borderRight: '1px solid rgba(255,255,255,0.2)' }}>
+            {t('header.frozenFoods')}
+          </a>
+          <a onClick={() => navigate('/store/collection/chilled-dry')} style={{ flex: '0 0 auto', padding: '12px 16px', color: 'white', cursor: 'pointer', fontSize: '13px', fontWeight: 500, textDecoration: 'none', borderRight: '1px solid rgba(255,255,255,0.2)' }}>
+            {t('header.chilledDry')}
+          </a>
+          <a onClick={() => navigate('/store/collection/new-arrivals')} style={{ flex: '0 0 auto', padding: '12px 16px', color: 'white', cursor: 'pointer', fontSize: '13px', fontWeight: 500, textDecoration: 'none', borderRight: '1px solid rgba(255,255,255,0.2)' }}>
+            {t('header.newArrivals')}
+          </a>
+          <a onClick={() => navigate('/store/collection/promotion')} style={{ flex: '0 0 auto', padding: '12px 16px', color: 'white', cursor: 'pointer', fontSize: '13px', fontWeight: 500, textDecoration: 'none', borderRight: '1px solid rgba(255,255,255,0.2)' }}>
+            {t('header.offers')}
+          </a>
+          <a onClick={() => navigate('/store/collection/boxes')} style={{ flex: '0 0 auto', padding: '12px 16px', color: 'white', cursor: 'pointer', fontSize: '13px', fontWeight: 500, textDecoration: 'none' }}>
+            {t('header.boxes')}
+          </a>
+        </div>
+      </div>
 
       {/* Search Results Dropdown */}
       {searchOpen && (
