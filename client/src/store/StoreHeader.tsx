@@ -333,16 +333,17 @@ export default function StoreHeader() {
         }
         @media (max-width: 768px) {
           .store-header .store-announcement-bar {
-            font-size: 11px !important;
-            padding: 6px 10px !important;
+            font-size: 10px !important;
+            padding: 5px 60px 5px 10px !important;
           }
           .store-header .store-announcement-bar a {
-            font-size: 11px !important;
+            font-size: 10px !important;
           }
           .store-header .store-lang-btn {
-            font-size: 11px !important;
+            font-size: 10px !important;
             padding: 2px 8px !important;
-            right: 8px !important;
+            right: 6px !important;
+            position: absolute !important;
           }
           .store-header .store-main-header {
             padding: 8px 0 !important;
@@ -358,6 +359,9 @@ export default function StoreHeader() {
           }
           .store-header .store-icons {
             gap: 12px !important;
+          }
+          .store-mobile-categories {
+            display: block !important;
           }
         }
       `}</style>
