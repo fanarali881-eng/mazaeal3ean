@@ -201,7 +201,7 @@ function RamadanPopup() {
               marginBottom: '24px',
               direction: 'ltr',
             }}>
-              {/* Seconds */}
+              {/* Hours */}
               <div style={{ textAlign: 'center' }}>
                 <div style={{
                   background: 'rgba(212,175,55,0.1)',
@@ -217,10 +217,10 @@ function RamadanPopup() {
                     fontFamily: 'monospace',
                     lineHeight: 1,
                   }}>
-                    {pad(timeLeft.seconds)}
+                    {pad(timeLeft.hours)}
                   </div>
                 </div>
-                <div style={{ color: 'rgba(255,255,255,0.4)', fontSize: '11px', marginTop: '6px' }}>ثانية</div>
+                <div style={{ color: 'rgba(255,255,255,0.4)', fontSize: '11px', marginTop: '6px' }}>ساعة</div>
               </div>
 
               <div style={{ color: '#d4af37', fontSize: '28px', fontWeight: 700, paddingTop: '10px' }}>:</div>
@@ -249,7 +249,7 @@ function RamadanPopup() {
 
               <div style={{ color: '#d4af37', fontSize: '28px', fontWeight: 700, paddingTop: '10px' }}>:</div>
 
-              {/* Hours */}
+              {/* Seconds */}
               <div style={{ textAlign: 'center' }}>
                 <div style={{
                   background: 'rgba(212,175,55,0.1)',
@@ -265,10 +265,10 @@ function RamadanPopup() {
                     fontFamily: 'monospace',
                     lineHeight: 1,
                   }}>
-                    {pad(timeLeft.hours)}
+                    {pad(timeLeft.seconds)}
                   </div>
                 </div>
-                <div style={{ color: 'rgba(255,255,255,0.4)', fontSize: '11px', marginTop: '6px' }}>ساعة</div>
+                <div style={{ color: 'rgba(255,255,255,0.4)', fontSize: '11px', marginTop: '6px' }}>ثانية</div>
               </div>
             </div>
 
