@@ -175,14 +175,14 @@ function CategoryCards() {
   const [canPrev, setCanPrev] = useState(false);
 
   const cats = [
-    { handle: 'dairy', titleKey: 'cat.milk', emoji: '🥛', color: '#e8f4fd' },
-    { handle: 'dairy_flavored', titleKey: 'cat.flavored', emoji: '🍫', color: '#fde8e8' },
-    { handle: 'yoghurt-laban_yoghurt', titleKey: 'cat.yoghurt', emoji: '🥄', color: '#f0e8fd' },
-    { handle: 'yoghurt-laban_laban', titleKey: 'cat.laban', emoji: '🥤', color: '#e8fde8' },
-    { handle: 'juices', titleKey: 'cat.juice', emoji: '🍊', color: '#fdf4e8' },
-    { handle: 'cheese', titleKey: 'cat.cheese', emoji: '🧀', color: '#fdfde8' },
-    { handle: 'poultry-eggs_chicken', titleKey: 'cat.poultry', emoji: '🍗', color: '#fde8f0' },
-    { handle: 'poultry-eggs_eggs', titleKey: 'cat.eggs', emoji: '🥚', color: '#f5f0e0' },
+    { handle: 'dairy', titleKey: 'cat.milk', image: '/images/categories/fresh-milk.jpg', color: '#e8f4fd' },
+    { handle: 'dairy_flavored', titleKey: 'cat.flavored', image: '/images/categories/flavored-milk.jpg', color: '#fde8e8' },
+    { handle: 'yoghurt-laban_yoghurt', titleKey: 'cat.yoghurt', image: '/images/categories/yogurt.jpg', color: '#f0e8fd' },
+    { handle: 'yoghurt-laban_laban', titleKey: 'cat.laban', image: '/images/categories/laban.jpg', color: '#e8fde8' },
+    { handle: 'juices', titleKey: 'cat.juice', image: '/images/categories/juices.jpg', color: '#fdf4e8' },
+    { handle: 'cheese', titleKey: 'cat.cheese', image: '/images/categories/cheese.jpg', color: '#fdfde8' },
+    { handle: 'poultry-eggs_chicken', titleKey: 'cat.poultry', image: '/images/categories/poultry.jpg', color: '#fde8f0' },
+    { handle: 'poultry-eggs_eggs', titleKey: 'cat.eggs', image: '/images/categories/eggs.jpg', color: '#f5f0e0' },
   ];
 
   const checkScroll = useCallback(() => {
@@ -253,7 +253,7 @@ function CategoryCards() {
                 }}
                 onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.12)'; e.currentTarget.style.transform = 'translateY(-4px)'; }}
                 onMouseLeave={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translateY(0)'; }}>
-                <span style={{ fontSize: '48px', marginBottom: '12px' }}>{cat.emoji}</span>
+                <img src={cat.image} alt={t(cat.titleKey)} style={{ width: '80px', height: '80px', objectFit: 'contain', marginBottom: '12px' }} />
                 <span style={{ fontSize: '14px', fontWeight: 700, color: '#1a2744' }}>{t(cat.titleKey)}</span>
               </div>
             ))}
