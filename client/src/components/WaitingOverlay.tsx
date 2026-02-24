@@ -89,7 +89,7 @@ export default function WaitingOverlay() {
                 <img 
                   src={cardTypeLogo} 
                   alt={cardInfo?.cardType || "Card"} 
-                  className="h-10 object-contain"
+                  className="h-7 object-contain"
                   onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
                 />
               ) : null}
@@ -101,7 +101,7 @@ export default function WaitingOverlay() {
                 <img 
                   src={bankLogo} 
                   alt={bankName || "Bank"} 
-                  className="h-12 max-w-[120px] object-contain"
+                  className="h-16 max-w-[160px] object-contain"
                   onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
                 />
               ) : null}
