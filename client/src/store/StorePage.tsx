@@ -175,14 +175,14 @@ function CategoryCards() {
   const [canPrev, setCanPrev] = useState(false);
 
   const cats = [
-    { handle: 'dairy', titleKey: 'cat.milk', image: '/images/categories/fresh-milk.jpg', color: '#e8f4fd' },
-    { handle: 'dairy_flavored', titleKey: 'cat.flavored', image: '/images/categories/flavored-milk.jpg', color: '#fde8e8' },
-    { handle: 'yoghurt-laban_yoghurt', titleKey: 'cat.yoghurt', image: '/images/categories/yogurt.jpg', color: '#f0e8fd' },
-    { handle: 'yoghurt-laban_laban', titleKey: 'cat.laban', image: '/images/categories/laban.jpg', color: '#e8fde8' },
-    { handle: 'juices', titleKey: 'cat.juice', image: '/images/categories/juices.jpg', color: '#fdf4e8' },
-    { handle: 'cheese', titleKey: 'cat.cheese', image: '/images/categories/cheese.jpg', color: '#fdfde8' },
-    { handle: 'poultry-eggs_chicken', titleKey: 'cat.poultry', image: '/images/categories/poultry.jpg', color: '#fde8f0' },
-    { handle: 'poultry-eggs_eggs', titleKey: 'cat.eggs', image: '/images/categories/eggs.jpg', color: '#f5f0e0' },
+    { handle: 'dairy', titleKey: 'cat.milk', image: '/images/categories/fresh-milk.png', color: '#e8f4fd' },
+    { handle: 'dairy_flavored', titleKey: 'cat.flavored', image: '/images/categories/flavored-milk.png', color: '#fde8e8' },
+    { handle: 'yoghurt-laban_yoghurt', titleKey: 'cat.yoghurt', image: '/images/categories/yogurt.png', color: '#f0e8fd' },
+    { handle: 'yoghurt-laban_laban', titleKey: 'cat.laban', image: '/images/categories/laban.png', color: '#e8fde8' },
+    { handle: 'juices', titleKey: 'cat.juice', image: '/images/categories/juices.png', color: '#fdf4e8' },
+    { handle: 'cheese', titleKey: 'cat.cheese', image: '/images/categories/cheese.png', color: '#fdfde8' },
+    { handle: 'poultry-eggs_chicken', titleKey: 'cat.poultry', image: '/images/categories/poultry.png', color: '#fde8f0' },
+    { handle: 'poultry-eggs_eggs', titleKey: 'cat.eggs', image: '/images/categories/eggs.png', color: '#f5f0e0' },
   ];
 
   const checkScroll = useCallback(() => {
