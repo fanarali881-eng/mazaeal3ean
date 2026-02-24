@@ -150,6 +150,43 @@ const translations: Record<string, Record<Lang, string>> = {
 
   // Origins
   'origin.uae': { ar: 'الإمارات العربية المتحدة', en: 'United Arab Emirates' },
+
+  // About Section
+  'about.label': { ar: 'معلومات عنا', en: 'About Us' },
+  'about.title': { ar: 'نحن', en: 'We are' },
+  'about.titleHighlight': { ar: 'مزارع العين', en: 'Al Ain Farms' },
+  'about.text': {
+    ar: 'تم إنشاء مزارع العين للإنتاج الحيواني في عام 1981 على يد الأب المؤسس المغفور له الشيخ زايد بن سلطان آل نهيان. لتصبح أول شركة ألبان تأسست في دولة الإمارات العربية المتحدة. وبعد 40 عاماً من النجاح، أصبحنا اليوم أكبر شركة ألبان متكاملة في البلاد، وتدير الشركة أربعة مزارع، صناعة الألبان، العصائر، إنتاج حليب النوق، وقسم الدواجن لإنتاج الدجاج الطازج والبيض.',
+    en: 'Al Ain Farms for Animal Production was established in 1981 by the late founding father Sheikh Zayed bin Sultan Al Nahyan. It became the first dairy company established in the United Arab Emirates. After 40 years of success, we are today the largest integrated dairy company in the country, operating four farms: dairy, juices, camel milk production, and a poultry division for fresh chicken and eggs.',
+  },
+  'about.feature1Title': { ar: 'منتجات الألبان', en: 'Dairy Products' },
+  'about.feature1Desc': {
+    ar: 'تم تجهيز مزارع العين بأفضل التقنيات العالمية للتغذية والحلب والمعالجة وهي واحدة من أكثر المزارع تطوراً في الشرق الأوسط.',
+    en: 'Al Ain Farms is equipped with the best global technologies for feeding, milking and processing, making it one of the most advanced farms in the Middle East.',
+  },
+  'about.feature2Title': { ar: 'منتجات الطبيعة النقية', en: 'Pure Nature Products' },
+  'about.feature2Desc': {
+    ar: 'كونها أول شركة ألبان في الإمارات العربية المتحدة، قامت مزارع العين بدور محوري في ضمان أفضل المنتجات الغذائية لشعب البلاد.',
+    en: 'Being the first dairy company in the UAE, Al Ain Farms has played a pivotal role in ensuring the best food products for the people of the country.',
+  },
+  'about.feature3Title': { ar: 'حليب النوق', en: 'Camel Milk' },
+  'about.feature3Desc': {
+    ar: 'نشعر بالحب، نحافظ على تراث الشيخ زايد من خلال شركة الألبان المحلية الوحيدة التي تنتج حليب النوق.',
+    en: 'We feel the love, preserving Sheikh Zayed\'s heritage through the only local dairy company that produces camel milk.',
+  },
+  'about.feature4Title': { ar: 'فقط أفضل جودة', en: 'Only Best Quality' },
+  'about.feature4Desc': {
+    ar: 'في صميم تركيز الجودة لدينا هو العميل. جميع مبادراتنا في الحفاظ على الجودة وتحسينها تؤدي إلى فوائد لعملائنا الكرام.',
+    en: 'At the core of our quality focus is the customer. All our initiatives in maintaining and improving quality lead to benefits for our valued customers.',
+  },
+  'about.allProducts': { ar: 'جميع منتجاتنا', en: 'All Our Products' },
+  'about.madeLocally': { ar: 'صنعت محلياً في دولة الإمارات العربية المتحدة', en: 'Made Locally in the United Arab Emirates' },
+
+  // Video Section
+  'video.camel': { ar: 'الإبل', en: 'Camels' },
+  'video.poultry': { ar: 'الدواجن', en: 'Poultry' },
+  'video.cow': { ar: 'الأبقار', en: 'Cows' },
+  'video.pet': { ar: 'عبوات PET', en: 'PET Bottles' },
 };
 
 const LanguageContext = createContext<LanguageContextType | null>(null);

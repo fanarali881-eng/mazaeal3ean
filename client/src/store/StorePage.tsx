@@ -264,43 +264,155 @@ function CategoryCards() {
   );
 }
 
-/* ── About Al Ain Farms Section ── */
+/* ── About Al Ain Farms Section (matches original site) ── */
 function AboutSection() {
-  const { isRTL } = useLang();
+  const { t, isRTL } = useLang();
 
-  const features = isRTL ? [
-    { icon: '🐄', title: 'مزارع محلية', desc: 'منتجات من مزارعنا في الإمارات' },
-    { icon: '✅', title: 'جودة عالية', desc: 'معايير جودة عالمية' },
-    { icon: '🚚', title: 'توصيل سريع', desc: 'توصيل طازج لباب بيتك' },
-    { icon: '🌿', title: 'طبيعي 100%', desc: 'بدون مواد حافظة' },
-  ] : [
-    { icon: '🐄', title: 'Local Farms', desc: 'Products from our UAE farms' },
-    { icon: '✅', title: 'High Quality', desc: 'International quality standards' },
-    { icon: '🚚', title: 'Fast Delivery', desc: 'Fresh delivery to your door' },
-    { icon: '🌿', title: '100% Natural', desc: 'No preservatives' },
+  const features = [
+    { icon: '/images/icon-dairy.png', titleKey: 'about.feature1Title', descKey: 'about.feature1Desc' },
+    { icon: '/images/icon-nature.png', titleKey: 'about.feature2Title', descKey: 'about.feature2Desc' },
+    { icon: '/images/icon-camel-milk.png', titleKey: 'about.feature3Title', descKey: 'about.feature3Desc' },
+    { icon: '/images/icon-quality.png', titleKey: 'about.feature4Title', descKey: 'about.feature4Desc' },
   ];
 
   return (
-    <section style={{ padding: '50px 0', background: '#f8f9fa' }}>
+    <section style={{ padding: '60px 0', background: '#fff' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '24px' }}>
-          {features.map((f, i) => (
-            <div key={i} style={{
-              textAlign: 'center', padding: '30px 16px', background: 'white',
-              borderRadius: '16px', boxShadow: '0 2px 12px rgba(0,0,0,0.06)',
-            }}>
-              <span style={{ fontSize: '40px', display: 'block', marginBottom: '12px' }}>{f.icon}</span>
-              <h3 style={{ fontSize: '16px', fontWeight: 700, color: '#1a2744', marginBottom: '8px' }}>{f.title}</h3>
-              <p style={{ fontSize: '13px', color: '#666', margin: 0 }}>{f.desc}</p>
+        <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '50px', alignItems: 'start' }}>
+          {/* Left: About text */}
+          <div>
+            <p style={{ fontSize: '14px', color: '#1a2744', fontWeight: 600, textTransform: 'uppercase', marginBottom: '8px', letterSpacing: '1px' }}>
+              {t('about.label')}
+            </p>
+            <h2 style={{ fontSize: '32px', fontWeight: 800, color: '#1a2744', marginBottom: '20px', lineHeight: 1.3 }}>
+              {t('about.title')} <span style={{ color: '#c8102e' }}>{t('about.titleHighlight')}</span>
+            </h2>
+            <p style={{ fontSize: '15px', color: '#555', lineHeight: 1.8, marginBottom: '30px' }}>
+              {t('about.text')}
+            </p>
+            {/* Product categories image */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+              <img src="/images/products-fresh-milk.png" alt="Fresh Milk" style={{ width: '100%', borderRadius: '12px' }} />
+              <img src="/images/products-camelate.png" alt="Camelate" style={{ width: '100%', borderRadius: '12px' }} />
+              <img src="/images/products-poultry.png" alt="Poultry" style={{ width: '100%', borderRadius: '12px' }} />
+              <img src="/images/products-juice.png" alt="Juices" style={{ width: '100%', borderRadius: '12px' }} />
             </div>
-          ))}
+          </div>
+
+          {/* Right: Feature cards */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+            {features.map((f, i) => (
+              <div key={i} style={{
+                display: 'flex', alignItems: 'flex-start', gap: '16px',
+                padding: '20px 0',
+                borderBottom: i < features.length - 1 ? '1px solid #eee' : 'none',
+              }}>
+                <img src={f.icon} alt="" style={{ width: '60px', height: '48px', objectFit: 'contain', flexShrink: 0, marginTop: '4px' }} />
+                <div>
+                  <h4 style={{ fontSize: '17px', fontWeight: 700, color: '#1a2744', marginBottom: '6px', margin: '0 0 6px 0' }}>
+                    {t(f.titleKey)}
+                  </h4>
+                  <p style={{ fontSize: '13px', color: '#666', lineHeight: 1.7, margin: 0 }}>
+                    {t(f.descKey)}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
       <style>{`
         @media (max-width: 768px) {
-          section > div > div[style*="grid-template-columns"] {
-            grid-template-columns: repeat(2, 1fr) !important;
+          .about-grid {
+            grid-template-columns: 1fr !important;
+            gap: 30px !important;
+          }
+        }
+      `}</style>
+    </section>
+  );
+}
+
+/* ── Video Section ── */
+function VideoSection() {
+  const { t } = useLang();
+  const [activeVideo, setActiveVideo] = useState(0);
+
+  const videos = [
+    { src: 'https://alainfarms.com/wp-content/uploads/2019/08/Camel-English_1.mp4', thumb: '/images/video-thumb-camel.jpg', labelKey: 'video.camel' },
+    { src: 'https://alainfarms.com/wp-content/uploads/2019/08/Poultry-English_1.mp4', thumb: '/images/video-thumb-poultry.jpg', labelKey: 'video.poultry' },
+    { src: 'https://alainfarms.com/wp-content/uploads/2019/08/Cow-English_1.mp4', thumb: '/images/video-thumb-cow.jpg', labelKey: 'video.cow' },
+    { src: 'https://alainfarms.com/wp-content/uploads/2019/09/PET-1-Minute_1.3gp', thumb: '/images/video-thumb-pet.jpg', labelKey: 'video.pet' },
+  ];
+
+  return (
+    <section style={{ padding: '60px 0', background: '#f8f9fa' }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
+        <div className="video-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '30px', alignItems: 'start' }}>
+          {/* Main video player */}
+          <div style={{ borderRadius: '12px', overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}>
+            <video
+              key={activeVideo}
+              autoPlay
+              loop
+              muted
+              playsInline
+              style={{ width: '100%', display: 'block', aspectRatio: '16/9', objectFit: 'cover', background: '#000' }}
+            >
+              <source src={videos[activeVideo].src} type="video/mp4" />
+            </video>
+          </div>
+
+          {/* Video thumbnails */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+            {videos.map((v, i) => (
+              <div
+                key={i}
+                onClick={() => setActiveVideo(i)}
+                style={{
+                  position: 'relative', borderRadius: '10px', overflow: 'hidden', cursor: 'pointer',
+                  border: activeVideo === i ? '3px solid #1a2744' : '3px solid transparent',
+                  transition: 'all 0.3s', boxShadow: '0 2px 10px rgba(0,0,0,0.08)',
+                }}
+                onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.03)'; }}
+                onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; }}
+              >
+                <img src={v.thumb} alt={t(v.labelKey)} style={{ width: '100%', aspectRatio: '16/9', objectFit: 'cover', display: 'block' }} />
+                {/* Play button overlay */}
+                <div style={{
+                  position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  background: activeVideo === i ? 'rgba(26,39,68,0.3)' : 'rgba(0,0,0,0.25)',
+                  transition: 'all 0.3s',
+                }}>
+                  <div style={{
+                    width: '40px', height: '40px', borderRadius: '50%',
+                    background: 'rgba(255,255,255,0.9)', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  }}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="#1a2744">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                </div>
+                {/* Label */}
+                <div style={{
+                  position: 'absolute', bottom: 0, left: 0, right: 0,
+                  background: 'linear-gradient(transparent, rgba(0,0,0,0.7))',
+                  padding: '20px 10px 8px',
+                }}>
+                  <span style={{ color: 'white', fontSize: '13px', fontWeight: 600 }}>{t(v.labelKey)}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .video-grid {
+            grid-template-columns: 1fr !important;
           }
         }
       `}</style>
@@ -344,6 +456,12 @@ export default function StorePage() {
       {/* Category Cards */}
       <CategoryCards />
 
+      {/* About Section - matches original Al Ain Farms site */}
+      <AboutSection />
+
+      {/* Video Section */}
+      <VideoSection />
+
       {/* Best Sellers / Featured */}
       <ProductCarousel title={t('store.bestSellers')} products={bestSellers} viewAllLink="/store/collection/dairy" />
 
@@ -351,9 +469,6 @@ export default function StorePage() {
       {newArrivals.length > 0 && (
         <ProductCarousel title={t('store.newArrivals')} products={newArrivals} viewAllLink="/store/collection/new-arrivals" />
       )}
-
-      {/* About Section - Features */}
-      <AboutSection />
 
       {/* Special Offers */}
       {offers.length > 0 && (
