@@ -15,20 +15,26 @@ function HeroSection() {
   return (
     <section style={{
       position: 'relative', overflow: 'hidden',
-      background: 'linear-gradient(135deg, #1a2744 0%, #2d4a7a 50%, #1a6b3c 100%)',
-      minHeight: '400px', display: 'flex', alignItems: 'center',
+      minHeight: '420px', display: 'flex', alignItems: 'center',
     }}>
-      {/* Background pattern */}
+      {/* Background banner image */}
       <div style={{
         position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
-        backgroundImage: 'radial-gradient(circle at 20% 80%, rgba(200,16,46,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(26,107,60,0.2) 0%, transparent 50%)',
+        backgroundImage: 'url(/product-images/banner-hero-milk.png)',
+        backgroundSize: 'cover', backgroundPosition: 'center',
+      }} />
+      {/* Overlay for text readability */}
+      <div style={{
+        position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
+        background: isRTL
+          ? 'linear-gradient(to left, rgba(26,39,68,0.85) 0%, rgba(26,39,68,0.5) 50%, transparent 100%)'
+          : 'linear-gradient(to right, rgba(26,39,68,0.85) 0%, rgba(26,39,68,0.5) 50%, transparent 100%)',
       }} />
 
       <div style={{
         maxWidth: '1400px', margin: '0 auto', padding: '60px 40px',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         width: '100%', position: 'relative', zIndex: 1,
-        flexDirection: isRTL ? 'row' : 'row',
       }}>
         <div style={{ maxWidth: '550px' }}>
           <h1 style={{
@@ -38,13 +44,13 @@ function HeroSection() {
             {isRTL ? 'مزارع العين' : 'Al Ain Farms'}
           </h1>
           <p style={{
-            fontSize: '22px', color: 'rgba(255,255,255,0.9)', fontWeight: 500,
+            fontSize: '22px', color: 'rgba(255,255,255,0.95)', fontWeight: 500,
             marginBottom: '8px',
           }}>
-            {isRTL ? 'بكل حب، صُنع محلياً' : 'Made with Love, Locally'}
+            {isRTL ? 'بكل حب،،، صُنع محلياً' : 'Made with Love... Locally'}
           </p>
           <p style={{
-            fontSize: '16px', color: 'rgba(255,255,255,0.75)', lineHeight: 1.6,
+            fontSize: '16px', color: 'rgba(255,255,255,0.8)', lineHeight: 1.6,
             marginBottom: '30px',
           }}>
             {isRTL
@@ -68,32 +74,7 @@ function HeroSection() {
             </button>
           </div>
         </div>
-
-        {/* Decorative circles */}
-        <div className="hero-decorative" style={{ position: 'relative', width: '350px', height: '350px' }}>
-          <div style={{
-            position: 'absolute', width: '300px', height: '300px', borderRadius: '50%',
-            background: 'rgba(255,255,255,0.08)', top: '25px', left: '25px',
-          }} />
-          <div style={{
-            position: 'absolute', width: '200px', height: '200px', borderRadius: '50%',
-            background: 'rgba(255,255,255,0.06)', top: '75px', left: '75px',
-          }} />
-          <div style={{
-            position: 'absolute', width: '120px', height: '120px', borderRadius: '50%',
-            background: 'rgba(200,16,46,0.2)', top: '115px', left: '115px',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-          }}>
-            <span style={{ fontSize: '40px' }}>🥛</span>
-          </div>
-        </div>
       </div>
-
-      <style>{`
-        @media (max-width: 768px) {
-          .hero-decorative { display: none !important; }
-        }
-      `}</style>
     </section>
   );
 }
