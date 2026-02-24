@@ -41,7 +41,7 @@ export default function ProductPage() {
       <div dir={dir}>
         <StoreHeader />
         <div style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <div style={{ width: '50px', height: '50px', border: '4px solid #eee', borderTop: '4px solid #e4042c', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
+          <div style={{ width: '50px', height: '50px', border: '4px solid #eee', borderTop: '4px solid #c8102e', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
         </div>
         <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
       </div>
@@ -54,7 +54,7 @@ export default function ProductPage() {
         <StoreHeader />
         <div style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '15px' }}>
           <p style={{ fontSize: '18px', color: '#666' }}>{t('productPage.notFound')}</p>
-          <a onClick={() => navigate('/store')} style={{ color: '#e4042c', cursor: 'pointer' }}>{t('productPage.backToHome')}</a>
+          <a onClick={() => navigate('/store')} style={{ color: '#c8102e', cursor: 'pointer' }}>{t('productPage.backToHome')}</a>
         </div>
         <StoreFooter />
       </div>
@@ -137,7 +137,7 @@ export default function ProductPage() {
                     className="product-image-thumb"
                     style={{
                       width: '70px', height: '70px', objectFit: 'contain', cursor: 'pointer',
-                      border: selectedImage === i ? '2px solid #e4042c' : '2px solid #eee',
+                      border: selectedImage === i ? '2px solid #c8102e' : '2px solid #eee',
                     }} />
                 ))}
               </div>
@@ -160,14 +160,14 @@ export default function ProductPage() {
             {/* Price */}
             <div className="product-price-section" style={{ marginBottom: '20px' }}>
               <span className="product-price" style={{ fontSize: '22px', fontWeight: 700, color: '#333' }}>
-                {isCatchWeight ? `KG/KD${discountedPrice}` : `KD ${discountedPrice}`}
+                {isCatchWeight ? `KG/AED${discountedPrice}` : `AED ${discountedPrice}`}
               </span>
               <div style={{ marginTop: '4px' }}>
-                <span style={{ fontSize: '15px', color: '#e4042c', textDecoration: 'line-through' }}>
-                  {isCatchWeight ? `KG/KD${variant?.price}` : `KD ${variant?.price}`}
+                <span style={{ fontSize: '15px', color: '#c8102e', textDecoration: 'line-through' }}>
+                  {isCatchWeight ? `KG/AED${variant?.price}` : `AED ${variant?.price}`}
                 </span>
               </div>
-              <span style={{ background: '#e4042c', color: 'white', borderRadius: '20px', fontSize: '13px', fontWeight: 700, padding: '4px 14px', marginTop: '8px', display: 'inline-block' }}>
+              <span style={{ background: '#c8102e', color: 'white', borderRadius: '20px', fontSize: '13px', fontWeight: 700, padding: '4px 14px', marginTop: '8px', display: 'inline-block' }}>
                 {discountPercent}%-
               </span>
             </div>
@@ -226,7 +226,7 @@ export default function ProductPage() {
                   style={{
                     flex: 1, padding: '14px 20px', borderRadius: '30px', border: 'none', cursor: 'pointer',
                     fontSize: '17px', fontWeight: 700,
-                    background: '#e4042c', color: 'white',
+                    background: '#c8102e', color: 'white',
                     transition: 'all 0.2s',
                   }}>
                   {t('productPage.addToCart')}

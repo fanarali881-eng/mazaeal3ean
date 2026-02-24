@@ -15,21 +15,30 @@ interface LanguageContextType {
 const translations: Record<string, Record<Lang, string>> = {
   // Header / Announcement
   'header.freeShippingBanner': {
-    ar: 'توصيل مجاني للطلبات بقيمة 20 د.ك أو أكثر - شروط التوصيل ←',
-    en: 'Free delivery for orders of 20 KD or more - Delivery terms ←',
+    ar: 'توصيل مجاني للطلبات بقيمة 50 د.إ أو أكثر - بكل حب، صُنع محلياً ←',
+    en: 'Free delivery for orders of 50 AED or more - Made with Love, Locally ←',
   },
-  'header.frozenFoods': { ar: 'أطعمة مجمدة', en: 'Frozen Foods' },
-  'header.chilledDry': { ar: 'أطعمة مبردة وجافة', en: 'Chilled & Dry Foods' },
+  'header.dairy': { ar: 'الحليب', en: 'Milk' },
+  'header.yoghurtLaban': { ar: 'الزبادي واللبن', en: 'Yoghurt & Laban' },
+  'header.cheese': { ar: 'الأجبان', en: 'Cheese' },
+  'header.juices': { ar: 'العصائر', en: 'Juices' },
+  'header.poultryEggs': { ar: 'الدواجن والبيض', en: 'Poultry & Eggs' },
   'header.newArrivals': { ar: 'وصل حديثاً', en: 'New Arrivals' },
   'header.offers': { ar: 'عروض', en: 'Offers' },
-  'header.boxes': { ar: 'بوكسات', en: 'Boxes' },
+  'header.allProducts': { ar: 'جميع المنتجات', en: 'All Products' },
   'header.searchPlaceholder': { ar: 'ابحث عن منتجات...', en: 'Search products...' },
   'header.search': { ar: 'بحث', en: 'Search' },
   'header.noResults': { ar: 'لا توجد نتائج', en: 'No results' },
-  'header.shopFrozen': { ar: 'تسوق الأطعمة المجمدة', en: 'Shop Frozen Foods' },
-  'header.shopChilledDry': { ar: 'تسوق الأطعمة المبردة والجافة', en: 'Shop Chilled & Dry Foods' },
-  'header.logoName': { ar: 'مكاني\nفودز', en: 'Makani\nFoods' },
-  'header.logoTagline': { ar: 'مختصوا الأغذية المجمدة', en: 'Frozen Food Specialists' },
+  'header.shopDairy': { ar: 'تسوق الحليب', en: 'Shop Milk' },
+  'header.shopYoghurt': { ar: 'تسوق الزبادي واللبن', en: 'Shop Yoghurt & Laban' },
+  'header.logoName': { ar: 'مزارع\nالعين', en: 'Al Ain\nFarms' },
+  'header.logoTagline': { ar: 'بكل حب، صُنع محلياً', en: 'Made with Love, Locally' },
+  // Keep old keys for backward compatibility
+  'header.frozenFoods': { ar: 'الحليب', en: 'Milk' },
+  'header.chilledDry': { ar: 'الزبادي واللبن', en: 'Yoghurt & Laban' },
+  'header.boxes': { ar: 'جميع المنتجات', en: 'All Products' },
+  'header.shopFrozen': { ar: 'تسوق الحليب', en: 'Shop Milk' },
+  'header.shopChilledDry': { ar: 'تسوق الزبادي واللبن', en: 'Shop Yoghurt & Laban' },
 
   // Product Card
   'product.new': { ar: 'جديد', en: 'New' },
@@ -38,7 +47,7 @@ const translations: Record<string, Record<Lang, string>> = {
   'product.discountInCart': { ar: 'خصم في السلة', en: 'Discount in Cart' },
 
   // Quick Add Modal
-  'quickAdd.packageType': { ar: 'نوع العبوة', en: 'Package Type' },
+  'quickAdd.packageType': { ar: 'الحجم', en: 'Size' },
   'quickAdd.addToCart': { ar: 'أضف للسلة', en: 'Add to Cart' },
   'quickAdd.added': { ar: '✓ تمت الإضافة', en: '✓ Added' },
   'quickAdd.viewDetails': { ar: 'عرض التفاصيل الكاملة', en: 'View Full Details' },
@@ -51,14 +60,14 @@ const translations: Record<string, Record<Lang, string>> = {
   'cart.myCart': { ar: 'سلتي', en: 'My Cart' },
   'cart.empty': { ar: 'سلتك فارغة', en: 'Your cart is empty' },
   'cart.congratsFreeShipping': { ar: 'مبروك! أنت مؤهل للحصول على توصيل مجاني!', en: 'Congratulations! You qualify for free delivery!' },
-  'cart.remainingForFreeShipping': { ar: 'أنت على بعد {amount} د.ك للحصول على توصيل مجاني!', en: 'You are {amount} KD away from free delivery!' },
-  'cart.packageType': { ar: 'نوع العبوة:', en: 'Package:' },
+  'cart.remainingForFreeShipping': { ar: 'أنت على بعد {amount} د.إ للحصول على توصيل مجاني!', en: 'You are {amount} AED away from free delivery!' },
+  'cart.packageType': { ar: 'الحجم:', en: 'Size:' },
   'cart.addNote': { ar: 'أضف ملاحظة على الطلب', en: 'Add a note to your order' },
   'cart.total': { ar: 'اجمالي', en: 'Total' },
   'cart.deliveryNote': { ar: 'رسوم التوصيل محسوبة على صفحة الشراء.', en: 'Delivery fees calculated at checkout.' },
   'cart.catchWeightNote': {
-    ar: 'سعر الحبة {price} د.ك. سيتم استرداد أي فرق نقدي لحسابك تلقائيًا بناء على الوزن الصافي.',
-    en: 'Price per piece {price} KD. Any difference will be automatically refunded based on net weight.',
+    ar: 'سعر الحبة {price} د.إ.',
+    en: 'Price per piece {price} AED.',
   },
 
   // Product Page
@@ -69,7 +78,7 @@ const translations: Record<string, Record<Lang, string>> = {
   'productPage.relatedProducts': { ar: 'منتجات مشابهة', en: 'Related Products' },
   'productPage.notFound': { ar: 'المنتج غير موجود', en: 'Product not found' },
   'productPage.backToHome': { ar: 'العودة للرئيسية', en: 'Back to Home' },
-  'productPage.packageType': { ar: 'نوع العبوة', en: 'Package Type' },
+  'productPage.packageType': { ar: 'الحجم', en: 'Size' },
 
   // Collection Page
   'collection.home': { ar: 'الرئيسية', en: 'Home' },
@@ -86,26 +95,32 @@ const translations: Record<string, Record<Lang, string>> = {
   'collection.allProducts': { ar: 'جميع المنتجات', en: 'All Products' },
   'collection.newArrivals': { ar: 'وصل حديثاً', en: 'New Arrivals' },
   'collection.offers': { ar: 'عروض', en: 'Offers' },
-  'collection.boxes': { ar: 'بوكسات', en: 'Boxes' },
+  'collection.boxes': { ar: 'جميع المنتجات', en: 'All Products' },
   'collection.bestSellers': { ar: 'الأكثر مبيعاً', en: 'Best Sellers' },
-  'collection.oceansPride': { ar: 'أوشنز برايد', en: "Ocean's Pride" },
 
   // Store Page
   'store.newArrivals': { ar: 'وصل حديثاً', en: 'New Arrivals' },
-  'store.bestSellers': { ar: 'الأكثر مبيعا', en: 'Best Sellers' },
+  'store.bestSellers': { ar: 'الأكثر مبيعاً', en: 'Best Sellers' },
   'store.mostVisited': { ar: 'الأكثر زيارة', en: 'Most Visited' },
   'store.specialOffers': { ar: 'عروض خاصة', en: 'Special Offers' },
-  'store.oceansPride': { ar: 'أوشنز برايد', en: "Ocean's Pride" },
   'store.viewAll': { ar: 'عرض الكل', en: 'View All' },
   'store.loading': { ar: 'جاري تحميل المتجر...', en: 'Loading store...' },
 
   // Category Cards
-  'cat.fries': { ar: 'بطاطا مقلية ومقبلات', en: 'Fries & Appetizers' },
-  'cat.beef': { ar: 'لحم بقر و عجل', en: 'Beef & Veal' },
-  'cat.poultry': { ar: 'دواجن', en: 'Poultry' },
-  'cat.seafood': { ar: 'مأكولات بحرية', en: 'Seafood' },
-  'cat.vegetables': { ar: 'خضار وفواكه', en: 'Vegetables & Fruits' },
-  'cat.dairy': { ar: 'ألبان ، أجبان ، وبيض', en: 'Dairy, Cheese & Eggs' },
+  'cat.milk': { ar: 'الحليب الطازج', en: 'Fresh Milk' },
+  'cat.flavored': { ar: 'حليب منكه', en: 'Flavored Milk' },
+  'cat.yoghurt': { ar: 'الزبادي', en: 'Yoghurt' },
+  'cat.laban': { ar: 'اللبن', en: 'Laban' },
+  'cat.cheese': { ar: 'الأجبان', en: 'Cheese' },
+  'cat.juice': { ar: 'العصائر', en: 'Juices' },
+  'cat.poultry': { ar: 'الدواجن', en: 'Poultry' },
+  'cat.eggs': { ar: 'البيض', en: 'Eggs' },
+  // Keep old keys
+  'cat.fries': { ar: 'حليب منكه', en: 'Flavored Milk' },
+  'cat.beef': { ar: 'الزبادي', en: 'Yoghurt' },
+  'cat.seafood': { ar: 'اللبن', en: 'Laban' },
+  'cat.vegetables': { ar: 'العصائر', en: 'Juices' },
+  'cat.dairy': { ar: 'الأجبان', en: 'Cheese' },
 
   // Search Page
   'search.resultsFor': { ar: 'نتائج البحث عن', en: 'Search results for' },
@@ -114,15 +129,15 @@ const translations: Record<string, Record<Lang, string>> = {
   'search.tryDifferent': { ar: 'حاول البحث بكلمات مختلفة', en: 'Try searching with different keywords' },
 
   // Footer
-  'footer.brandName': { ar: 'مكاني فودز', en: 'Makani Foods' },
+  'footer.brandName': { ar: 'مزارع العين', en: 'Al Ain Farms' },
   'footer.about': {
-    ar: 'مختصوا الأغذية المجمدة في الكويت. نوفر لك أجود المنتجات المجمدة والمبردة بأسعار منافسة مع توصيل لباب بيتك.',
-    en: 'Frozen food specialists in Kuwait. We provide you with the finest frozen and chilled products at competitive prices with delivery to your doorstep.',
+    ar: 'تم إنشاء مزارع العين للإنتاج الحيواني في عام 1981. أكبر شركة ألبان متكاملة في دولة الإمارات العربية المتحدة. نوفر لك أجود منتجات الألبان والعصائر والدواجن الطازجة.',
+    en: 'Al Ain Farms was established in 1981. The largest integrated dairy company in the UAE. We provide you with the finest dairy products, juices, and fresh poultry.',
   },
   'footer.customerSupport': { ar: 'دعم العملاء', en: 'Customer Support' },
   'footer.contactUs': { ar: 'تواصل معنا', en: 'Contact Us' },
   'footer.faq': { ar: 'الأسئلة الشائعة', en: 'FAQ' },
-  'footer.storeInfo': { ar: 'معلومات عن المحلات', en: 'Store Info' },
+  'footer.storeInfo': { ar: 'معلومات عن المتجر', en: 'Store Info' },
   'footer.aboutUs': { ar: 'نبذة عنا', en: 'About Us' },
   'footer.policies': { ar: 'السياسات', en: 'Policies' },
   'footer.returnPolicy': { ar: 'سياسة الاستبدال والاسترجاع', en: 'Return & Exchange Policy' },
@@ -131,12 +146,10 @@ const translations: Record<string, Record<Lang, string>> = {
   'footer.termsConditions': { ar: 'الشروط والأحكام', en: 'Terms & Conditions' },
   'footer.contactTitle': { ar: 'تواصل معنا', en: 'Contact Us' },
   'footer.paymentMethods': { ar: 'طرق الدفع:', en: 'Payment Methods:' },
-  'footer.copyright': { ar: '© {year} مكاني فودز. جميع الحقوق محفوظة.', en: '© {year} Makani Foods. All rights reserved.' },
+  'footer.copyright': { ar: '© {year} مزارع العين. جميع الحقوق محفوظة.', en: '© {year} Al Ain Farms. All rights reserved.' },
 
   // Origins
   'origin.uae': { ar: 'الإمارات العربية المتحدة', en: 'United Arab Emirates' },
-  'origin.australia': { ar: 'أستراليا', en: 'Australia' },
-  'origin.kuwait': { ar: 'الكويت', en: 'Kuwait' },
 };
 
 const LanguageContext = createContext<LanguageContextType | null>(null);
@@ -144,7 +157,7 @@ const LanguageContext = createContext<LanguageContextType | null>(null);
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [lang, setLangState] = useState<Lang>(() => {
     try {
-      const saved = localStorage.getItem('makani-lang');
+      const saved = localStorage.getItem('alainfarms-lang');
       return (saved === 'en' || saved === 'ar') ? saved : 'ar';
     } catch {
       return 'ar';
@@ -152,7 +165,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   });
 
   useEffect(() => {
-    localStorage.setItem('makani-lang', lang);
+    localStorage.setItem('alainfarms-lang', lang);
     document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
     document.documentElement.setAttribute('lang', lang);
   }, [lang]);

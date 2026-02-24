@@ -150,7 +150,7 @@ export default function QuickAddModal({ product, onClose }: QuickAddModalProps) 
           style={{
             width: '100%',
             padding: '14px 20px',
-            background: added ? '#333' : '#e4042c',
+            background: added ? '#333' : '#c8102e',
             color: 'white',
             border: 'none',
             borderRadius: '30px',
@@ -166,7 +166,7 @@ export default function QuickAddModal({ product, onClose }: QuickAddModalProps) 
             direction: 'ltr',
           }}
         >
-          {added ? t('quickAdd.added') : `KD ${(parseFloat(selectedVariant?.price || '0') * 0.5).toFixed(3)} ${t('quickAdd.addToCart')}`}
+          {added ? t('quickAdd.added') : `AED ${(parseFloat(selectedVariant?.price || '0') * 0.5).toFixed(3)} ${t('quickAdd.addToCart')}`}
         </button>
 
         {/* View details link */}

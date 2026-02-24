@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { useStore } from './StoreContext';
 import { useLang } from './LanguageContext';
 import { useLocation } from 'wouter';
@@ -7,48 +7,93 @@ import StoreHeader from './StoreHeader';
 import StoreFooter from './StoreFooter';
 import CartDrawer from './CartDrawer';
 
-/* ── Hero Slider ── */
-function HeroSlider() {
-  const [current, setCurrent] = useState(0);
-  const { dir } = useLang();
-  const slides = [
-    { desktop: '/store-images/banner1-desktop.webp', mobile: '/store-images/banner1-mobile.webp', link: '/store/collection/promotion' },
-    { desktop: '/store-images/banner2-desktop.webp', mobile: '/store-images/banner2-mobile.webp', link: '/store/collection/oceans-pride' },
-    { desktop: '/store-images/banner3-desktop.webp', mobile: '/store-images/banner3-mobile.webp', link: '/store/collection/promotion' },
-    { desktop: '/store-images/banner4-desktop.webp', mobile: '/store-images/banner4-mobile.webp', link: '/store/collection/promotion' },
-    { desktop: '/store-images/banner5-desktop.webp', mobile: '/store-images/banner5-mobile.webp', link: '/store/collection/promotion' },
-    { desktop: '/store-images/banner6-desktop.webp', mobile: '/store-images/banner6-mobile.webp', link: '/store/collection/promotion' },
-    { desktop: '/store-images/banner7-desktop.webp', mobile: '/store-images/banner7-mobile.webp', link: '/store/collection/promotion' },
-    { desktop: '/store-images/banner8-desktop.webp', mobile: '/store-images/banner8-mobile.webp', link: '/store/collection/promotion' },
-    { desktop: '/store-images/banner9-desktop.webp', mobile: '/store-images/banner9-mobile.webp', link: '/store/collection/promotion' },
-    { desktop: '/store-images/banner10-desktop.webp', mobile: '/store-images/banner10-mobile.webp', link: '/store/collection/promotion' },
-  ];
+/* ── Hero Section - Al Ain Farms style ── */
+function HeroSection() {
+  const { t, dir, isRTL } = useLang();
   const [, navigate] = useLocation();
 
-  useEffect(() => {
-    const timer = setInterval(() => setCurrent(c => (c + 1) % slides.length), 5000);
-    return () => clearInterval(timer);
-  }, []);
-
   return (
-    <section style={{ position: 'relative', overflow: 'hidden', background: '#e4042c' }}>
-      <div style={{ display: 'flex', transition: 'transform 0.6s ease', transform: `translateX(${dir === 'rtl' ? current * 100 : -(current * 100)}%)` }}>
-        {slides.map((s, i) => (
-          <div key={i} onClick={() => navigate(s.link)} style={{ minWidth: '100%', cursor: 'pointer' }}>
-            <picture>
-              <source media="(max-width: 768px)" srcSet={s.mobile} />
-              <img src={s.desktop} alt="" style={{ width: '100%', display: 'block' }} />
-            </picture>
+    <section style={{
+      position: 'relative', overflow: 'hidden',
+      background: 'linear-gradient(135deg, #1a2744 0%, #2d4a7a 50%, #1a6b3c 100%)',
+      minHeight: '400px', display: 'flex', alignItems: 'center',
+    }}>
+      {/* Background pattern */}
+      <div style={{
+        position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
+        backgroundImage: 'radial-gradient(circle at 20% 80%, rgba(200,16,46,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(26,107,60,0.2) 0%, transparent 50%)',
+      }} />
+
+      <div style={{
+        maxWidth: '1400px', margin: '0 auto', padding: '60px 40px',
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        width: '100%', position: 'relative', zIndex: 1,
+        flexDirection: isRTL ? 'row' : 'row',
+      }}>
+        <div style={{ maxWidth: '550px' }}>
+          <h1 style={{
+            fontSize: '42px', fontWeight: 800, color: 'white', lineHeight: 1.3,
+            marginBottom: '16px',
+          }}>
+            {isRTL ? 'مزارع العين' : 'Al Ain Farms'}
+          </h1>
+          <p style={{
+            fontSize: '22px', color: 'rgba(255,255,255,0.9)', fontWeight: 500,
+            marginBottom: '8px',
+          }}>
+            {isRTL ? 'بكل حب، صُنع محلياً' : 'Made with Love, Locally'}
+          </p>
+          <p style={{
+            fontSize: '16px', color: 'rgba(255,255,255,0.75)', lineHeight: 1.6,
+            marginBottom: '30px',
+          }}>
+            {isRTL
+              ? 'أكبر شركة ألبان متكاملة في الإمارات. منتجات طازجة من الحليب والعصائر والدواجن والبيض.'
+              : 'The largest integrated dairy company in the UAE. Fresh milk, juices, poultry, and eggs.'}
+          </p>
+          <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+            <button onClick={() => navigate('/store/collection/dairy')} style={{
+              background: '#c8102e', color: 'white', border: 'none', padding: '14px 32px',
+              borderRadius: '30px', fontSize: '15px', fontWeight: 700, cursor: 'pointer',
+              transition: 'all 0.3s',
+            }}>
+              {isRTL ? 'تسوق الآن' : 'Shop Now'}
+            </button>
+            <button onClick={() => navigate('/store/collection/promotion')} style={{
+              background: 'transparent', color: 'white', border: '2px solid white', padding: '14px 32px',
+              borderRadius: '30px', fontSize: '15px', fontWeight: 700, cursor: 'pointer',
+              transition: 'all 0.3s',
+            }}>
+              {isRTL ? 'عروض خاصة' : 'Special Offers'}
+            </button>
           </div>
-        ))}
+        </div>
+
+        {/* Decorative circles */}
+        <div className="hero-decorative" style={{ position: 'relative', width: '350px', height: '350px' }}>
+          <div style={{
+            position: 'absolute', width: '300px', height: '300px', borderRadius: '50%',
+            background: 'rgba(255,255,255,0.08)', top: '25px', left: '25px',
+          }} />
+          <div style={{
+            position: 'absolute', width: '200px', height: '200px', borderRadius: '50%',
+            background: 'rgba(255,255,255,0.06)', top: '75px', left: '75px',
+          }} />
+          <div style={{
+            position: 'absolute', width: '120px', height: '120px', borderRadius: '50%',
+            background: 'rgba(200,16,46,0.2)', top: '115px', left: '115px',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+          }}>
+            <span style={{ fontSize: '40px' }}>🥛</span>
+          </div>
+        </div>
       </div>
-      {/* Dots */}
-      <div style={{ position: 'absolute', bottom: '15px', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '8px' }}>
-        {slides.map((_, i) => (
-          <button key={i} onClick={() => setCurrent(i)}
-            style={{ width: i === current ? '24px' : '8px', height: '8px', borderRadius: '4px', border: 'none', background: i === current ? '#e4042c' : 'rgba(255,255,255,0.5)', cursor: 'pointer', transition: 'all 0.3s', padding: 0 }} />
-        ))}
-      </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .hero-decorative { display: none !important; }
+        }
+      `}</style>
     </section>
   );
 }
@@ -58,8 +103,6 @@ function ProductCarousel({ title, products, viewAllLink, titleUnderline }: { tit
   const scrollRef = useRef<HTMLDivElement>(null);
   const [, navigate] = useLocation();
   const { t } = useLang();
-  // > arrow = show next items, < arrow = show previous items
-  // In RTL the first items are on the right, scrolling "next" means going left
   const [canNext, setCanNext] = useState(false);
   const [canPrev, setCanPrev] = useState(false);
 
@@ -67,12 +110,8 @@ function ProductCarousel({ title, products, viewAllLink, titleUnderline }: { tit
     if (scrollRef.current) {
       const el = scrollRef.current;
       const { scrollLeft, scrollWidth, clientWidth } = el;
-      // Check if we can scroll in either direction
       const atStart = Math.abs(scrollLeft) < 5;
       const atEnd = Math.abs(scrollLeft) + clientWidth >= scrollWidth - 5;
-      // In RTL: start is right edge, end is left edge
-      // > arrow (next) should be enabled when NOT at end
-      // < arrow (prev) should be enabled when NOT at start
       setCanNext(!atEnd);
       setCanPrev(!atStart);
     }
@@ -81,7 +120,6 @@ function ProductCarousel({ title, products, viewAllLink, titleUnderline }: { tit
   useEffect(() => {
     const el = scrollRef.current;
     if (el) {
-      // Small delay to let browser calculate RTL scroll position
       setTimeout(checkScroll, 100);
       el.addEventListener('scroll', checkScroll);
       window.addEventListener('resize', checkScroll);
@@ -91,7 +129,6 @@ function ProductCarousel({ title, products, viewAllLink, titleUnderline }: { tit
 
   const scrollNext = () => {
     if (scrollRef.current && canNext) {
-      // In RTL, "next" means scrolling left (negative scrollLeft)
       const isRTL = getComputedStyle(scrollRef.current).direction === 'rtl';
       scrollRef.current.scrollBy({ left: isRTL ? -350 : 350, behavior: 'smooth' });
     }
@@ -108,9 +145,8 @@ function ProductCarousel({ title, products, viewAllLink, titleUnderline }: { tit
   return (
     <section style={{ padding: '40px 0' }}>
       <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 20px' }}>
-        <h2 className="store-section-title" style={{ fontSize: '28px', fontWeight: 700, color: '#333', textAlign: 'center', marginBottom: '25px', textDecoration: titleUnderline ? 'underline' : 'none', textUnderlineOffset: '8px' }}>{title}</h2>
+        <h2 className="store-section-title" style={{ fontSize: '28px', fontWeight: 700, color: '#1a2744', textAlign: 'center', marginBottom: '25px', textDecoration: titleUnderline ? 'underline' : 'none', textUnderlineOffset: '8px' }}>{title}</h2>
         <div style={{ position: 'relative' }}>
-          {/* Navigation arrows - stacked on the right like original */}
           <div className="store-carousel-arrows" style={{
             position: 'absolute', right: '-5px', top: '40%', transform: 'translateY(-50%)', zIndex: 10,
             display: 'flex', flexDirection: 'column', gap: '4px',
@@ -118,11 +154,11 @@ function ProductCarousel({ title, products, viewAllLink, titleUnderline }: { tit
             <button onClick={scrollNext} style={{
               background: 'white', border: 'none', borderRadius: '50%', width: '44px', height: '44px',
               display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: canNext ? 'pointer' : 'default', boxShadow: '0 2px 12px rgba(0,0,0,0.15)',
-            }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={canNext ? '#333' : '#ddd'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+            }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={canNext ? '#1a2744' : '#ddd'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
             <button onClick={scrollPrev} style={{
               background: 'white', border: 'none', borderRadius: '50%', width: '44px', height: '44px',
               display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: canPrev ? 'pointer' : 'default', boxShadow: '0 2px 12px rgba(0,0,0,0.15)',
-            }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={canPrev ? '#333' : '#ddd'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+            }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={canPrev ? '#1a2744' : '#ddd'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
           </div>
 
           <div ref={scrollRef} className="product-carousel-items" style={{
@@ -139,7 +175,7 @@ function ProductCarousel({ title, products, viewAllLink, titleUnderline }: { tit
         {viewAllLink && (
           <div style={{ textAlign: 'center', marginTop: '20px' }}>
             <a onClick={() => navigate(viewAllLink)} style={{
-              display: 'inline-block', background: '#e4042c', color: 'white', padding: '10px 30px', borderRadius: '25px',
+              display: 'inline-block', background: '#c8102e', color: 'white', padding: '10px 30px', borderRadius: '25px',
               fontWeight: 600, fontSize: '14px', cursor: 'pointer', textDecoration: 'none',
             }}>{t('store.viewAll')}</a>
           </div>
@@ -149,21 +185,23 @@ function ProductCarousel({ title, products, viewAllLink, titleUnderline }: { tit
   );
 }
 
-/* ── Category Cards (الأكثر زيارة) ── */
+/* ── Category Cards - Al Ain Farms style ── */
 function CategoryCards() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [, navigate] = useLocation();
-  const { t } = useLang();
+  const { t, isRTL } = useLang();
   const [canNext, setCanNext] = useState(false);
   const [canPrev, setCanPrev] = useState(false);
 
   const cats = [
-    { handle: 'frozen_fries-appetizers', titleKey: 'cat.fries', image: '/store-images/cat-fries.webp' },
-    { handle: 'frozen_beef', titleKey: 'cat.beef', image: '/store-images/cat-beef.jpg' },
-    { handle: 'frozen_poultry', titleKey: 'cat.poultry', image: '/store-images/cat-poultry.jpg' },
-    { handle: 'frozen_seafood', titleKey: 'cat.seafood', image: '/store-images/cat-seafood.jpg' },
-    { handle: 'frozen_vegetables-fruits', titleKey: 'cat.vegetables', image: '/store-images/cat-vegs.jpg' },
-    { handle: 'chilled-dry_cheese', titleKey: 'cat.dairy', image: '/store-images/cat-dairy.jpg' },
+    { handle: 'dairy', titleKey: 'cat.milk', emoji: '🥛', color: '#e8f4fd' },
+    { handle: 'dairy_flavored', titleKey: 'cat.flavored', emoji: '🍫', color: '#fde8e8' },
+    { handle: 'yoghurt-laban_yoghurt', titleKey: 'cat.yoghurt', emoji: '🥄', color: '#f0e8fd' },
+    { handle: 'yoghurt-laban_laban', titleKey: 'cat.laban', emoji: '🥤', color: '#e8fde8' },
+    { handle: 'juices', titleKey: 'cat.juice', emoji: '🍊', color: '#fdf4e8' },
+    { handle: 'cheese', titleKey: 'cat.cheese', emoji: '🧀', color: '#fdfde8' },
+    { handle: 'poultry-eggs_chicken', titleKey: 'cat.poultry', emoji: '🍗', color: '#fde8f0' },
+    { handle: 'poultry-eggs_eggs', titleKey: 'cat.eggs', emoji: '🥚', color: '#f5f0e0' },
   ];
 
   const checkScroll = useCallback(() => {
@@ -189,23 +227,24 @@ function CategoryCards() {
 
   const scrollNext = () => {
     if (scrollRef.current && canNext) {
-      const isRTL = getComputedStyle(scrollRef.current).direction === 'rtl';
-      scrollRef.current.scrollBy({ left: isRTL ? -350 : 350, behavior: 'smooth' });
+      const isRTL2 = getComputedStyle(scrollRef.current).direction === 'rtl';
+      scrollRef.current.scrollBy({ left: isRTL2 ? -350 : 350, behavior: 'smooth' });
     }
   };
   const scrollPrev = () => {
     if (scrollRef.current && canPrev) {
-      const isRTL = getComputedStyle(scrollRef.current).direction === 'rtl';
-      scrollRef.current.scrollBy({ left: isRTL ? 350 : -350, behavior: 'smooth' });
+      const isRTL2 = getComputedStyle(scrollRef.current).direction === 'rtl';
+      scrollRef.current.scrollBy({ left: isRTL2 ? 350 : -350, behavior: 'smooth' });
     }
   };
 
   return (
-    <section style={{ padding: '40px 0' }}>
+    <section style={{ padding: '40px 0', background: '#f8f9fa' }}>
       <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 20px' }}>
-        <h2 className="store-section-title" style={{ fontSize: '28px', fontWeight: 700, color: '#333', textAlign: 'center', marginBottom: '25px' }}>{t('store.mostVisited')}</h2>
+        <h2 className="store-section-title" style={{ fontSize: '28px', fontWeight: 700, color: '#1a2744', textAlign: 'center', marginBottom: '25px' }}>
+          {isRTL ? 'تسوق حسب الفئة' : 'Shop by Category'}
+        </h2>
         <div style={{ position: 'relative' }}>
-          {/* Navigation arrows - stacked on the right like original */}
           <div className="store-carousel-arrows" style={{
             position: 'absolute', right: '-5px', top: '50%', transform: 'translateY(-50%)', zIndex: 10,
             display: 'flex', flexDirection: 'column', gap: '4px',
@@ -213,28 +252,28 @@ function CategoryCards() {
             <button onClick={scrollNext} style={{
               background: 'white', border: 'none', borderRadius: '50%', width: '44px', height: '44px',
               display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: canNext ? 'pointer' : 'default', boxShadow: '0 2px 12px rgba(0,0,0,0.15)',
-            }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={canNext ? '#333' : '#ddd'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+            }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={canNext ? '#1a2744' : '#ddd'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
             <button onClick={scrollPrev} style={{
               background: 'white', border: 'none', borderRadius: '50%', width: '44px', height: '44px',
               display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: canPrev ? 'pointer' : 'default', boxShadow: '0 2px 12px rgba(0,0,0,0.15)',
-            }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={canPrev ? '#333' : '#ddd'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+            }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={canPrev ? '#1a2744' : '#ddd'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
           </div>
           <div ref={scrollRef} style={{
-            display: 'flex', gap: '20px', overflowX: 'auto', scrollBehavior: 'smooth', padding: '5px 0',
+            display: 'flex', gap: '16px', overflowX: 'auto', scrollBehavior: 'smooth', padding: '5px 0',
             scrollbarWidth: 'none',
           }}>
             {cats.map(cat => (
               <div key={cat.handle} className="store-category-card" onClick={() => navigate(`/store/collection/${cat.handle}`)}
                 style={{
-                  minWidth: 'calc(33.333% - 14px)', maxWidth: 'calc(33.333% - 14px)', flexShrink: 0, cursor: 'pointer',
-                  borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee',
-                  display: 'flex', alignItems: 'center', background: 'white',
-                  transition: 'box-shadow 0.2s', height: '160px',
+                  minWidth: '160px', maxWidth: '160px', flexShrink: 0, cursor: 'pointer',
+                  borderRadius: '16px', overflow: 'hidden', border: '1px solid #eee',
+                  display: 'flex', flexDirection: 'column', alignItems: 'center', background: cat.color,
+                  transition: 'all 0.3s', padding: '24px 16px', textAlign: 'center',
                 }}
-                onMouseEnter={e => (e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.12)')}
-                onMouseLeave={e => (e.currentTarget.style.boxShadow = 'none')}>
-                <img src={cat.image} alt={t(cat.titleKey)} style={{ width: '200px', height: '160px', objectFit: 'cover' }} />
-                <div style={{ padding: '20px', fontSize: '18px', fontWeight: 700, color: '#333', flex: 1, textAlign: 'center' }}>{t(cat.titleKey)}</div>
+                onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.12)'; e.currentTarget.style.transform = 'translateY(-4px)'; }}
+                onMouseLeave={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translateY(0)'; }}>
+                <span style={{ fontSize: '48px', marginBottom: '12px' }}>{cat.emoji}</span>
+                <span style={{ fontSize: '14px', fontWeight: 700, color: '#1a2744' }}>{t(cat.titleKey)}</span>
               </div>
             ))}
           </div>
@@ -244,29 +283,46 @@ function CategoryCards() {
   );
 }
 
-/* ── Brand Logos ── */
-function BrandLogos() {
-  const brands = [
-    { name: "Chef's Palette", logo: '/store-images/brand-chefs-palette.png' },
-    { name: 'Mr. Cleavers', logo: '/store-images/brand-mr-cleavers.png' },
-    { name: 'Diamantina', logo: '/store-images/brand-diamantina.png' },
-    { name: 'Lamb Weston', logo: '/store-images/brand-lamb-weston.png' },
-    { name: 'Ardo', logo: '/store-images/brand-ardo.png' },
-    { name: 'Sadia', logo: '/store-images/brand-sadia.png' },
-    { name: "Ocean's Pride", logo: '/store-images/brand-oceans-pride.png' },
-    { name: "Chef's Choice", logo: '/store-images/brand-chefs-choice.png' },
+/* ── About Al Ain Farms Section ── */
+function AboutSection() {
+  const { isRTL } = useLang();
+
+  const features = isRTL ? [
+    { icon: '🐄', title: 'مزارع محلية', desc: 'منتجات من مزارعنا في الإمارات' },
+    { icon: '✅', title: 'جودة عالية', desc: 'معايير جودة عالمية' },
+    { icon: '🚚', title: 'توصيل سريع', desc: 'توصيل طازج لباب بيتك' },
+    { icon: '🌿', title: 'طبيعي 100%', desc: 'بدون مواد حافظة' },
+  ] : [
+    { icon: '🐄', title: 'Local Farms', desc: 'Products from our UAE farms' },
+    { icon: '✅', title: 'High Quality', desc: 'International quality standards' },
+    { icon: '🚚', title: 'Fast Delivery', desc: 'Fresh delivery to your door' },
+    { icon: '🌿', title: '100% Natural', desc: 'No preservatives' },
   ];
 
   return (
-    <section style={{ padding: '50px 0', background: '#fff' }}>
-      <div className="store-brand-logos" style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 40px', display: 'flex', justifyContent: 'space-between', flexWrap: 'nowrap', gap: '20px', alignItems: 'center' }}>
-        {brands.map(b => (
-          <div key={b.name} style={{ flex: '1 1 0', minWidth: 0, height: '90px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <img src={b.logo} alt={b.name} style={{ maxWidth: '140px', maxHeight: '90px', objectFit: 'contain' }}
-              onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }} />
-          </div>
-        ))}
+    <section style={{ padding: '50px 0', background: '#f8f9fa' }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '24px' }}>
+          {features.map((f, i) => (
+            <div key={i} style={{
+              textAlign: 'center', padding: '30px 16px', background: 'white',
+              borderRadius: '16px', boxShadow: '0 2px 12px rgba(0,0,0,0.06)',
+            }}>
+              <span style={{ fontSize: '40px', display: 'block', marginBottom: '12px' }}>{f.icon}</span>
+              <h3 style={{ fontSize: '16px', fontWeight: 700, color: '#1a2744', marginBottom: '8px' }}>{f.title}</h3>
+              <p style={{ fontSize: '13px', color: '#666', margin: 0 }}>{f.desc}</p>
+            </div>
+          ))}
+        </div>
       </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          section > div > div[style*="grid-template-columns"] {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }
@@ -274,7 +330,7 @@ function BrandLogos() {
 /* ── Main Store Page ── */
 export default function StorePage() {
   const { products, getProductsByCollection, isLoading } = useStore();
-  const { t, dir } = useLang();
+  const { t, dir, isRTL } = useLang();
 
   if (isLoading) {
     return (
@@ -282,7 +338,7 @@ export default function StorePage() {
         <StoreHeader />
         <div style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ textAlign: 'center' }}>
-            <div style={{ width: '50px', height: '50px', border: '4px solid #eee', borderTop: '4px solid #e4042c', borderRadius: '50%', animation: 'spin 1s linear infinite', margin: '0 auto 15px' }} />
+            <div style={{ width: '50px', height: '50px', border: '4px solid #eee', borderTop: '4px solid #c8102e', borderRadius: '50%', animation: 'spin 1s linear infinite', margin: '0 auto 15px' }} />
             <p style={{ color: '#666' }}>{t('store.loading')}</p>
           </div>
         </div>
@@ -294,39 +350,34 @@ export default function StorePage() {
   const newArrivals = getProductsByCollection('new-arrivals').slice(0, 10);
   const bestSellers = getProductsByCollection('frontpage').slice(0, 12);
   const offers = getProductsByCollection('promotion');
-  const oceansPride = getProductsByCollection('oceans-pride').slice(0, 10);
+  const dairyProducts = getProductsByCollection('dairy').slice(0, 10);
 
   return (
     <div dir={dir} style={{ background: '#fff', minHeight: '100vh', width: '100%', overflow: 'hidden' }}>
       <StoreHeader />
       <CartDrawer />
 
-      {/* Hero Slider */}
-      <HeroSlider />
+      {/* Hero Section */}
+      <HeroSection />
+
+      {/* Category Cards */}
+      <CategoryCards />
+
+      {/* Best Sellers / Featured */}
+      <ProductCarousel title={t('store.bestSellers')} products={bestSellers} viewAllLink="/store/collection/dairy" />
 
       {/* New Arrivals */}
       {newArrivals.length > 0 && (
         <ProductCarousel title={t('store.newArrivals')} products={newArrivals} viewAllLink="/store/collection/new-arrivals" />
       )}
 
-      {/* Best Sellers */}
-      <ProductCarousel title={t('store.bestSellers')} products={bestSellers} viewAllLink="/store/collection/all-products" />
-
-      {/* Most Visited Categories */}
-      <CategoryCards />
+      {/* About Section - Features */}
+      <AboutSection />
 
       {/* Special Offers */}
       {offers.length > 0 && (
         <ProductCarousel title={t('store.specialOffers')} products={offers} viewAllLink="/store/collection/promotion" />
       )}
-
-      {/* Ocean's Pride */}
-      {oceansPride.length > 0 && (
-        <ProductCarousel title={t('store.oceansPride')} products={oceansPride} viewAllLink="/store/collection/oceans-pride" titleUnderline />
-      )}
-
-      {/* Brand Logos */}
-      <BrandLogos />
 
       <StoreFooter />
 
@@ -339,27 +390,8 @@ export default function StorePage() {
             max-width: calc(50% - 1px) !important;
           }
           .store-category-card {
-            min-width: 100% !important;
-            max-width: 100% !important;
-            height: 120px !important;
-          }
-          .store-category-card img {
-            width: 140px !important;
-            height: 120px !important;
-          }
-          .store-brand-logos {
-            flex-wrap: wrap !important;
-            gap: 12px !important;
-            padding: 0 20px !important;
-            justify-content: center !important;
-          }
-          .store-brand-logos > div {
-            flex: 0 0 auto !important;
-            min-width: 80px !important;
-          }
-          .store-brand-logos img {
-            max-width: 100px !important;
-            max-height: 60px !important;
+            min-width: 130px !important;
+            max-width: 130px !important;
           }
           .store-section-title {
             font-size: 22px !important;

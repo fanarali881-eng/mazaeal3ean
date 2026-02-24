@@ -79,7 +79,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
   const [categories, setCategories] = useState<Record<string, Category>>({});
   const [cart, setCart] = useState<CartItem[]>(() => {
     try {
-      const saved = localStorage.getItem('makani-cart');
+      const saved = localStorage.getItem('alainfarms-cart');
       return saved ? JSON.parse(saved) : [];
     } catch { return []; }
   });
@@ -110,7 +110,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
 
   // Save cart to localStorage
   useEffect(() => {
-    localStorage.setItem('makani-cart', JSON.stringify(cart));
+    localStorage.setItem('alainfarms-cart', JSON.stringify(cart));
   }, [cart]);
 
   const addToCart = useCallback((product: Product, variant: Variant, quantity = 1) => {
