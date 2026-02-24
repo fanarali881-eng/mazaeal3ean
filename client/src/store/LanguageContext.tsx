@@ -15,8 +15,8 @@ interface LanguageContextType {
 const translations: Record<string, Record<Lang, string>> = {
   // Header / Announcement
   'header.freeShippingBanner': {
-    ar: 'توصيل مجاني للطلبات بقيمة 50 د.إ أو أكثر - بكل حب، صُنع محلياً ←',
-    en: 'Free delivery for orders of 50 AED or more - Made with Love, Locally ←',
+    ar: 'توصيل مجاني للطلبات بقيمة 100 د.إ أو أكثر - بكل حب، صُنع محلياً ←',
+    en: 'Free delivery for orders of 100 AED or more - Made with Love, Locally ←',
   },
   'header.dairy': { ar: 'الحليب', en: 'Milk' },
   'header.yoghurtLaban': { ar: 'الزبادي واللبن', en: 'Yoghurt & Laban' },

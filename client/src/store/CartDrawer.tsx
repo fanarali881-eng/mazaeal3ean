@@ -14,7 +14,7 @@ export default function CartDrawer() {
 
   const total = getCartTotal();
   const count = getCartCount();
-  const freeShippingThreshold = 20;
+  const freeShippingThreshold = 100;
   const remaining = Math.max(freeShippingThreshold - total, 0);
   const progress = Math.min((total / freeShippingThreshold) * 100, 100);
   const qualifiesForFreeShipping = total >= freeShippingThreshold;
@@ -159,13 +159,13 @@ export default function CartDrawer() {
                       {t('cart.packageType')} {getVariantLabel(item.variant.title)}
                     </div>
                     <div style={{ fontSize: '13px', color: '#333', marginBottom: '2px' }}>
-                      {item.quantity} x {discountedItemPrice} KD
+                      {item.quantity} x {discountedItemPrice} AED
                       <span style={{ textDecoration: 'line-through', color: '#1a2744', marginRight: '6px', fontSize: '12px' }}>
-                        {item.variant.price} KD
+                        {item.variant.price} AED
                       </span>
                     </div>
                     <div style={{ fontSize: '14px', fontWeight: 700, color: '#333' }}>
-                      {lineTotal.toFixed(3)} KD
+                      {lineTotal.toFixed(3)} AED
                     </div>
 
                     {/* Quantity controls + delete */}
