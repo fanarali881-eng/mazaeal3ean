@@ -76,7 +76,7 @@ export default function CartDrawer() {
               {count > 0 && (
                 <span style={{
                   position: 'absolute', top: '-6px', [isRTL ? 'right' : 'left']: '-6px',
-                  background: '#c8102e', color: 'white',
+                  background: '#1a2744', color: 'white',
                   borderRadius: '50%', width: '20px', height: '20px',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   fontSize: '11px', fontWeight: 700,
@@ -110,7 +110,7 @@ export default function CartDrawer() {
             <div style={{
               height: '100%',
               width: `${progress}%`,
-              background: 'linear-gradient(90deg, #c8102e, #c8102e)',
+              background: 'linear-gradient(90deg, #1a2744, #1a2744)',
               borderRadius: '3px',
               transition: 'width 0.3s',
             }} />
@@ -119,7 +119,7 @@ export default function CartDrawer() {
               position: 'absolute', top: '50%', left: `${Math.min(progress, 100)}%`,
               transform: 'translate(-50%, -50%)',
               width: '14px', height: '14px',
-              background: 'white', border: '3px solid #c8102e',
+              background: 'white', border: '3px solid #1a2744',
               borderRadius: '50%',
             }} />
           </div>
@@ -160,7 +160,7 @@ export default function CartDrawer() {
                     </div>
                     <div style={{ fontSize: '13px', color: '#333', marginBottom: '2px' }}>
                       {item.quantity} x {discountedItemPrice} KD
-                      <span style={{ textDecoration: 'line-through', color: '#c8102e', marginRight: '6px', fontSize: '12px' }}>
+                      <span style={{ textDecoration: 'line-through', color: '#1a2744', marginRight: '6px', fontSize: '12px' }}>
                         {item.variant.price} KD
                       </span>
                     </div>
@@ -247,7 +247,7 @@ export default function CartDrawer() {
               onClick={() => { setCartDrawerOpen(false); setLocation('/summary-payment'); }}
               style={{
                 width: '100%', padding: '16px',
-                background: '#c8102e', color: 'white',
+                background: '#1a2744', color: 'white',
                 border: 'none', borderRadius: '30px',
                 fontSize: '18px', fontWeight: 700,
                 cursor: 'pointer',

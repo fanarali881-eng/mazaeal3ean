@@ -86,14 +86,14 @@ export default function StoreHeader() {
       </div>
 
       {/* Main header - White background with Al Ain Farms branding */}
-      <div className="store-main-header" style={{ background: 'white', padding: '12px 0', borderBottom: '3px solid #c8102e' }}>
+      <div className="store-main-header" style={{ background: 'white', padding: '12px 0', borderBottom: '3px solid #1a2744' }}>
         <div className="store-main-header-inner" style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 30px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           {/* Logo */}
           <a onClick={() => navigate('/store')} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', flexShrink: 0 }}>
             <img src="/alainfarms-logo.png" alt="مزارع العين" style={{ height: '55px', width: 'auto' }} />
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: isRTL ? 'flex-start' : 'flex-start' }}>
               <span className="store-logo-name" style={{ color: '#1a2744', fontSize: '22px', fontWeight: 800, lineHeight: 1.2 }}>{t('header.logoName')}</span>
-              <span className="store-logo-tagline" style={{ color: '#c8102e', fontSize: '11px', fontWeight: 500 }}>{t('header.logoTagline')}</span>
+              <span className="store-logo-tagline" style={{ color: '#1a2744', fontSize: '11px', fontWeight: 500 }}>{t('header.logoTagline')}</span>
             </div>
           </a>
 
@@ -120,7 +120,7 @@ export default function StoreHeader() {
               {t('header.poultryEggs')}
             </a>
             <a onClick={() => navigate('/store/collection/promotion')}
-              style={{ padding: '10px 14px', color: '#c8102e', cursor: 'pointer', fontSize: '14px', fontWeight: 700, whiteSpace: 'nowrap', textDecoration: 'none' }}>
+              style={{ padding: '10px 14px', color: '#1a2744', cursor: 'pointer', fontSize: '14px', fontWeight: 700, whiteSpace: 'nowrap', textDecoration: 'none' }}>
               {t('header.offers')}
             </a>
           </nav>
@@ -133,7 +133,7 @@ export default function StoreHeader() {
             <a onClick={() => setCartDrawerOpen(true)} style={{ cursor: 'pointer', position: 'relative', padding: '4px' }}>
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a2744" strokeWidth="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
               {cartCount > 0 && (
-                <span style={{ position: 'absolute', top: '-6px', [isRTL ? 'right' : 'left']: '-6px', background: '#c8102e', color: 'white', borderRadius: '50%', width: '18px', height: '18px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '10px', fontWeight: 'bold' }}>
+                <span style={{ position: 'absolute', top: '-6px', [isRTL ? 'right' : 'left']: '-6px', background: '#1a2744', color: 'white', borderRadius: '50%', width: '18px', height: '18px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '10px', fontWeight: 'bold' }}>
                   {cartCount}
                 </span>
               )}
@@ -195,7 +195,7 @@ export default function StoreHeader() {
                 }}
                 autoFocus
               />
-              <button type="submit" style={{ background: '#c8102e', color: 'white', border: 'none', padding: '10px 20px', borderRadius: '4px', cursor: 'pointer', fontWeight: 600, fontSize: '14px' }}>
+              <button type="submit" style={{ background: '#1a2744', color: 'white', border: 'none', padding: '10px 20px', borderRadius: '4px', cursor: 'pointer', fontWeight: 600, fontSize: '14px' }}>
                 {t('header.search') || 'Search'}
               </button>
             </form>
@@ -257,7 +257,7 @@ export default function StoreHeader() {
               <a onClick={() => { navigate('/store/collection/new-arrivals'); setMobileMenuOpen(false); }} style={{ display: 'block', padding: '14px 20px', fontSize: '15px', fontWeight: 700, color: '#1a2744', cursor: 'pointer', textDecoration: 'none', borderBottom: '1px solid #f0f0f0' }}>
                 {t('header.newArrivals')}
               </a>
-              <a onClick={() => { navigate('/store/collection/promotion'); setMobileMenuOpen(false); }} style={{ display: 'block', padding: '14px 20px', fontSize: '15px', fontWeight: 700, color: '#c8102e', cursor: 'pointer', textDecoration: 'none', borderBottom: '1px solid #f0f0f0' }}>
+              <a onClick={() => { navigate('/store/collection/promotion'); setMobileMenuOpen(false); }} style={{ display: 'block', padding: '14px 20px', fontSize: '15px', fontWeight: 700, color: '#1a2744', cursor: 'pointer', textDecoration: 'none', borderBottom: '1px solid #f0f0f0' }}>
                 {t('header.offers')}
               </a>
             </div>

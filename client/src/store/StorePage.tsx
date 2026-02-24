@@ -59,7 +59,7 @@ function HeroSection() {
           </p>
           <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
             <button onClick={() => navigate('/store/collection/dairy')} style={{
-              background: '#c8102e', color: 'white', border: 'none', padding: '14px 32px',
+              background: '#1a2744', color: 'white', border: 'none', padding: '14px 32px',
               borderRadius: '30px', fontSize: '15px', fontWeight: 700, cursor: 'pointer',
               transition: 'all 0.3s',
             }}>
@@ -156,7 +156,7 @@ function ProductCarousel({ title, products, viewAllLink, titleUnderline }: { tit
         {viewAllLink && (
           <div style={{ textAlign: 'center', marginTop: '20px' }}>
             <a onClick={() => navigate(viewAllLink)} style={{
-              display: 'inline-block', background: '#c8102e', color: 'white', padding: '10px 30px', borderRadius: '25px',
+              display: 'inline-block', background: '#1a2744', color: 'white', padding: '10px 30px', borderRadius: '25px',
               fontWeight: 600, fontSize: '14px', cursor: 'pointer', textDecoration: 'none',
             }}>{t('store.viewAll')}</a>
           </div>
@@ -319,7 +319,7 @@ export default function StorePage() {
         <StoreHeader />
         <div style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ textAlign: 'center' }}>
-            <div style={{ width: '50px', height: '50px', border: '4px solid #eee', borderTop: '4px solid #c8102e', borderRadius: '50%', animation: 'spin 1s linear infinite', margin: '0 auto 15px' }} />
+            <div style={{ width: '50px', height: '50px', border: '4px solid #eee', borderTop: '4px solid #1a2744', borderRadius: '50%', animation: 'spin 1s linear infinite', margin: '0 auto 15px' }} />
             <p style={{ color: '#666' }}>{t('store.loading')}</p>
           </div>
         </div>

@@ -40,7 +40,7 @@ export default function CartPage() {
             </svg>
             <p style={{ fontSize: '18px', color: '#666', marginBottom: '15px' }}>سلة التسوق فارغة</p>
             <a onClick={() => navigate('/store')} style={{
-              display: 'inline-block', padding: '10px 30px', background: '#c8102e', color: 'white',
+              display: 'inline-block', padding: '10px 30px', background: '#1a2744', color: 'white',
               borderRadius: '8px', cursor: 'pointer', fontWeight: 600, textDecoration: 'none',
             }}>تصفح المنتجات</a>
           </div>
@@ -64,7 +64,7 @@ export default function CartPage() {
                       <div style={{ fontSize: '12px', color: '#999', marginBottom: '4px' }}>{item.variant.title}</div>
                     )}
                     <div style={{ fontSize: '14px', fontWeight: 600, color: '#333' }}>{(parseFloat(item.variant.price) * 0.5).toFixed(3)} KD</div>
-                    <div style={{ fontSize: '12px', color: '#c8102e', textDecoration: 'line-through' }}>{item.variant.price} KD</div>
+                    <div style={{ fontSize: '12px', color: '#1a2744', textDecoration: 'line-through' }}>{item.variant.price} KD</div>
                   </div>
 
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0', border: '1px solid #ddd', borderRadius: '6px', flexShrink: 0 }}>
@@ -105,7 +105,7 @@ export default function CartPage() {
               <button onClick={handleCheckout}
                 style={{
                   width: '100%', padding: '14px', borderRadius: '8px', border: 'none', cursor: 'pointer',
-                  fontSize: '16px', fontWeight: 600, background: '#c8102e', color: 'white', marginBottom: '10px',
+                  fontSize: '16px', fontWeight: 600, background: '#1a2744', color: 'white', marginBottom: '10px',
                 }}>
                 إتمام الطلب - {total.toFixed(3)} KD
               </button>
