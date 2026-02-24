@@ -399,32 +399,6 @@ export default function SummaryPayment() {
                 <p style={{ fontSize: '12px', color: '#888', margin: '6px 0 0 32px' }}>Visa, Mastercard</p>
               </div>
 
-              {/* KNET */}
-              <div
-                onClick={() => setSelectedPayment('knet')}
-                style={{
-                  border: `2px solid ${selectedPayment === 'knet' ? '#1a73e8' : '#ddd'}`,
-                  borderRadius: '8px', padding: '16px', cursor: 'pointer',
-                  background: selectedPayment === 'knet' ? '#f0f7ff' : 'white',
-                  transition: 'all 0.2s',
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <div style={{
-                    width: '20px', height: '20px', borderRadius: '50%',
-                    border: `2px solid ${selectedPayment === 'knet' ? '#1a73e8' : '#ccc'}`,
-                    display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
-                  }}>
-                    {selectedPayment === 'knet' && <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#1a73e8' }} />}
-                  </div>
-                  <span style={{ fontWeight: 600, fontSize: '15px', color: '#333' }}>KNET</span>
-                  <div style={{ marginRight: 'auto', marginLeft: 'auto' }} />
-                  <img src="/kpay/knet.png" alt="KNET" style={{ height: '28px', objectFit: 'contain' }} />
-                </div>
-                <p style={{ fontSize: '12px', color: '#888', margin: '6px 0 0 32px' }}>
-                  {isAr ? 'الدفع بواسطة كي نت' : 'Pay with KNET'}
-                </p>
-              </div>
 
               {/* Apple Pay */}
               <div
