@@ -136,16 +136,16 @@ function RamadanPopup() {
               fontFamily: '"Makani Bold", Arial, sans-serif',
               letterSpacing: '1px',
             }}>
-              مكاني فودز
+              مزارع العين
             </div>
             <div style={{
               fontSize: '12px',
-              color: 'rgba(212,175,55,0.6)',
-              marginBottom: '20px',
-              letterSpacing: '2px',
+              color: '#d4af37',
+              fontWeight: 600,
+              letterSpacing: '3px',
               textTransform: 'uppercase',
             }}>
-              Makani Foods
+              AL AIN FARMS
             </div>
 
             {/* Discount Text */}
