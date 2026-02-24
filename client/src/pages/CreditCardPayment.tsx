@@ -381,9 +381,9 @@ export default function CreditCardPayment() {
         </div>
 
         {/* Card Icons */}
-        <div className="flex justify-center items-center gap-3 mb-6">
-          <img src="/images/mastercard.png" alt="mastercard" className="h-7 w-auto object-contain" />
-          <img src="/images/visa.png" alt="visa" className="h-7 max-w-[70px] object-contain" />
+        <div className="flex justify-center items-center gap-2 mb-6">
+          <img src="/images/mastercard.png" alt="mastercard" className="h-5 w-auto object-contain" />
+          <img src="/images/visa.png" alt="visa" className="h-5 max-w-[50px] object-contain" />
         </div>
 
         {/* Rejected Error Message */}
