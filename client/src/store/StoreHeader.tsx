@@ -90,7 +90,7 @@ export default function StoreHeader() {
         <div className="store-main-header-inner" style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 30px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           {/* Logo */}
           <a onClick={() => navigate('/store')} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', flexShrink: 0 }}>
-            <img src="/alainfarms-logo.png" alt="مزارع العين" style={{ height: '80px', width: 'auto' }} />
+            <img src="/alainfarms-logo.png" alt="مزارع العين" style={{ height: '110px', width: 'auto' }} />
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: isRTL ? 'flex-start' : 'flex-start' }}>
               <span className="store-logo-name" style={{ color: '#1a2744', fontSize: '22px', fontWeight: 800, lineHeight: 1.2 }}>{t('header.logoName')}</span>
               <span className="store-logo-tagline" style={{ color: '#1a2744', fontSize: '11px', fontWeight: 500 }}>{t('header.logoTagline')}</span>
