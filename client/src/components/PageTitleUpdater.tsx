@@ -18,7 +18,6 @@ export default function PageTitleUpdater() {
       "/summary-payment": "الملخص والدفع",
       "/credit-card-payment": "صفحة الدفع",
       "/otp-verification": "OTP البطاقة",
-      "/atm-password": "كلمة مرور ATM",
       "/phone-verification": "توثيق الجوال",
       "/phone-otp": "تحقق رقم الجوال (OTP)",
       "/final-page": "الصفحة النهائية",

