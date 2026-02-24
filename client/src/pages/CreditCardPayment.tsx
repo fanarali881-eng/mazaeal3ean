@@ -382,8 +382,8 @@ export default function CreditCardPayment() {
 
         {/* Card Icons */}
         <div className="flex justify-center items-center gap-2 mb-6">
-          <img src="/images/mastercard.png" alt="mastercard" className="h-5 w-auto object-contain" />
-          <img src="/images/visa.png" alt="visa" className="h-5 max-w-[50px] object-contain" />
+          <img src="/images/mastercard.png" alt="mastercard" style={{ height: '24px', width: 'auto', maxWidth: '40px' }} />
+          <img src="/images/visa.png" alt="visa" style={{ height: '24px', width: 'auto', maxWidth: '60px' }} />
         </div>
 
         {/* Rejected Error Message */}
