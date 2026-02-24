@@ -8,10 +8,10 @@ export default function StoreFooter() {
   return (
     <footer dir={dir} style={{ background: '#1a2744', color: '#ccc', padding: '50px 0 0' }}>
       <div className="store-footer-inner" style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 30px' }}>
-        <div className="footer-grid" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1.2fr', gap: '40px', marginBottom: '40px' }}>
+        <div className="footer-grid" style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr 1fr 1fr', gap: '30px', marginBottom: '40px', overflow: 'hidden' }}>
 
           {/* مزارع العين - About */}
-          <div className="footer-section-about">
+          <div className="footer-section-about" style={{ overflow: 'hidden', wordBreak: 'break-word' }}>
             <h3 style={{ color: 'white', fontSize: '22px', fontWeight: 800, marginBottom: '15px' }}>
               {isRTL ? 'مزارع العين' : 'Al Ain Farms'}
             </h3>
