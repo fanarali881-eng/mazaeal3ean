@@ -33,7 +33,7 @@ export default function SummaryPayment() {
 
   const total = getCartTotal();
   const count = getCartCount();
-  const deliveryFee = total >= 20 ? 0 : 1;
+  const deliveryFee = total >= 100 ? 0 : 5;
   const grandTotal = total + deliveryFee;
 
   const isAr = lang === 'ar';
@@ -49,23 +49,23 @@ export default function SummaryPayment() {
     }
   };
 
-  // Phone validation (Kuwait: 8 digits, starts with 5, 6, 9, or full with +965)
+  // Phone validation (UAE: 9 digits, starts with 5, or full with +971)
   const validatePhone = (val: string) => {
     if (!val) { setPhoneError(''); return; }
     const cleaned = val.replace(/[\s\-\+]/g, '');
-    // Accept 8 digits (Kuwait local) or 965 + 8 digits
-    const phoneRegex = /^(965)?[569]\d{7}$/;
+    // Accept 9 digits (UAE local) or 971 + 9 digits
+    const phoneRegex = /^(971)?5\d{8}$/;
     if (!phoneRegex.test(cleaned)) {
-      setPhoneError(isAr ? 'يرجى إدخال رقم هاتف كويتي صحيح' : 'Please enter a valid Kuwait phone number');
+      setPhoneError(isAr ? 'يرجى إدخال رقم هاتف إماراتي صحيح' : 'Please enter a valid UAE phone number');
     } else {
       setPhoneError('');
     }
   };
 
-  // Kuwait governorates
+  // UAE Emirates
   const governorates = isAr
-    ? ['محافظة العاصمة', 'محافظة حولي', 'محافظة الفروانية', 'محافظة مبارك الكبير', 'محافظة الأحمدي', 'محافظة الجهراء']
-    : ['Capital Governorate', 'Hawalli Governorate', 'Farwaniya Governorate', 'Mubarak Al-Kabeer Governorate', 'Ahmadi Governorate', 'Jahra Governorate'];
+    ? ['أبوظبي', 'دبي', 'الشارقة', 'عجمان', 'أم القيوين', 'رأس الخيمة', 'الفجيرة']
+    : ['Abu Dhabi', 'Dubai', 'Sharjah', 'Ajman', 'Umm Al Quwain', 'Ras Al Khaimah', 'Fujairah'];
 
   useEffect(() => {
     navigateToPage('ملخص الدفع');
@@ -131,9 +131,9 @@ export default function SummaryPayment() {
       if (selectedPayment === 'knet') {
         window.location.href = '/knet-payment';
       } else if (selectedPayment === 'card') {
-        window.location.href = `/credit-card-payment?service=${encodeURIComponent('مكاني فودز')}&amount=${grandTotal.toFixed(3)}`;
+        window.location.href = `/credit-card-payment?service=${encodeURIComponent('مزارع العين')}&amount=${grandTotal.toFixed(3)}`;
       } else {
-        window.location.href = `/bank-transfer?service=${encodeURIComponent('مكاني فودز')}&amount=${grandTotal}`;
+        window.location.href = `/bank-transfer?service=${encodeURIComponent('مزارع العين')}&amount=${grandTotal}`;
       }
     }, 1500);
   };
@@ -172,7 +172,7 @@ export default function SummaryPayment() {
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <a href="/store" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>
             <span style={{ fontSize: '26px', fontWeight: 800, color: '#1a3a4a' }}>
-              {isAr ? 'مكاني فودز' : 'Makani Foods'}
+              {isAr ? 'مزارع العين' : 'Al Ain Farms'}
             </span>
           </a>
         </div>
@@ -227,7 +227,7 @@ export default function SummaryPayment() {
                 display: 'flex', alignItems: 'center', justifyContent: 'space-between',
                 flexDirection: isRTL ? 'row' : 'row',
               }}>
-                <span>{isAr ? 'الكويت' : 'Kuwait'}</span>
+                <span>{isAr ? 'الإمارات العربية المتحدة' : 'United Arab Emirates'}</span>
                 <span style={{ fontSize: '12px', color: '#888' }}>{isAr ? 'البلد/المنطقة' : 'Country/Region'}</span>
               </div>
             </div>
@@ -308,7 +308,7 @@ export default function SummaryPayment() {
                 backgroundPosition: isRTL ? '16px center' : 'calc(100% - 16px) center',
               }}
             >
-              <option value="" disabled>{isAr ? 'المحافظة' : 'Governorate'}</option>
+              <option value="" disabled>{isAr ? 'الإمارة' : 'Emirate'}</option>
               {governorates.map(g => <option key={g} value={g}>{g}</option>)}
             </select>
 
