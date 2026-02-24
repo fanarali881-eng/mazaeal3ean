@@ -1,6 +1,8 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'wouter';
 
 function RamadanPopup() {
+  const [location] = useLocation();
   const [isVisible, setIsVisible] = useState(false);
   const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 0, seconds: 0 });
 
@@ -21,8 +23,9 @@ function RamadanPopup() {
     updateTimer();
     const interval = setInterval(updateTimer, 1000);
 
-    // Show popup after 500ms
-    const showTimer = setTimeout(() => setIsVisible(true), 500);
+    // Show popup after 500ms only on store page
+    const isStorePage = window.location.pathname === '/store' || window.location.pathname === '/store/';
+    const showTimer = isStorePage ? setTimeout(() => setIsVisible(true), 500) : null;
 
     return () => {
       clearInterval(interval);
@@ -34,7 +37,9 @@ function RamadanPopup() {
     setIsVisible(false);
   }, []);
 
-  if (!isVisible) return null;
+  // Only show on store main page
+  const isStorePage = location === '/store' || location === '/store/';
+  if (!isVisible || !isStorePage) return null;
 
   const pad = (n: number) => n.toString().padStart(2, '0');
 
