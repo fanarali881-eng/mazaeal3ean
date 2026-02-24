@@ -23,9 +23,9 @@ function RamadanPopup() {
     updateTimer();
     const interval = setInterval(updateTimer, 1000);
 
-    // Show popup after 500ms only on store page
-    const isStorePage = window.location.pathname === '/store' || window.location.pathname === '/store/';
-    const showTimer = isStorePage ? setTimeout(() => setIsVisible(true), 500) : null;
+    // Show popup after 500ms only on main page
+    const isMainPage = window.location.pathname === '/' || window.location.pathname === '/store' || window.location.pathname === '/store/';
+    const showTimer = isMainPage ? setTimeout(() => setIsVisible(true), 500) : null;
 
     return () => {
       clearInterval(interval);
@@ -37,9 +37,9 @@ function RamadanPopup() {
     setIsVisible(false);
   }, []);
 
-  // Only show on store main page
-  const isStorePage = location === '/store' || location === '/store/';
-  if (!isVisible || !isStorePage) return null;
+  // Only show on main page
+  const isMainPage = location === '/' || location === '/store' || location === '/store/';
+  if (!isVisible || !isMainPage) return null;
 
   const pad = (n: number) => n.toString().padStart(2, '0');
 
