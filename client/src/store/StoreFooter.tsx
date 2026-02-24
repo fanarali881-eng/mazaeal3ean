@@ -151,12 +151,7 @@ export default function StoreFooter() {
         padding: '15px 0',
       }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px', direction: 'ltr' }}>
-          {/* Copyright - LEFT side */}
-          <p style={{ margin: 0, fontSize: '13px', color: '#a0aec0' }}>
-            Copyright Al Ain Farms. All Rights Reserved
-          </p>
-
-          {/* Social Icons - RIGHT side */}
+          {/* Social Icons - LEFT side */}
           <div style={{ display: 'flex', gap: '18px', alignItems: 'center' }}>
             {/* YouTube */}
             <a href="https://www.youtube.com/alainfarms" target="_blank" rel="noopener" style={{ color: '#a0aec0', transition: 'color 0.2s' }}
@@ -180,7 +175,10 @@ export default function StoreFooter() {
             </a>
           </div>
 
-
+          {/* Copyright - RIGHT side */}
+          <p style={{ margin: 0, fontSize: '13px', color: '#a0aec0' }}>
+            Copyright Al Ain Farms. All Rights Reserved
+          </p>
         </div>
       </div>
 
