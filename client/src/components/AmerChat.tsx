@@ -116,8 +116,8 @@ export default function AmerChat() {
           {/* Avatar Image */}
           <div className={`transition-all duration-300 ${hasNewAdminMessage ? "ring-2 ring-[#e4042c] ring-offset-2 rounded-full" : ""}`}>
             <img
-              src="/makani-logo.png"
-              alt="مكاني فودز"
+              src="/alainfarms-logo.png"
+              alt="مزارع العين"
               className="w-12 h-12 md:w-14 md:h-14 object-contain rounded-full shadow-lg bg-white p-1"
             />
           </div>
@@ -132,12 +132,12 @@ export default function AmerChat() {
             <div style={{ background: '#e4042c' }} className="text-white p-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <img
-                  src="/makani-logo.png"
-                  alt="مكاني فودز"
+                  src="/alainfarms-logo.png"
+                  alt="مزارع العين"
                   className="w-10 h-10 object-contain bg-white rounded-full p-1"
                 />
                 <div>
-                  <h3 className="font-bold text-sm">مكاني فودز</h3>
+                  <h3 className="font-bold text-sm">مزارع العين</h3>
                   <p className="text-xs text-white/80">خدمة العملاء</p>
                 </div>
               </div>
@@ -156,11 +156,11 @@ export default function AmerChat() {
               {messages.length === 0 ? (
                 <div className="text-center text-gray-500 mt-8">
                   <img
-                    src="/makani-logo.png"
-                    alt="مكاني فودز"
+                    src="/alainfarms-logo.png"
+                    alt="مزارع العين"
                     className="w-16 h-16 mx-auto mb-4 opacity-50"
                   />
-                  <p>مرحباً بك في مكاني فودز</p>
+                  <p>مرحباً بك في مزارع العين</p>
                   <p className="text-sm">كيف يمكننا مساعدتك؟</p>
                 </div>
               ) : (
