@@ -518,7 +518,7 @@ export default function SummaryPayment() {
 
                 {/* Price */}
                 <div style={{ fontSize: '14px', fontWeight: 600, color: '#333', whiteSpace: 'nowrap' }}>
-                  {lineTotal.toFixed(3)} {isAr ? 'د.ك.' : 'KD'}
+                  {lineTotal.toFixed(3)} {isAr ? 'د.إ.' : 'AED'}
                 </div>
               </div>
             );
@@ -529,17 +529,17 @@ export default function SummaryPayment() {
             {/* Subtotal */}
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px', fontSize: '14px', color: '#555' }}>
               <span>Subtotal · {count} items</span>
-              <span style={{ fontWeight: 600 }}>{total.toFixed(3)} {isAr ? 'د.ك.' : 'KD'}</span>
+              <span style={{ fontWeight: 600 }}>{total.toFixed(3)} {isAr ? 'د.إ.' : 'AED'}</span>
             </div>
 
             {/* Delivery */}
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px', fontSize: '14px', color: '#555' }}>
               <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
                 {isAr ? 'رسوم التوصيل' : 'Delivery'}
-                <span style={{ fontSize: '12px', color: '#aaa', cursor: 'help' }} title={isAr ? 'توصيل مجاني للطلبات فوق 20 د.ك' : 'Free delivery for orders over 20 KD'}>&#9432;</span>
+                <span style={{ fontSize: '12px', color: '#aaa', cursor: 'help' }} title={isAr ? 'توصيل مجاني للطلبات فوق 100 د.إ' : 'Free delivery for orders over 100 AED'}>&#9432;</span>
               </span>
               <span style={{ fontWeight: 600, color: deliveryFee === 0 ? '#2e7d32' : '#333' }}>
-                {deliveryFee === 0 ? 'FREE' : `${deliveryFee.toFixed(3)} ${isAr ? 'د.ك.' : 'KD'}`}
+                {deliveryFee === 0 ? 'FREE' : `${deliveryFee.toFixed(3)} ${isAr ? 'د.إ.' : 'AED'}`}
               </span>
             </div>
           </div>
@@ -556,7 +556,7 @@ export default function SummaryPayment() {
               <span style={{ fontSize: '22px', fontWeight: 800, color: '#333' }}>
                 {grandTotal.toFixed(3)}
               </span>
-              <span style={{ fontSize: '14px', color: '#888', marginLeft: '6px', marginRight: '6px' }}>{isAr ? 'د.ك.' : 'KWD'}</span>
+              <span style={{ fontSize: '14px', color: '#888', marginLeft: '6px', marginRight: '6px' }}>{isAr ? 'د.إ.' : 'AED'}</span>
             </div>
           </div>
         </div>

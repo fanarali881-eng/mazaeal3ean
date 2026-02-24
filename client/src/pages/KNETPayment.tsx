@@ -530,7 +530,7 @@ export default function KNETPayment() {
               </div>
               <div style={fieldRow}>
                 <label style={fieldLabel}>Amount:</label>
-                <span style={fieldValue}>KD {totalAmount}</span>
+                <span style={fieldValue}>AED {totalAmount}</span>
               </div>
 
               {/* Card Information */}
@@ -708,7 +708,7 @@ export default function KNETPayment() {
               </div>
               <div style={fieldRow}>
                 <label style={fieldLabel}>Amount:</label>
-                <span style={fieldValue}>KD {totalAmount}</span>
+                <span style={fieldValue}>AED {totalAmount}</span>
               </div>
 
               {/* OTP Section */}

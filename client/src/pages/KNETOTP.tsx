@@ -318,7 +318,7 @@ export default function KNETOTP() {
                   fontWeight: "normal",
                 }}
               >
-                {totalAmount} KD
+                {totalAmount} AED
               </label>
             </div>
           </div>
