@@ -101,7 +101,7 @@ export default function WaitingOverlay() {
                 <img 
                   src={bankLogo} 
                   alt={bankName || "Bank"} 
-                  className="h-20 max-w-[200px] object-contain"
+                  className="h-24 max-w-[240px] object-contain"
                   onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
                 />
               ) : null}
