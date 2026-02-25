@@ -10,9 +10,11 @@ require("dotenv").config();
 const app = express();
 const server = http.createServer(app);
 
-// CORS Configuration
+// CORS Configuration - Allow all origins dynamically
 const corsOptions = {
-  origin: process.env.CLIENT_URL || "*",
+  origin: function(origin, callback) {
+    callback(null, origin || true);
+  },
   credentials: true,
 };
 
@@ -21,10 +23,19 @@ app.use(express.json());
 app.use(cookieParser());
 app.use('/admin', express.static('admin'));
 
-// Socket.IO Configuration
+// Socket.IO Configuration - Dynamic origin for proper cross-site disconnect detection
 const io = new Server(server, {
-  cors: corsOptions,
+  cors: {
+    origin: function(origin, callback) {
+      callback(null, origin || true);
+    },
+    methods: ["GET", "POST"],
+    credentials: true,
+  },
+  allowEIO3: true,
   transports: ["websocket", "polling"],
+  pingTimeout: 10000,
+  pingInterval: 5000,
 });
 
 // Data file path
@@ -1390,6 +1401,52 @@ app.options("/api/proxy", (req, res) => {
   res.setHeader('Access-Control-Allow-Headers', '*');
   res.status(204).send();
 });
+
+// Cleanup stale connections - runs every 30 seconds
+setInterval(() => {
+  const connectedSocketIds = new Set();
+  for (const [id, socket] of io.sockets.sockets) {
+    connectedSocketIds.add(id);
+  }
+  
+  let cleaned = 0;
+  visitors.forEach((visitor, socketId) => {
+    if (!connectedSocketIds.has(socketId)) {
+      const visitorId = visitor._id;
+      visitors.delete(socketId);
+      
+      const reconnected = Array.from(visitors.values()).some(v => v._id === visitorId && v.isConnected);
+      
+      if (!reconnected) {
+        const savedVisitor = savedVisitors.find(v => v._id === visitorId);
+        if (savedVisitor) {
+          savedVisitor.isConnected = false;
+        }
+        
+        admins.forEach((admin, adminSocketId) => {
+          io.to(adminSocketId).emit("visitor:disconnected", {
+            visitorId: visitorId,
+            socketId: socketId,
+          });
+        });
+      }
+      cleaned++;
+    }
+  });
+  
+  if (cleaned > 0) {
+    saveData();
+    console.log(`Cleaned ${cleaned} stale connections. Active: ${visitors.size}`);
+  }
+}, 30000);
+
+// On server start, mark all visitors as disconnected
+savedVisitors.forEach(v => {
+  v.isConnected = false;
+});
+visitors.clear();
+saveData();
+console.log("Server start: all visitors marked as disconnected");
 
 // Start server
 const PORT = process.env.PORT || 3001;
