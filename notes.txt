@@ -1,0 +1,8 @@
+The second image shows the current Mazare3 Al Ain website with navigation:
+الحليب | الزبادي واللبن | الأجبان | العصائر | الدواجن والبيض | عروض
+
+Need to add "المياه" (Water) after العصائر (Juices) in the navigation.
+
+The first image is a Render dashboard - not relevant to water products.
+
+No specific water product price image was provided. Will use standard Al Ain water prices from the UAE market.
