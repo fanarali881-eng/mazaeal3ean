@@ -64,8 +64,8 @@ export default function StoreFooter() {
               </h6>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                 {(isRTL
-                  ? ['الألبان', 'العصائر', 'الدواجن', 'حليب النوق']
-                  : ['Dairy', 'Juices', 'Poultry', 'Camel Milk']
+                  ? ['الألبان', 'العصائر', 'المياه', 'الدواجن', 'حليب النوق']
+                  : ['Dairy', 'Juices', 'Water', 'Poultry', 'Camel Milk']
                 ).map((item, i) => (
                   <li key={i} style={{ marginBottom: '8px' }}>
                     <a style={{ color: '#4a5568', fontSize: '14px', textDecoration: 'none', cursor: 'pointer', transition: 'color 0.2s' }}
@@ -102,8 +102,8 @@ export default function StoreFooter() {
                   </ul>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                     {(isRTL
-                      ? ['الأجبان', 'العصائر', 'حليب نوق']
-                      : ['Cheese', 'Juices', 'Camelait']
+                      ? ['الأجبان', 'العصائر', 'المياه', 'حليب نوق']
+                      : ['Cheese', 'Juices', 'Water', 'Camelait']
                     ).map((item, i) => (
                       <li key={i} style={{ marginBottom: '8px' }}>
                         <a style={{ color: '#4a5568', fontSize: '14px', textDecoration: 'none', cursor: 'pointer', transition: 'color 0.2s' }}

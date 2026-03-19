@@ -115,6 +115,10 @@ export default function StoreHeader() {
               style={{ padding: '10px 14px', color: '#1a2744', cursor: 'pointer', fontSize: '14px', fontWeight: 600, whiteSpace: 'nowrap', textDecoration: 'none' }}>
               {t('header.juices')}
             </a>
+            <a onClick={() => navigate('/store/collection/water')}
+              style={{ padding: '10px 14px', color: '#1a2744', cursor: 'pointer', fontSize: '14px', fontWeight: 600, whiteSpace: 'nowrap', textDecoration: 'none' }}>
+              {t('header.water')}
+            </a>
             <a onClick={() => navigate('/store/collection/poultry-eggs')}
               style={{ padding: '10px 14px', color: '#1a2744', cursor: 'pointer', fontSize: '14px', fontWeight: 600, whiteSpace: 'nowrap', textDecoration: 'none' }}>
               {t('header.poultryEggs')}
@@ -159,6 +163,9 @@ export default function StoreHeader() {
           </a>
           <a onClick={() => navigate('/store/collection/juices')} style={{ flex: '0 0 auto', padding: '12px 16px', color: 'white', cursor: 'pointer', fontSize: '13px', fontWeight: 500, textDecoration: 'none', borderRight: '1px solid rgba(255,255,255,0.2)' }}>
             {t('header.juices')}
+          </a>
+          <a onClick={() => navigate('/store/collection/water')} style={{ flex: '0 0 auto', padding: '12px 16px', color: 'white', cursor: 'pointer', fontSize: '13px', fontWeight: 500, textDecoration: 'none', borderRight: '1px solid rgba(255,255,255,0.2)' }}>
+            {t('header.water')}
           </a>
           <a onClick={() => navigate('/store/collection/poultry-eggs')} style={{ flex: '0 0 auto', padding: '12px 16px', color: 'white', cursor: 'pointer', fontSize: '13px', fontWeight: 500, textDecoration: 'none', borderRight: '1px solid rgba(255,255,255,0.2)' }}>
             {t('header.poultryEggs')}
@@ -248,6 +255,7 @@ export default function StoreHeader() {
                 { label: t('header.yoghurtLaban'), path: '/store/collection/yoghurt-laban' },
                 { label: t('header.cheese'), path: '/store/collection/cheese' },
                 { label: t('header.juices'), path: '/store/collection/juices' },
+                { label: t('header.water'), path: '/store/collection/water' },
                 { label: t('header.poultryEggs'), path: '/store/collection/poultry-eggs' },
               ].map((item, i) => (
                 <a key={i} onClick={() => { navigate(item.path); setMobileMenuOpen(false); }} style={{ display: 'block', padding: '14px 20px', fontSize: '15px', fontWeight: 700, color: '#1a2744', cursor: 'pointer', textDecoration: 'none', borderBottom: '1px solid #f0f0f0' }}>

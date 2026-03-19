@@ -22,6 +22,7 @@ const translations: Record<string, Record<Lang, string>> = {
   'header.yoghurtLaban': { ar: 'الزبادي واللبن', en: 'Yoghurt & Laban' },
   'header.cheese': { ar: 'الأجبان', en: 'Cheese' },
   'header.juices': { ar: 'العصائر', en: 'Juices' },
+  'header.water': { ar: 'المياه', en: 'Water' },
   'header.poultryEggs': { ar: 'الدواجن والبيض', en: 'Poultry & Eggs' },
   'header.newArrivals': { ar: 'وصل حديثاً', en: 'New Arrivals' },
   'header.offers': { ar: 'عروض', en: 'Offers' },
@@ -115,6 +116,7 @@ const translations: Record<string, Record<Lang, string>> = {
   'cat.juice': { ar: 'العصائر', en: 'Juices' },
   'cat.poultry': { ar: 'الدواجن', en: 'Poultry' },
   'cat.eggs': { ar: 'البيض', en: 'Eggs' },
+  'cat.water': { ar: 'المياه', en: 'Water' },
   // Keep old keys
   'cat.fries': { ar: 'حليب منكه', en: 'Flavored Milk' },
   'cat.beef': { ar: 'الزبادي', en: 'Yoghurt' },

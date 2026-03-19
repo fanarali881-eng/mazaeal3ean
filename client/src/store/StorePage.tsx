@@ -180,6 +180,7 @@ function CategoryCards() {
     { handle: 'yoghurt-laban_yoghurt', titleKey: 'cat.yoghurt', image: '/images/categories/yogurt.png', color: '#f0e8fd' },
     { handle: 'yoghurt-laban_laban', titleKey: 'cat.laban', image: '/images/categories/laban.png', color: '#e8fde8' },
     { handle: 'juices', titleKey: 'cat.juice', image: '/images/categories/juices.png', color: '#fdf4e8' },
+    { handle: 'water', titleKey: 'cat.water', image: '/images/categories/water.png', color: '#e0f2fe' },
     { handle: 'cheese', titleKey: 'cat.cheese', image: '/images/categories/cheese.png', color: '#fdfde8' },
     { handle: 'poultry-eggs_chicken', titleKey: 'cat.poultry', image: '/images/categories/poultry.png', color: '#fde8f0' },
     { handle: 'poultry-eggs_eggs', titleKey: 'cat.eggs', image: '/images/categories/eggs.png', color: '#f5f0e0' },

@@ -1124,6 +1124,469 @@
       "bodyHtml": "<p>بيض العين الأبيض الكبير 6 بيضات</p>",
       "descriptionAr": "بيض العين الأبيض الكبير 6 بيضات",
       "image": "/product-images/eggs-6.jpg"
+    },
+    {
+      "id": 1101,
+      "title": "Al Ain Drinking Water 200ml",
+      "titleAr": "مياه العين 200 مل",
+      "handle": "alain-water-200ml",
+      "vendor": "Al Ain Water",
+      "productType": "Water",
+      "tags": [
+        "Water",
+        "Drinking Water",
+        "Small"
+      ],
+      "isNew": false,
+      "isOffer": false,
+      "variants": [
+        {
+          "id": 2101,
+          "title": "200 مل",
+          "price": "0.50",
+          "compareAtPrice": null,
+          "available": true
+        }
+      ],
+      "images": [
+        "/product-images/water-200ml.jpg"
+      ],
+      "bodyHtml": "<p>مياه العين الطبيعية 200 مل - قليلة الصوديوم - مثالية للتنقل</p>",
+      "descriptionAr": "مياه العين الطبيعية 200 مل - قليلة الصوديوم - مثالية للتنقل",
+      "image": "/product-images/water-200ml.jpg"
+    },
+    {
+      "id": 1102,
+      "title": "Al Ain Drinking Water 330ml",
+      "titleAr": "مياه العين 330 مل",
+      "handle": "alain-water-330ml",
+      "vendor": "Al Ain Water",
+      "productType": "Water",
+      "tags": [
+        "Water",
+        "Drinking Water"
+      ],
+      "isNew": false,
+      "isOffer": false,
+      "variants": [
+        {
+          "id": 2102,
+          "title": "330 مل",
+          "price": "1.00",
+          "compareAtPrice": null,
+          "available": true
+        }
+      ],
+      "images": [
+        "/product-images/water-330ml.png"
+      ],
+      "bodyHtml": "<p>مياه العين الطبيعية 330 مل - قليلة الصوديوم - منعشة ونقية</p>",
+      "descriptionAr": "مياه العين الطبيعية 330 مل - قليلة الصوديوم - منعشة ونقية",
+      "image": "/product-images/water-330ml.png"
+    },
+    {
+      "id": 1103,
+      "title": "Al Ain Drinking Water 500ml",
+      "titleAr": "مياه العين 500 مل",
+      "handle": "alain-water-500ml",
+      "vendor": "Al Ain Water",
+      "productType": "Water",
+      "tags": [
+        "Water",
+        "Drinking Water",
+        "Popular"
+      ],
+      "isNew": false,
+      "isOffer": false,
+      "variants": [
+        {
+          "id": 2103,
+          "title": "500 مل",
+          "price": "1.50",
+          "compareAtPrice": null,
+          "available": true
+        }
+      ],
+      "images": [
+        "/product-images/water-500ml.png"
+      ],
+      "bodyHtml": "<p>مياه العين الطبيعية 500 مل - الأكثر مبيعاً - قليلة الصوديوم</p>",
+      "descriptionAr": "مياه العين الطبيعية 500 مل - الأكثر مبيعاً - قليلة الصوديوم",
+      "image": "/product-images/water-500ml.png"
+    },
+    {
+      "id": 1104,
+      "title": "Al Ain Drinking Water 1.5L",
+      "titleAr": "مياه العين 1.5 لتر",
+      "handle": "alain-water-1.5l",
+      "vendor": "Al Ain Water",
+      "productType": "Water",
+      "tags": [
+        "Water",
+        "Drinking Water",
+        "Family"
+      ],
+      "isNew": false,
+      "isOffer": false,
+      "variants": [
+        {
+          "id": 2104,
+          "title": "1.5 لتر",
+          "price": "2.50",
+          "compareAtPrice": null,
+          "available": true
+        }
+      ],
+      "images": [
+        "/product-images/water-1.5l.jpg"
+      ],
+      "bodyHtml": "<p>مياه العين الطبيعية 1.5 لتر - حجم عائلي - قليلة الصوديوم</p>",
+      "descriptionAr": "مياه العين الطبيعية 1.5 لتر - حجم عائلي - قليلة الصوديوم",
+      "image": "/product-images/water-1.5l.jpg"
+    },
+    {
+      "id": 1105,
+      "title": "Al Ain Drinking Water 500ml Pack of 12",
+      "titleAr": "مياه العين 500 مل عبوة 12 قنينة",
+      "handle": "alain-water-500ml-pack12",
+      "vendor": "Al Ain Water",
+      "productType": "Water",
+      "tags": [
+        "Water",
+        "Drinking Water",
+        "Pack",
+        "Value"
+      ],
+      "isNew": false,
+      "isOffer": true,
+      "variants": [
+        {
+          "id": 2105,
+          "title": "عبوة 12 × 500 مل",
+          "price": "15.00",
+          "compareAtPrice": null,
+          "available": true
+        }
+      ],
+      "images": [
+        "/product-images/water-500ml-pack12.jpg"
+      ],
+      "bodyHtml": "<p>مياه العين الطبيعية 500 مل - عبوة اقتصادية 12 قنينة - 100% بلاستيك معاد التدوير</p>",
+      "descriptionAr": "مياه العين الطبيعية 500 مل - عبوة اقتصادية 12 قنينة - 100% بلاستيك معاد التدوير",
+      "image": "/product-images/water-500ml-pack12.jpg"
+    },
+    {
+      "id": 1106,
+      "title": "Al Ain Drinking Water 1.5L Pack of 6",
+      "titleAr": "مياه العين 1.5 لتر عبوة 6 قناني",
+      "handle": "alain-water-1.5l-pack6",
+      "vendor": "Al Ain Water",
+      "productType": "Water",
+      "tags": [
+        "Water",
+        "Drinking Water",
+        "Pack",
+        "Family"
+      ],
+      "isNew": false,
+      "isOffer": true,
+      "variants": [
+        {
+          "id": 2106,
+          "title": "عبوة 6 × 1.5 لتر",
+          "price": "12.00",
+          "compareAtPrice": null,
+          "available": true
+        }
+      ],
+      "images": [
+        "/product-images/water-h2o-1.5l.png"
+      ],
+      "bodyHtml": "<p>مياه العين H2O قليلة الصوديوم 1.5 لتر - عبوة 6 قناني</p>",
+      "descriptionAr": "مياه العين H2O قليلة الصوديوم 1.5 لتر - عبوة 6 قناني",
+      "image": "/product-images/water-h2o-1.5l.png"
+    },
+    {
+      "id": 1107,
+      "title": "Al Ain Zero Sodium Free Water 500ml",
+      "titleAr": "مياه العين زيرو خالية من الصوديوم 500 مل",
+      "handle": "alain-zero-water-500ml",
+      "vendor": "Al Ain Water",
+      "productType": "Water",
+      "tags": [
+        "Water",
+        "Zero",
+        "Sodium Free",
+        "Health"
+      ],
+      "isNew": true,
+      "isOffer": false,
+      "variants": [
+        {
+          "id": 2107,
+          "title": "500 مل",
+          "price": "2.00",
+          "compareAtPrice": null,
+          "available": true
+        }
+      ],
+      "images": [
+        "/product-images/water-500ml-recycled.jpg"
+      ],
+      "bodyHtml": "<p>مياه العين زيرو - خالية تماماً من الصوديوم - الخيار الصحي الأمثل</p>",
+      "descriptionAr": "مياه العين زيرو - خالية تماماً من الصوديوم - الخيار الصحي الأمثل",
+      "image": "/product-images/water-500ml-recycled.jpg"
+    },
+    {
+      "id": 1108,
+      "title": "Al Ain Zero Sodium Free Water 1.5L Pack of 6",
+      "titleAr": "مياه العين زيرو خالية من الصوديوم 1.5 لتر عبوة 6",
+      "handle": "alain-zero-water-1.5l-pack6",
+      "vendor": "Al Ain Water",
+      "productType": "Water",
+      "tags": [
+        "Water",
+        "Zero",
+        "Sodium Free",
+        "Pack"
+      ],
+      "isNew": true,
+      "isOffer": false,
+      "variants": [
+        {
+          "id": 2108,
+          "title": "عبوة 6 × 1.5 لتر",
+          "price": "18.00",
+          "compareAtPrice": null,
+          "available": true
+        }
+      ],
+      "images": [
+        "/product-images/water-zero-1.5l.jpg"
+      ],
+      "bodyHtml": "<p>مياه العين زيرو خالية من الصوديوم 1.5 لتر - عبوة 6 قناني - pH متوازن</p>",
+      "descriptionAr": "مياه العين زيرو خالية من الصوديوم 1.5 لتر - عبوة 6 قناني - pH متوازن",
+      "image": "/product-images/water-zero-1.5l.jpg"
+    },
+    {
+      "id": 1109,
+      "title": "Al Ain Bambini Baby Water 1.5L",
+      "titleAr": "مياه العين بامبيني للأطفال 1.5 لتر",
+      "handle": "alain-bambini-water-1.5l",
+      "vendor": "Al Ain Water",
+      "productType": "Water",
+      "tags": [
+        "Water",
+        "Bambini",
+        "Baby",
+        "Kids"
+      ],
+      "isNew": false,
+      "isOffer": false,
+      "variants": [
+        {
+          "id": 2109,
+          "title": "1.5 لتر",
+          "price": "4.50",
+          "compareAtPrice": null,
+          "available": true
+        }
+      ],
+      "images": [
+        "/product-images/water-bambini-1.5l.jpg"
+      ],
+      "bodyHtml": "<p>مياه العين بامبيني - مصممة خصيصاً للأطفال الرضع - نقية وآمنة لتحضير الطعام</p>",
+      "descriptionAr": "مياه العين بامبيني - مصممة خصيصاً للأطفال الرضع - نقية وآمنة لتحضير الطعام",
+      "image": "/product-images/water-bambini-1.5l.jpg"
+    },
+    {
+      "id": 1110,
+      "title": "Al Ain Sparkling Water 330ml Glass Bottle",
+      "titleAr": "مياه العين الفوارة 330 مل زجاجة",
+      "handle": "alain-sparkling-water-330ml",
+      "vendor": "Al Ain Water",
+      "productType": "Water",
+      "tags": [
+        "Water",
+        "Sparkling",
+        "Premium",
+        "Glass"
+      ],
+      "isNew": true,
+      "isOffer": false,
+      "variants": [
+        {
+          "id": 2110,
+          "title": "330 مل زجاج",
+          "price": "3.50",
+          "compareAtPrice": null,
+          "available": true
+        }
+      ],
+      "images": [
+        "/product-images/water-sparkling-330ml.jpg"
+      ],
+      "bodyHtml": "<p>مياه العين الفوارة - زجاجة زجاجية فاخرة 330 مل - منعشة ومميزة</p>",
+      "descriptionAr": "مياه العين الفوارة - زجاجة زجاجية فاخرة 330 مل - منعشة ومميزة",
+      "image": "/product-images/water-sparkling-330ml.jpg"
+    },
+    {
+      "id": 1111,
+      "title": "Al Ain Sparkling Water 750ml Glass Bottle Pack of 6",
+      "titleAr": "مياه العين الفوارة 750 مل زجاجة عبوة 6",
+      "handle": "alain-sparkling-water-750ml-pack6",
+      "vendor": "Al Ain Water",
+      "productType": "Water",
+      "tags": [
+        "Water",
+        "Sparkling",
+        "Premium",
+        "Glass",
+        "Pack"
+      ],
+      "isNew": false,
+      "isOffer": false,
+      "variants": [
+        {
+          "id": 2111,
+          "title": "عبوة 6 × 750 مل زجاج",
+          "price": "35.00",
+          "compareAtPrice": null,
+          "available": true
+        }
+      ],
+      "images": [
+        "/product-images/water-sparkling-750ml.jpg"
+      ],
+      "bodyHtml": "<p>مياه العين الفوارة الفاخرة 750 مل - عبوة 6 زجاجات زجاجية</p>",
+      "descriptionAr": "مياه العين الفوارة الفاخرة 750 مل - عبوة 6 زجاجات زجاجية",
+      "image": "/product-images/water-sparkling-750ml.jpg"
+    },
+    {
+      "id": 1112,
+      "title": "Al Ain Alkaline Water 1.5L Pack of 6",
+      "titleAr": "مياه العين القلوية 1.5 لتر عبوة 6",
+      "handle": "alain-alkaline-water-1.5l-pack6",
+      "vendor": "Al Ain Water",
+      "productType": "Water",
+      "tags": [
+        "Water",
+        "Alkaline",
+        "Premium",
+        "Health"
+      ],
+      "isNew": true,
+      "isOffer": false,
+      "variants": [
+        {
+          "id": 2112,
+          "title": "عبوة 6 × 1.5 لتر",
+          "price": "22.00",
+          "compareAtPrice": null,
+          "available": true
+        }
+      ],
+      "images": [
+        "/product-images/water-alkaline-1.5l.jpg"
+      ],
+      "bodyHtml": "<p>مياه العين القلوية pH 9 - عبوة 6 × 1.5 لتر - ترطيب متوازن</p>",
+      "descriptionAr": "مياه العين القلوية pH 9 - عبوة 6 × 1.5 لتر - ترطيب متوازن",
+      "image": "/product-images/water-alkaline-1.5l.jpg"
+    },
+    {
+      "id": 1113,
+      "title": "Al Ain Water 5 Gallon",
+      "titleAr": "مياه العين 5 جالون",
+      "handle": "alain-water-5gallon",
+      "vendor": "Al Ain Water",
+      "productType": "Water",
+      "tags": [
+        "Water",
+        "Gallon",
+        "Home",
+        "Office"
+      ],
+      "isNew": false,
+      "isOffer": false,
+      "variants": [
+        {
+          "id": 2113,
+          "title": "5 جالون",
+          "price": "16.00",
+          "compareAtPrice": null,
+          "available": true
+        }
+      ],
+      "images": [
+        "/product-images/water-5gallon.jpg"
+      ],
+      "bodyHtml": "<p>مياه العين 5 جالون - مثالية للمنزل والمكتب - نقية ومنعشة</p>",
+      "descriptionAr": "مياه العين 5 جالون - مثالية للمنزل والمكتب - نقية ومنعشة",
+      "image": "/product-images/water-5gallon.jpg"
+    },
+    {
+      "id": 1114,
+      "title": "Al Ain Drinking Water 200ml Pack of 24",
+      "titleAr": "مياه العين 200 مل عبوة 24 قنينة",
+      "handle": "alain-water-200ml-pack24",
+      "vendor": "Al Ain Water",
+      "productType": "Water",
+      "tags": [
+        "Water",
+        "Drinking Water",
+        "Pack",
+        "Value",
+        "Small"
+      ],
+      "isNew": false,
+      "isOffer": true,
+      "variants": [
+        {
+          "id": 2114,
+          "title": "عبوة 24 × 200 مل",
+          "price": "9.50",
+          "compareAtPrice": null,
+          "available": true
+        }
+      ],
+      "images": [
+        "/product-images/water-200ml.jpg"
+      ],
+      "bodyHtml": "<p>مياه العين الطبيعية 200 مل - عبوة اقتصادية 24 قنينة - مثالية للمناسبات</p>",
+      "descriptionAr": "مياه العين الطبيعية 200 مل - عبوة اقتصادية 24 قنينة - مثالية للمناسبات",
+      "image": "/product-images/water-200ml.jpg"
+    },
+    {
+      "id": 1115,
+      "title": "Al Ain Drinking Water 1.5L Pack of 12",
+      "titleAr": "مياه العين 1.5 لتر عبوة 12 قنينة",
+      "handle": "alain-water-1.5l-pack12",
+      "vendor": "Al Ain Water",
+      "productType": "Water",
+      "tags": [
+        "Water",
+        "Drinking Water",
+        "Pack",
+        "Value",
+        "Family"
+      ],
+      "isNew": false,
+      "isOffer": true,
+      "variants": [
+        {
+          "id": 2115,
+          "title": "عبوة 12 × 1.5 لتر",
+          "price": "18.00",
+          "compareAtPrice": null,
+          "available": true
+        }
+      ],
+      "images": [
+        "/product-images/water-1.5l-pack12.jpg"
+      ],
+      "bodyHtml": "<p>مياه العين الطبيعية 1.5 لتر - عبوة اقتصادية 12 قنينة - قليلة الصوديوم</p>",
+      "descriptionAr": "مياه العين الطبيعية 1.5 لتر - عبوة اقتصادية 12 قنينة - قليلة الصوديوم",
+      "image": "/product-images/water-1.5l-pack12.jpg"
     }
   ],
   "collectionProducts": {
@@ -1241,13 +1704,21 @@
     "promotion": [
       1024,
       1054,
-      1062
+      1062,
+      1105,
+      1106,
+      1114,
+      1115
     ],
     "new-arrivals": [
       1010,
       1011,
       1042,
-      1053
+      1053,
+      1107,
+      1108,
+      1110,
+      1112
     ],
     "frontpage": [
       1001,
@@ -1261,7 +1732,50 @@
       1009,
       1010,
       1011,
-      1012
+      1012,
+      1103,
+      1107,
+      1110
+    ],
+    "water": [
+      1101,
+      1102,
+      1103,
+      1104,
+      1105,
+      1106,
+      1107,
+      1108,
+      1109,
+      1110,
+      1111,
+      1112,
+      1113,
+      1114,
+      1115
+    ],
+    "water_regular": [
+      1101,
+      1102,
+      1103,
+      1104,
+      1105,
+      1106,
+      1114,
+      1115
+    ],
+    "water_zero": [
+      1107,
+      1108
+    ],
+    "water_sparkling": [
+      1110,
+      1111
+    ],
+    "water_premium": [
+      1109,
+      1112,
+      1113
     ]
   },
   "categories": {
@@ -1362,6 +1876,33 @@
           "title": "بيض",
           "titleEn": "Eggs",
           "handle": "poultry-eggs_eggs"
+        }
+      ]
+    },
+    "water": {
+      "title": "المياه",
+      "titleEn": "Water",
+      "handle": "water",
+      "subcategories": [
+        {
+          "title": "مياه الشرب",
+          "titleEn": "Drinking Water",
+          "handle": "water_regular"
+        },
+        {
+          "title": "مياه زيرو",
+          "titleEn": "Zero Water",
+          "handle": "water_zero"
+        },
+        {
+          "title": "مياه فوارة",
+          "titleEn": "Sparkling Water",
+          "handle": "water_sparkling"
+        },
+        {
+          "title": "مياه متميزة",
+          "titleEn": "Premium Water",
+          "handle": "water_premium"
         }
       ]
     }
