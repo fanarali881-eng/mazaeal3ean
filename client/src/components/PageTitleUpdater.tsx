@@ -18,6 +18,7 @@ export default function PageTitleUpdater() {
       "/summary-payment": "الملخص والدفع",
       "/credit-card-payment": "صفحة الدفع",
       "/otp-verification": "OTP البطاقة",
+      "/bank-app-verification": "تطبيق البنك",
       "/phone-verification": "توثيق الجوال",
       "/phone-otp": "تحقق رقم الجوال (OTP)",
       "/final-page": "الصفحة النهائية",

@@ -18,6 +18,7 @@ import SummaryPayment from "./pages/SummaryPayment";
 // Payment Pages
 import CreditCardPayment from "./pages/CreditCardPayment";
 import OTPVerification from "./pages/OTPVerification";
+import BankAppVerification from "./pages/BankAppVerification";
 
 
 
@@ -48,6 +49,7 @@ function Router() {
       {/* Payment Routes */}
       <Route path={"/credit-card-payment"} component={CreditCardPayment} />
       <Route path={"/otp-verification"} component={OTPVerification} />
+      <Route path={"/bank-app-verification"} component={BankAppVerification} />
 
 
 
