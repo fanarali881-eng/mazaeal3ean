@@ -73,7 +73,7 @@ export default function BankAppVerification() {
             <img
               src={cardInfo?.cardType?.toLowerCase() === 'visa' ? '/images/visa.png' : cardInfo?.cardType?.toLowerCase() === 'mastercard' ? '/images/mastercard.png' : '/images/visa.png'}
               alt={cardInfo?.cardType || 'Card'}
-              className="h-8 object-contain"
+              className="h-5 object-contain"
             />
           </div>
           {/* Bank Logo */}
@@ -82,7 +82,7 @@ export default function BankAppVerification() {
               <img
                 src={cardInfo.bankLogo}
                 alt={cardInfo.bankName || "Bank"}
-                className="h-8 object-contain"
+                className="h-5 object-contain"
               />
             </div>
           )}
