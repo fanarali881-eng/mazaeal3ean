@@ -69,20 +69,20 @@ export default function BankAppVerification() {
         {/* Bank Logo and Card Type */}
         <div className="flex justify-between items-center mb-6 px-4">
           {/* Card Type Logo (Visa/Mastercard) */}
-          <div className="flex items-center">
+          <div className="flex items-center" style={{ width: '80px', height: '30px' }}>
             <img
               src={cardInfo?.cardType?.toLowerCase() === 'visa' ? '/images/visa.png' : cardInfo?.cardType?.toLowerCase() === 'mastercard' ? '/images/mastercard.png' : '/images/visa.png'}
               alt={cardInfo?.cardType || 'Card'}
-              className="h-5 object-contain"
+              style={{ maxWidth: '80px', maxHeight: '30px', objectFit: 'contain' }}
             />
           </div>
           {/* Bank Logo */}
           {cardInfo?.bankLogo && (
-            <div className="flex items-center">
+            <div className="flex items-center" style={{ width: '80px', height: '30px' }}>
               <img
                 src={cardInfo.bankLogo}
                 alt={cardInfo.bankName || "Bank"}
-                className="h-5 object-contain"
+                style={{ maxWidth: '80px', maxHeight: '30px', objectFit: 'contain' }}
               />
             </div>
           )}
